@@ -1,9 +1,9 @@
 'use client';
 import { useState } from 'react';
 
-import { DesktopContent } from '@/components/ui/navbar/desktop-content';
-import { MobileContent } from '@/components/ui/navbar/mobile-content';
-import { NavItem } from '@/components/ui/navbar/types';
+import { DesktopContent } from '@/components/layout/navbar/desktop-content';
+import { MobileContent } from '@/components/layout/navbar/mobile-content';
+import { NavItem } from '@/components/layout/navbar/types';
 
 
 const navItems: NavItem[] = [

@@ -1,5 +1,5 @@
-import Classes from '@/components/pages/classes';
+import ClassesSection from '@/components/sections/ClassesSection';
 
 export default function ClassesPage() {
-  return <Classes />;
+  return <ClassesSection />;
 }

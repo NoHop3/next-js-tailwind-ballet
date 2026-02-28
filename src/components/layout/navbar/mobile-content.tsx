@@ -1,5 +1,5 @@
-import { NavItem } from '@/components/ui/navbar/types';
-import React from 'react';
+
+import { NavItem } from '@/components/layout/navbar/types';
 
 export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
   return (
