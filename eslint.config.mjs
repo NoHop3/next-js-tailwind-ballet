@@ -13,6 +13,10 @@ const eslintConfig = defineConfig([
     'out/**',
     'build/**',
     'next-env.d.ts',
+    // Additional ignores:
+    'Documents/**',
+    'node_modules/**',
+    '.git/**',
   ]),
   {
     plugins: {
@@ -42,6 +46,7 @@ const eslintConfig = defineConfig([
       '@typescript-eslint/no-unused-expressions': 'off',
     },
   },
+  
 ]);
 
 export default eslintConfig;
