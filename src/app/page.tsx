@@ -1,5 +1,6 @@
-import HomeSection from '@/components/sections/HomeSection';
+import { redirect } from 'next/navigation';
 
-export default function HomePage() {
-  return <HomeSection />;
+export default function RootPage() {
+  redirect('/en-GB');
 }
+

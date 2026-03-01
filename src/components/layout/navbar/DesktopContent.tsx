@@ -6,14 +6,21 @@ import { useTranslation } from '@/lib/TranslationContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
 
 export const DesktopContent = ({ navItems }: { navItems: NavItem[] }) => {
-  const { t } = useTranslation();
+  const { t, culture } = useTranslation();
+
+  const buildHref = (href: string) => {
+    if (href === '/') {
+      return `/${culture}`;
+    }
+    return `/${culture}${href}`;
+  };
 
   return (
     <div className="flex items-center gap-8">
       {navItems.map((item) => (
         <a
           key={item.id}
-          href={item.href}
+          href={buildHref(item.href)}
           className="flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-pink-600 dark:hover:text-pink-400 transition-colors duration-300 font-medium relative group">
           <span className="text-lg">{item.icon}</span>
           <span>{t(item.label)}</span>

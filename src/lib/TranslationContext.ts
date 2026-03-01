@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 
-export type Culture = 'en-GB' | 'ru-RU' | 'uk-UK' | 'bg-BG';
+export type Culture = 'en-GB' | 'ru-RU' | 'uk-UA' | 'bg-BG';
 
 export interface TranslationContextType {
   culture: Culture;

@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode } from 'react';
 
 import {
     Culture,
@@ -8,56 +8,20 @@ import {
     TranslationContextType,
 } from '@/lib/TranslationContext';
 
-interface TranslationsData {
-  [culture: string]: Record<string, string>;
+interface TranslationProviderProps {
+  children: ReactNode;
+  culture: Culture;
+  translations: Record<string, string>;
 }
 
-export function TranslationProvider({ children }: { children: ReactNode }) {
-  const [culture, setCultureState] = useState<Culture>('en-GB');
-  const [translations, setTranslations] = useState<Record<string, string>>({});
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  // Load translations on mount
-  useEffect(() => {
-    const loadTranslations = async () => {
-      try {
-        const response = await fetch('/translations.json');
-        const data: TranslationsData = await response.json();
-        
-        // Get saved culture from localStorage if available
-        const savedCulture = localStorage.getItem('culture') as Culture | null;
-        const initialCulture = (savedCulture && Object.keys(data).includes(savedCulture))
-          ? savedCulture
-          : 'en-GB';
-        
-        setCultureState(initialCulture);
-        setTranslations(data[initialCulture] || {});
-        setIsLoaded(true);
-      } catch (error) {
-        console.error('Failed to load translations:', error);
-        setIsLoaded(true);
-      }
-    };
-
-    loadTranslations();
-  }, []);
-
+export function TranslationProvider({
+  children,
+  culture,
+  translations,
+}: TranslationProviderProps) {
   const setCulture = (newCulture: Culture) => {
-    setCultureState(newCulture);
-    localStorage.setItem('culture', newCulture);
-    
-    // Load translations for the new culture
-    const loadNewCulture = async () => {
-      try {
-        const response = await fetch('/translations.json');
-        const data: TranslationsData = await response.json();
-        setTranslations(data[newCulture] || {});
-      } catch (error) {
-        console.error('Failed to load culture translations:', error);
-      }
-    };
-    
-    loadNewCulture();
+    // Navigate to the new language route
+    window.location.href = `/${newCulture}`;
   };
 
   const t = (key: string, defaultValue?: string): string => {

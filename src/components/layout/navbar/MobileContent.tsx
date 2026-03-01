@@ -8,11 +8,18 @@ import { useTranslation } from '@/lib/TranslationContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
 
 export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
-  const { t } = useTranslation();
+  const { t, culture } = useTranslation();
 
   const [isOpen, setIsOpen] = useState(false);
 
   const closeDrawer = () => setIsOpen(false);
+
+  const buildHref = (href: string) => {
+    if (href === '/') {
+      return `/${culture}`;
+    }
+    return `/${culture}${href}`;
+  };
 
   return (
     <>
@@ -60,7 +67,7 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
             {navItems.map((item) => (
               <a
                 key={item.id}
-                href={item.href}
+                href={buildHref(item.href)}
                 onClick={closeDrawer}
                 className="flex items-center gap-3 px-6 py-4 text-slate-700 dark:text-slate-300 hover:bg-pink-50 dark:hover:bg-slate-700 hover:text-pink-600 dark:hover:text-pink-400 transition-colors border-b border-slate-200 dark:border-slate-700 font-medium">
                 <span className="text-xl">{item.icon}</span>

@@ -5,7 +5,7 @@ import { Culture, useTranslation } from '@/lib/TranslationContext';
 const languages: { code: Culture; name: string }[] = [
   { code: 'en-GB', name: '🇬🇧 English' },
   { code: 'ru-RU', name: '🇷🇺 Русский' },
-  { code: 'uk-UK', name: '🇺🇦 Українська' },
+  { code: 'uk-UA', name: '🇺🇦 Українська' },
   { code: 'bg-BG', name: '🇧🇬 Български' },
 ];
 

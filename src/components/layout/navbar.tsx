@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { DesktopContent } from '@/components/layout/navbar/DesktopContent';
 import { MobileContent } from '@/components/layout/navbar/MobileContent';
@@ -16,9 +16,11 @@ const navItems: NavItem[] = [
 export default function Navbar() {
   const [windowWidth, setWindowWidth] = useState(1024);
 
-  if (typeof window !== 'undefined') {
-    window.addEventListener('resize', () => setWindowWidth(window.innerWidth));
-  }
+  useEffect(() => {
+    const handler = () => setWindowWidth(window.innerWidth)
+    window.addEventListener('resize', handler)
+    return () => window.removeEventListener('resize', handler)
+  }, [])
 
   const isMobile = windowWidth < 960;
 
