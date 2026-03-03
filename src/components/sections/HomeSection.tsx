@@ -1,65 +1,96 @@
 'use client';
 
+import { ArrowDown, ChevronRight, Sparkles, Star, Users } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
 import { useTranslation } from '@/lib/TranslationContext';
 
 export default function HomeSection() {
-  const { t } = useTranslation();
+  const { t, culture } = useTranslation();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-pink-900 to-slate-900 text-white overflow-hidden">
-      {/* Animated background elements */}
-      <div className="fixed inset-0 opacity-20 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute -bottom-1/2 left-1/2 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+    <div className="min-h-screen bg-gradient-to-br from-purple-950 via-fuchsia-900 to-purple-900 text-white overflow-hidden relative">
+      {/* Animated gradient orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-br from-pink-500/40 to-purple-500/40 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-gradient-to-br from-fuchsia-500/30 to-violet-500/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-0 left-1/3 w-80 h-80 bg-gradient-to-br from-pink-400/30 to-rose-500/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-gradient-to-br from-violet-400/20 to-purple-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }}></div>
       </div>
 
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] pointer-events-none"></div>
+
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
+        <div className="max-w-5xl mx-auto text-center space-y-8">
           {/* Hero Badge */}
-          <div className="inline-block">
-            <div className="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-sm font-semibold">
-              ✨ Welcome to Excellence in Dance
-            </div>
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-sm font-medium shadow-lg shadow-purple-500/10">
+            <Sparkles className="w-4 h-4 text-pink-300" />
+            <span className="bg-gradient-to-r from-pink-200 to-purple-200 bg-clip-text text-transparent">
+              Welcome to Excellence in Dance
+            </span>
           </div>
 
           {/* Main Title */}
-          <h1 className="text-5xl sm:text-7xl font-playfair font-bold leading-tight">
-            <span className="bg-gradient-to-r from-pink-300 via-orange-300 to-pink-300 bg-clip-text text-transparent">
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-playfair font-bold leading-tight tracking-tight">
+            <span className="bg-gradient-to-r from-pink-200 via-fuchsia-200 to-purple-200 bg-clip-text text-transparent drop-shadow-2xl">
               Dance with Grace
             </span>
             <br />
-            <span className="text-white">Master the Art</span>
+            <span className="text-white/90 text-4xl sm:text-5xl lg:text-6xl">Master the Art of Ballet</span>
           </h1>
 
           {/* Description */}
-          <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            {t('home.subtitle', 'Discover the art of classical ballet')}
+          <p className="text-lg sm:text-xl text-purple-100/80 max-w-2xl mx-auto leading-relaxed font-light">
+            {t('home.subtitle', 'Discover the art of classical ballet in our award-winning studio with world-class instructors')}
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
-            <a href="/classes" className="px-8 py-4 bg-gradient-to-r from-pink-600 to-orange-500 hover:from-pink-700 hover:to-orange-600 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-2xl hover:shadow-pink-500/50 hover:-translate-y-1 active:scale-95">
-              Explore Classes
-            </a>
-            <a href="/contact" className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white font-semibold rounded-lg transition-all duration-300">
-              Get Started
-            </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+            <Button
+              asChild
+              size="lg"
+              className="bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 hover:from-pink-600 hover:via-fuchsia-600 hover:to-purple-600 text-white font-semibold px-8 py-6 text-lg rounded-xl shadow-2xl shadow-pink-500/30 hover:shadow-pink-500/50 transition-all duration-300 hover:-translate-y-1 border-0"
+            >
+              <a href={`/${culture}/classes`}>
+                Explore Classes
+                <ChevronRight className="w-5 h-5 ml-2" />
+              </a>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="bg-white/5 backdrop-blur-xl border-2 border-white/20 hover:bg-white/10 hover:border-white/40 text-white font-semibold px-8 py-6 text-lg rounded-xl transition-all duration-300"
+            >
+              <a href={`/${culture}/contact`}>
+                Get Started
+              </a>
+            </Button>
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 pt-12 max-w-3xl mx-auto">
-            <div className="space-y-2">
-              <div className="text-3xl font-bold text-pink-400">15+</div>
-              <div className="text-sm text-slate-400">Classes</div>
+          <div className="grid grid-cols-3 gap-6 sm:gap-12 pt-16 max-w-3xl mx-auto">
+            <div className="group text-center space-y-3 p-4 rounded-2xl hover:bg-white/5 transition-all duration-300">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500/20 to-purple-500/20 border border-pink-400/20 mb-2 group-hover:scale-110 transition-transform duration-300">
+                <Star className="w-7 h-7 text-pink-300" />
+              </div>
+              <div className="text-4xl font-bold bg-gradient-to-r from-pink-300 to-fuchsia-300 bg-clip-text text-transparent">15+</div>
+              <div className="text-sm text-purple-200/70 font-medium">Classes Weekly</div>
             </div>
-            <div className="space-y-2">
-              <div className="text-3xl font-bold text-orange-400">50+</div>
-              <div className="text-sm text-slate-400">Students</div>
+            <div className="group text-center space-y-3 p-4 rounded-2xl hover:bg-white/5 transition-all duration-300">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-fuchsia-500/20 to-purple-500/20 border border-fuchsia-400/20 mb-2 group-hover:scale-110 transition-transform duration-300">
+                <Users className="w-7 h-7 text-fuchsia-300" />
+              </div>
+              <div className="text-4xl font-bold bg-gradient-to-r from-fuchsia-300 to-purple-300 bg-clip-text text-transparent">500+</div>
+              <div className="text-sm text-purple-200/70 font-medium">Happy Students</div>
             </div>
-            <div className="space-y-2">
-              <div className="text-3xl font-bold text-pink-400">10+</div>
-              <div className="text-sm text-slate-400">Years</div>
+            <div className="group text-center space-y-3 p-4 rounded-2xl hover:bg-white/5 transition-all duration-300">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500/20 to-violet-500/20 border border-purple-400/20 mb-2 group-hover:scale-110 transition-transform duration-300">
+                <Sparkles className="w-7 h-7 text-purple-300" />
+              </div>
+              <div className="text-4xl font-bold bg-gradient-to-r from-purple-300 to-violet-300 bg-clip-text text-transparent">10+</div>
+              <div className="text-sm text-purple-200/70 font-medium">Years Excellence</div>
             </div>
           </div>
         </div>
@@ -67,11 +98,11 @@ export default function HomeSection() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="text-white/50 text-center">
-          <div className="text-sm mb-2">Scroll to explore</div>
-          <svg className="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
+        <div className="flex flex-col items-center gap-2 text-purple-200/50">
+          <span className="text-sm font-medium">Scroll to explore</span>
+          <div className="w-10 h-10 rounded-full border border-purple-300/30 flex items-center justify-center">
+            <ArrowDown className="w-5 h-5" />
+          </div>
         </div>
       </div>
     </div>

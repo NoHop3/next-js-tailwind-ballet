@@ -1,5 +1,9 @@
 'use client';
 
+import { Calendar, Clock, GraduationCap, Sparkles, Timer, User } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import { useTranslation } from '@/lib/TranslationContext';
 
 const classes = [
@@ -9,7 +13,9 @@ const classes = [
     time: 'Mon & Wed 4:00 PM',
     duration: '60 min',
     age: '6-10 years',
-    color: 'from-pink-500 to-pink-600'
+    gradient: 'from-pink-500 via-pink-400 to-rose-400',
+    bgGradient: 'from-pink-500/10 to-rose-500/10',
+    icon: Sparkles,
   },
   {
     name: 'Intermediate Ballet',
@@ -17,7 +23,9 @@ const classes = [
     time: 'Tue & Thu 5:30 PM',
     duration: '75 min',
     age: '11-16 years',
-    color: 'from-orange-500 to-orange-600'
+    gradient: 'from-fuchsia-500 via-fuchsia-400 to-pink-400',
+    bgGradient: 'from-fuchsia-500/10 to-pink-500/10',
+    icon: GraduationCap,
   },
   {
     name: 'Advanced Ballet',
@@ -25,7 +33,9 @@ const classes = [
     time: 'Mon & Wed 6:30 PM',
     duration: '90 min',
     age: '17+ years',
-    color: 'from-red-500 to-red-600'
+    gradient: 'from-purple-500 via-purple-400 to-fuchsia-400',
+    bgGradient: 'from-purple-500/10 to-fuchsia-500/10',
+    icon: GraduationCap,
   },
   {
     name: 'Adult Ballet',
@@ -33,7 +43,9 @@ const classes = [
     time: 'Sat 10:00 AM',
     duration: '60 min',
     age: '18+ years',
-    color: 'from-purple-500 to-purple-600'
+    gradient: 'from-violet-500 via-violet-400 to-purple-400',
+    bgGradient: 'from-violet-500/10 to-purple-500/10',
+    icon: User,
   },
   {
     name: 'Contemporary Fusion',
@@ -41,7 +53,9 @@ const classes = [
     time: 'Fri 6:00 PM',
     duration: '75 min',
     age: '14+ years',
-    color: 'from-blue-500 to-blue-600'
+    gradient: 'from-indigo-500 via-indigo-400 to-violet-400',
+    bgGradient: 'from-indigo-500/10 to-violet-500/10',
+    icon: Sparkles,
   },
   {
     name: 'Private Lessons',
@@ -49,7 +63,9 @@ const classes = [
     time: 'By Appointment',
     duration: '45 min',
     age: 'All ages',
-    color: 'from-indigo-500 to-indigo-600'
+    gradient: 'from-rose-500 via-rose-400 to-pink-400',
+    bgGradient: 'from-rose-500/10 to-pink-500/10',
+    icon: User,
   },
 ];
 
@@ -57,53 +73,78 @@ export default function ClassesSection() {
   const { t } = useTranslation();
 
   return (
-    <section className="section bg-gradient-to-b from-white to-slate-50">
-      <div className="section-container">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-secondary/20 relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-1/4 left-0 w-72 h-72 bg-gradient-to-br from-pink-500/5 to-purple-500/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-gradient-to-br from-purple-500/5 to-fuchsia-500/5 rounded-full blur-3xl"></div>
+
+      <div className="max-w-6xl mx-auto relative">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-playfair font-bold mb-4">
-            <span className="gradient-text">{t('classes.title', 'Our Classes')}</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-sm font-medium text-primary mb-4">
+            <Calendar className="w-4 h-4" />
+            Weekly Schedule
+          </div>
+          <h2 className="text-4xl sm:text-5xl font-playfair font-bold mb-4">
+            <span className="bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent">
+              {t('classes.title', 'Our Classes')}
+            </span>
           </h2>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            {t('classes.subtitle', 'Find the perfect class for you')}
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            {t('classes.subtitle', 'Find the perfect class for your skill level and schedule')}
           </p>
         </div>
 
         {/* Classes Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {classes.map((classItem, index) => (
-            <div key={index} className="group">
-              <div className={`bg-gradient-to-br ${classItem.color} rounded-2xl p-8 h-full text-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer`}>
-                <div className="flex justify-between items-start mb-6">
-                  <div>
-                    <h3 className="text-2xl font-playfair font-bold mb-2">{classItem.name}</h3>
-                    <span className="inline-block bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-sm font-semibold">
-                      {classItem.level}
-                    </span>
-                  </div>
-                </div>
+          {classes.map((classItem, index) => {
+            const Icon = classItem.icon;
+            return (
+              <Card
+                key={index}
+                className={`group relative overflow-hidden border-border/50 hover:border-primary/30 bg-gradient-to-br ${classItem.bgGradient} backdrop-blur-sm hover:shadow-2xl hover:shadow-pink-500/10 transition-all duration-500 hover:-translate-y-2`}
+              >
+                {/* Gradient bar at top */}
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${classItem.gradient}`}></div>
 
-                <div className="space-y-3 mb-6 text-sm text-white/90">
-                  <div className="flex items-center gap-2">
-                    <span>🕐</span>
-                    <span>{classItem.time}</span>
+                <CardContent className="p-8">
+                  <div className="flex justify-between items-start mb-6">
+                    <div className="flex-1">
+                      <div className={`inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br ${classItem.gradient} mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                        <Icon className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="text-xl font-playfair font-bold text-foreground mb-2">{classItem.name}</h3>
+                      <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${classItem.gradient} text-white`}>
+                        {classItem.level}
+                      </span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span>⏱️</span>
-                    <span>{classItem.duration}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span>👤</span>
-                    <span>{classItem.age}</span>
-                  </div>
-                </div>
 
-                <button className="w-full bg-white/20 hover:bg-white/30 text-white font-semibold py-2 rounded-lg transition-all duration-300 backdrop-blur-md border border-white/20">
-                  Learn More
-                </button>
-              </div>
-            </div>
-          ))}
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center gap-3 text-muted-foreground">
+                      <Clock className="w-4 h-4 text-primary" />
+                      <span className="text-sm">{classItem.time}</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-muted-foreground">
+                      <Timer className="w-4 h-4 text-primary" />
+                      <span className="text-sm">{classItem.duration}</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-muted-foreground">
+                      <User className="w-4 h-4 text-primary" />
+                      <span className="text-sm">{classItem.age}</span>
+                    </div>
+                  </div>
+
+                  <Button
+                    variant="outline"
+                    className="w-full border-primary/20 hover:border-primary hover:bg-primary/5 text-foreground group-hover:border-primary transition-colors"
+                  >
+                    Learn More
+                  </Button>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </div>
     </section>
