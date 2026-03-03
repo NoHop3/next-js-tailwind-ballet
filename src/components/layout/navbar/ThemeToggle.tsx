@@ -1,8 +1,8 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Monitor, Moon, Sun } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
 
 import { Theme, useTheme } from '@/lib/ThemeContext';
 
