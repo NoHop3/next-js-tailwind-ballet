@@ -1,9 +1,9 @@
 'use client';
 
+import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Award, Instagram, Star } from 'lucide-react';
 import Image from 'next/image';
-import { useRef } from 'react';
 
 import { Card, CardContent } from '@/components/ui/card';
 import {
