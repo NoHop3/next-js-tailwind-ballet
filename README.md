@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ballet Studio Website 🩰
 
-## Getting Started
+A modern, elegant static website for a ballet studio — built with Next.js 16, Tailwind CSS v4, and Framer Motion. This is a personal project showcasing my sister's ballet studio with a premium pink/purple aesthetic.
 
-First, run the development server:
+## ✨ Features
+
+- **Modern Design** — Premium pink/purple color scheme with gradient effects, glassmorphism, and smooth animations
+- **Dark/Light Mode** — Theme toggle with system preference detection
+- **Multi-language** — Supports English (GB), Russian, Ukrainian, and Bulgarian
+- **Responsive** — Mobile-first design with elegant mobile navigation drawer
+- **Animations** — Scroll reveal animations and page transitions powered by Framer Motion
+- **SEO Ready** — Open Graph tags, Twitter cards, and JSON-LD structured data
+- **Image Gallery** — Lightbox gallery with keyboard navigation
+- **Contact Form** — Styled with shadcn/ui components (frontend only)
+
+## 🛠 Tech Stack
+
+- **Framework:** [Next.js 16](https://nextjs.org) (App Router, Turbopack)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com)
+- **UI Components:** [shadcn/ui](https://ui.shadcn.com)
+- **Animations:** [Framer Motion](https://motion.dev)
+- **Icons:** [Lucide React](https://lucide.dev)
+- **Fonts:** Playfair Display & Inter (Google Fonts)
+
+## 🚀 Getting Started
 
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/                    # Next.js App Router pages
+│   ├── [lang]/             # Localized routes
+│   │   ├── about/
+│   │   ├── classes/
+│   │   └── contact/
+│   ├── globals.css         # Global styles & theme variables
+│   └── layout.tsx          # Root layout
+├── components/
+│   ├── layout/             # Navbar, Footer, etc.
+│   ├── providers/          # Theme, Translation, PageTransition
+│   ├── sections/           # Page sections (Home, About, etc.)
+│   └── ui/                 # Reusable UI components
+└── lib/                    # Utilities, translations, schema
+```
 
-## Learn More
+## 🎨 Customization
 
-To learn more about Next.js, take a look at the following resources:
+- **Theme colors:** Edit CSS variables in `src/app/globals.css`
+- **Translations:** Update `src/lib/translations.json`
+- **Content:** Modify section components in `src/components/sections/`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📝 License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This is a personal project. Feel free to use it as inspiration for your own projects.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Made with ❤️ for ballet

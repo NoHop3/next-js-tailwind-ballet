@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 
 import HomeSection from '@/components/sections/HomeSection';
+import PricingSection from '@/components/sections/PricingSection';
+import TeamSection from '@/components/sections/TeamSection';
+import VideoSection from '@/components/sections/VideoSection';
 import {
   generateLocalBusinessSchema,
   generateOrganizationSchema,
@@ -38,7 +41,26 @@ export default function HomePage() {
           __html: JSON.stringify(localBusinessSchema),
         }}
       />
-      <HomeSection />
+
+      {/* Hero section with sticky behavior */}
+      <div className="relative z-10">
+        <HomeSection />
+      </div>
+
+      {/* Video section slides over the hero */}
+      <div className="relative z-20">
+        <VideoSection />
+      </div>
+
+      {/* Team section with depth effect */}
+      <div className="relative z-30">
+        <TeamSection />
+      </div>
+
+      {/* Pricing section slides over team */}
+      <div className="relative z-40">
+        <PricingSection />
+      </div>
     </>
   );
 }
