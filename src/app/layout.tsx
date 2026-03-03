@@ -3,6 +3,8 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
 
+import { ThemeProvider } from '@/components/providers/ThemeProvider';
+
 const playfair = Playfair_Display({
   variable: '--font-playfair',
   subsets: ['latin'],
@@ -26,11 +28,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head />
       <body
-        className={`${inter.variable} ${playfair.variable} antialiased bg-gradient-to-br from-slate-50 via-white to-slate-100 text-slate-900 flex flex-col min-h-screen`}>
-        {children}
+        className={`${inter.variable} ${playfair.variable} antialiased bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-slate-900 dark:text-slate-100 flex flex-col min-h-screen transition-colors duration-300`}>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

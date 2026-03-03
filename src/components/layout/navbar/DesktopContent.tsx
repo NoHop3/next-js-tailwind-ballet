@@ -4,6 +4,7 @@ import { NavItem } from '@/components/layout/navbar/types';
 import { useTranslation } from '@/lib/TranslationContext';
 
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { ThemeToggle } from './ThemeToggle';
 
 export const DesktopContent = ({ navItems }: { navItems: NavItem[] }) => {
   const { t, culture } = useTranslation();
@@ -27,7 +28,8 @@ export const DesktopContent = ({ navItems }: { navItems: NavItem[] }) => {
           <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-600 to-orange-500 group-hover:w-full transition-all duration-300"></span>
         </a>
       ))}
-      <div className="ml-4 pl-4 border-l border-slate-300 dark:border-slate-600">
+      <div className="ml-4 pl-4 border-l border-slate-300 dark:border-slate-600 flex items-center gap-4">
+        <ThemeToggle />
         <LanguageSwitcher />
       </div>
     </div>

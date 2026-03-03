@@ -6,6 +6,7 @@ import { NavItem } from '@/components/layout/navbar/types';
 import { useTranslation } from '@/lib/TranslationContext';
 
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { ThemeToggle } from './ThemeToggle';
 
 export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
   const { t, culture } = useTranslation();
@@ -78,6 +79,10 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
         </div>
 
         {/* Language Switcher at Bottom */}
+        <div className="border-t border-slate-200 dark:border-slate-700 p-6">
+          <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3">Theme</div>
+          <ThemeToggle variant="full" />
+        </div>
         <div className="border-t border-slate-200 dark:border-slate-700 p-6">
           <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3">Language</div>
           <LanguageSwitcher />
