@@ -1,8 +1,8 @@
 'use client';
 
+import { ReactNode } from 'react';
 import { AnimatePresence, motion, Transition, Variants } from 'framer-motion';
 import { usePathname } from 'next/navigation';
-import { ReactNode } from 'react';
 
 const pageVariants: Variants = {
   initial: {

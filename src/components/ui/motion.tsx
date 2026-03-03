@@ -1,7 +1,7 @@
 'use client';
 
+import { ReactNode, useRef } from 'react';
 import { motion, useInView, Variants } from 'framer-motion';
-import { useRef, ReactNode } from 'react';
 
 // Animation variants
 export const fadeInUp: Variants = {
