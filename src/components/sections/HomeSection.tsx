@@ -3,6 +3,14 @@
 import { ArrowDown, ChevronRight, Sparkles, Star, Users } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
+import {
+  fadeIn,
+  fadeInUp,
+  motion,
+  scaleIn,
+  StaggerContainer,
+  StaggerItem,
+} from '@/components/ui/motion';
 import { useTranslation } from '@/lib/TranslationContext';
 
 export default function HomeSection() {
@@ -24,29 +32,53 @@ export default function HomeSection() {
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto text-center space-y-8">
           {/* Hero Badge */}
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-sm font-medium shadow-lg shadow-purple-500/10">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-sm font-medium shadow-lg shadow-purple-500/10"
+          >
             <Sparkles className="w-4 h-4 text-pink-300" />
             <span className="bg-gradient-to-r from-pink-200 to-purple-200 bg-clip-text text-transparent">
               Welcome to Excellence in Dance
             </span>
-          </div>
+          </motion.div>
 
           {/* Main Title */}
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-playfair font-bold leading-tight tracking-tight">
+          <motion.h1
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-5xl sm:text-7xl lg:text-8xl font-playfair font-bold leading-tight tracking-tight"
+          >
             <span className="bg-gradient-to-r from-pink-200 via-fuchsia-200 to-purple-200 bg-clip-text text-transparent drop-shadow-2xl">
               Dance with Grace
             </span>
             <br />
             <span className="text-white/90 text-4xl sm:text-5xl lg:text-6xl">Master the Art of Ballet</span>
-          </h1>
+          </motion.h1>
 
           {/* Description */}
-          <p className="text-lg sm:text-xl text-purple-100/80 max-w-2xl mx-auto leading-relaxed font-light">
+          <motion.p
+            initial="hidden"
+            animate="visible"
+            variants={fadeIn}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="text-lg sm:text-xl text-purple-100/80 max-w-2xl mx-auto leading-relaxed font-light"
+          >
             {t('home.subtitle', 'Discover the art of classical ballet in our award-winning studio with world-class instructors')}
-          </p>
+          </motion.p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
+          >
             <Button
               asChild
               size="lg"
@@ -67,32 +99,36 @@ export default function HomeSection() {
                 Get Started
               </a>
             </Button>
-          </div>
+          </motion.div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-6 sm:gap-12 pt-16 max-w-3xl mx-auto">
-            <div className="group text-center space-y-3 p-4 rounded-2xl hover:bg-white/5 transition-all duration-300">
+          <StaggerContainer
+            className="grid grid-cols-3 gap-6 sm:gap-12 pt-16 max-w-3xl mx-auto"
+            delay={1}
+            staggerDelay={0.15}
+          >
+            <StaggerItem variants={scaleIn} className="group text-center space-y-3 p-4 rounded-2xl hover:bg-white/5 transition-all duration-300">
               <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500/20 to-purple-500/20 border border-pink-400/20 mb-2 group-hover:scale-110 transition-transform duration-300">
                 <Star className="w-7 h-7 text-pink-300" />
               </div>
               <div className="text-4xl font-bold bg-gradient-to-r from-pink-300 to-fuchsia-300 bg-clip-text text-transparent">15+</div>
               <div className="text-sm text-purple-200/70 font-medium">Classes Weekly</div>
-            </div>
-            <div className="group text-center space-y-3 p-4 rounded-2xl hover:bg-white/5 transition-all duration-300">
+            </StaggerItem>
+            <StaggerItem variants={scaleIn} className="group text-center space-y-3 p-4 rounded-2xl hover:bg-white/5 transition-all duration-300">
               <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-fuchsia-500/20 to-purple-500/20 border border-fuchsia-400/20 mb-2 group-hover:scale-110 transition-transform duration-300">
                 <Users className="w-7 h-7 text-fuchsia-300" />
               </div>
               <div className="text-4xl font-bold bg-gradient-to-r from-fuchsia-300 to-purple-300 bg-clip-text text-transparent">500+</div>
               <div className="text-sm text-purple-200/70 font-medium">Happy Students</div>
-            </div>
-            <div className="group text-center space-y-3 p-4 rounded-2xl hover:bg-white/5 transition-all duration-300">
+            </StaggerItem>
+            <StaggerItem variants={scaleIn} className="group text-center space-y-3 p-4 rounded-2xl hover:bg-white/5 transition-all duration-300">
               <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500/20 to-violet-500/20 border border-purple-400/20 mb-2 group-hover:scale-110 transition-transform duration-300">
                 <Sparkles className="w-7 h-7 text-purple-300" />
               </div>
               <div className="text-4xl font-bold bg-gradient-to-r from-purple-300 to-violet-300 bg-clip-text text-transparent">10+</div>
               <div className="text-sm text-purple-200/70 font-medium">Years Excellence</div>
-            </div>
-          </div>
+            </StaggerItem>
+          </StaggerContainer>
         </div>
       </div>
 

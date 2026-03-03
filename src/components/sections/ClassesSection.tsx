@@ -4,6 +4,12 @@ import { Calendar, Clock, GraduationCap, Sparkles, Timer, User } from 'lucide-re
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import {
+  fadeInUp,
+  ScrollReveal,
+  StaggerContainer,
+  StaggerItem,
+} from '@/components/ui/motion';
 import { useTranslation } from '@/lib/TranslationContext';
 
 const classes = [
@@ -80,7 +86,7 @@ export default function ClassesSection() {
 
       <div className="max-w-6xl mx-auto relative">
         {/* Header */}
-        <div className="text-center mb-16">
+        <ScrollReveal className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-sm font-medium text-primary mb-4">
             <Calendar className="w-4 h-4" />
             Weekly Schedule
@@ -93,17 +99,17 @@ export default function ClassesSection() {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             {t('classes.subtitle', 'Find the perfect class for your skill level and schedule')}
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Classes Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.08}>
           {classes.map((classItem, index) => {
             const Icon = classItem.icon;
             return (
-              <Card
-                key={index}
-                className={`group relative overflow-hidden border-border/50 hover:border-primary/30 bg-gradient-to-br ${classItem.bgGradient} backdrop-blur-sm hover:shadow-2xl hover:shadow-pink-500/10 transition-all duration-500 hover:-translate-y-2`}
-              >
+              <StaggerItem key={index} variants={fadeInUp}>
+                <Card
+                  className={`group relative overflow-hidden border-border/50 hover:border-primary/30 bg-gradient-to-br ${classItem.bgGradient} backdrop-blur-sm hover:shadow-2xl hover:shadow-pink-500/10 transition-all duration-500 hover:-translate-y-2 h-full`}
+                >
                 {/* Gradient bar at top */}
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${classItem.gradient}`}></div>
 
@@ -143,9 +149,10 @@ export default function ClassesSection() {
                   </Button>
                 </CardContent>
               </Card>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

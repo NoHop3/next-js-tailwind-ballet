@@ -9,6 +9,13 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import {
+  fadeInLeft,
+  fadeInRight,
+  ScrollReveal,
+  StaggerContainer,
+  StaggerItem,
+} from '@/components/ui/motion';
 import { useTranslation } from '@/lib/TranslationContext';
 
 export default function ContactSection() {
@@ -55,7 +62,7 @@ export default function ContactSection() {
 
       <div className="max-w-6xl mx-auto relative">
         {/* Header */}
-        <div className="text-center mb-16">
+        <ScrollReveal className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-sm font-medium text-primary mb-4">
             <MessageSquare className="w-4 h-4" />
             Get In Touch
@@ -68,13 +75,14 @@ export default function ContactSection() {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             {t('contact.subtitle', 'Get in touch with us')}
           </p>
-        </div>
+        </ScrollReveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Contact Info */}
-          <div className="space-y-6">
+          <StaggerContainer className="space-y-6" staggerDelay={0.1}>
             {/* Email */}
-            <Card className="group hover:shadow-xl hover:shadow-pink-500/10 transition-all duration-500 hover:-translate-y-1 border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden">
+            <StaggerItem variants={fadeInLeft}>
+              <Card className="group hover:shadow-xl hover:shadow-pink-500/10 transition-all duration-500 hover:-translate-y-1 border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden">
               <CardContent className="p-6">
                 <div className="flex items-start gap-5">
                   <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500 to-fuchsia-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
@@ -97,9 +105,11 @@ export default function ContactSection() {
                 </div>
               </CardContent>
             </Card>
+            </StaggerItem>
 
             {/* Phone */}
-            <Card className="group hover:shadow-xl hover:shadow-pink-500/10 transition-all duration-500 hover:-translate-y-1 border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden">
+            <StaggerItem variants={fadeInLeft}>
+              <Card className="group hover:shadow-xl hover:shadow-pink-500/10 transition-all duration-500 hover:-translate-y-1 border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden">
               <CardContent className="p-6">
                 <div className="flex items-start gap-5">
                   <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-fuchsia-500 to-purple-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
@@ -125,9 +135,11 @@ export default function ContactSection() {
                 </div>
               </CardContent>
             </Card>
+            </StaggerItem>
 
             {/* Location */}
-            <Card className="group hover:shadow-xl hover:shadow-pink-500/10 transition-all duration-500 hover:-translate-y-1 border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden">
+            <StaggerItem variants={fadeInLeft}>
+              <Card className="group hover:shadow-xl hover:shadow-pink-500/10 transition-all duration-500 hover:-translate-y-1 border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden">
               <CardContent className="p-6">
                 <div className="flex items-start gap-5">
                   <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
@@ -148,10 +160,12 @@ export default function ContactSection() {
                 </div>
               </CardContent>
             </Card>
-          </div>
+            </StaggerItem>
+          </StaggerContainer>
 
           {/* Contact Form */}
-          <Card className="bg-gradient-to-br from-card via-pink-500/5 to-purple-500/5 border-primary/10 overflow-hidden">
+          <ScrollReveal variants={fadeInRight} delay={0.2}>
+            <Card className="bg-gradient-to-br from-card via-pink-500/5 to-purple-500/5 border-primary/10 overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500"></div>
             <CardContent className="p-8">
               <div className="flex items-center gap-3 mb-6">
@@ -249,6 +263,7 @@ export default function ContactSection() {
               </form>
             </CardContent>
           </Card>
+          </ScrollReveal>
         </div>
       </div>
     </section>

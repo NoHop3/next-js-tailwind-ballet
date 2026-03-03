@@ -1,5 +1,6 @@
 import Footer from '@/components/layout/footer';
 import Navbar from '@/components/layout/navbar';
+import { PageTransition } from '@/components/providers/PageTransition';
 import { TranslationProvider } from '@/components/providers/TranslationProvider';
 import type { Culture } from '@/lib/TranslationContext';
 import {
@@ -29,7 +30,9 @@ export default async function LangLayout({
     <>
       <TranslationProvider culture={culture} translations={translations}>
         <Navbar />
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow">
+          <PageTransition>{children}</PageTransition>
+        </main>
         <Footer />
       </TranslationProvider>
     </>
