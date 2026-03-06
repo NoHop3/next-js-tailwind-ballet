@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { useState } from 'react';
 
 import { NavItem } from '@/components/layout/navbar/types';
 import { useTranslation } from '@/lib/TranslationContext';
@@ -54,7 +54,9 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 via-fuchsia-500 to-purple-500 flex items-center justify-center shadow-lg">
               <span className="text-white">🩰</span>
             </div>
-            <h2 className="text-lg font-semibold font-playfair bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">Menu</h2>
+            <h2 className="text-lg font-semibold font-playfair bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
+              {t('nav.menu', 'Menu')}
+            </h2>
           </div>
           <button
             onClick={closeDrawer}
@@ -83,11 +85,15 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
         {/* Settings at Bottom */}
         <div className="border-t border-border/50 p-6 space-y-6">
           <div>
-            <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Theme</div>
+            <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+              {t('nav.theme', 'Theme')}
+            </div>
             <ThemeToggle variant="full" />
           </div>
           <div>
-            <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Language</div>
+            <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+              {t('nav.language', 'Language')}
+            </div>
             <LanguageSwitcher />
           </div>
         </div>
