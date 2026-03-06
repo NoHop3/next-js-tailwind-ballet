@@ -31,15 +31,15 @@ export function TranslationProvider({
     window.location.href = newPath;
   };
 
-  const t = (key: string, defaultValue?: string): string => {
-    return translations[key] || defaultValue || key;
+  const t = (key: string): string => {
+    return translations[key] || key;
   };
 
   const contextValue: TranslationContextType = {
     culture,
     setCulture,
     translations,
-    t,
+    translate: t,
   };
 
   return (

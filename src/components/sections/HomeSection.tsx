@@ -14,7 +14,7 @@ import {
 import { useTranslation } from '@/lib/TranslationContext';
 
 export default function HomeSection() {
-  const { t, culture } = useTranslation();
+  const { translate, culture } = useTranslation();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-950 via-fuchsia-900 to-purple-900 text-white relative">
@@ -46,7 +46,7 @@ export default function HomeSection() {
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-sm font-medium shadow-lg shadow-purple-500/10">
             <Sparkles className="w-4 h-4 text-pink-300" />
             <span className="bg-gradient-to-r from-pink-200 to-purple-200 bg-clip-text text-transparent">
-              {t('home.badge', 'Welcome to Excellence in Dance')}
+              {translate('home.badge')}
             </span>
           </motion.div>
 
@@ -58,11 +58,11 @@ export default function HomeSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-5xl sm:text-7xl lg:text-8xl font-playfair font-bold leading-tight tracking-tight">
             <span className="bg-gradient-to-r from-pink-200 via-fuchsia-200 to-purple-200 bg-clip-text text-transparent drop-shadow-2xl">
-              {t('home.heroTitle1', 'Dance with Grace')}
+              {translate('home.heroTitle1')}
             </span>
             <br />
             <span className="text-white/90 text-4xl sm:text-5xl lg:text-6xl">
-              {t('home.heroTitle2', 'Master the Art of Ballet')}
+              {translate('home.heroTitle2')}
             </span>
           </motion.h1>
 
@@ -73,10 +73,7 @@ export default function HomeSection() {
             variants={fadeIn}
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-lg sm:text-xl text-purple-100/80 max-w-2xl mx-auto leading-relaxed font-light">
-            {t(
-              'home.subtitle',
-              'Discover the art of classical ballet in our award-winning studio with world-class instructors',
-            )}
+            {translate('home.subtitle')}
           </motion.p>
 
           {/* CTA Buttons */}
@@ -91,7 +88,7 @@ export default function HomeSection() {
               size="lg"
               className="bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 hover:from-pink-600 hover:via-fuchsia-600 hover:to-purple-600 text-white font-semibold px-8 py-6 text-lg rounded-xl shadow-2xl shadow-pink-500/30 hover:shadow-pink-500/50 transition-all duration-300 hover:-translate-y-1 border-0">
               <a href={`/${culture}/classes`}>
-                {t('home.exploreClasses', 'Explore Classes')}
+                {translate('home.exploreClasses')}
                 <ChevronRight className="w-5 h-5 ml-2" />
               </a>
             </Button>
@@ -100,9 +97,7 @@ export default function HomeSection() {
               variant="outline"
               size="lg"
               className="bg-white/5 backdrop-blur-xl border-2 border-white/20 hover:bg-white/10 hover:border-white/40 text-white font-semibold px-8 py-6 text-lg rounded-xl transition-all duration-300">
-              <a href={`/${culture}/contact`}>
-                {t('home.getStarted', 'Get Started')}
-              </a>
+              <a href={`/${culture}/contact`}>{translate('home.getStarted')}</a>
             </Button>
           </motion.div>
 
@@ -121,7 +116,7 @@ export default function HomeSection() {
                 15+
               </div>
               <div className="text-sm text-purple-200/70 font-medium">
-                {t('home.classesWeekly', 'Classes Weekly')}
+                {translate('home.classesWeekly')}
               </div>
             </StaggerItem>
             <StaggerItem
@@ -134,7 +129,7 @@ export default function HomeSection() {
                 500+
               </div>
               <div className="text-sm text-purple-200/70 font-medium">
-                {t('home.happyStudents', 'Happy Students')}
+                {translate('home.happyStudents')}
               </div>
             </StaggerItem>
             <StaggerItem
@@ -147,7 +142,7 @@ export default function HomeSection() {
                 10+
               </div>
               <div className="text-sm text-purple-200/70 font-medium">
-                {t('home.yearsExcellence', 'Years Excellence')}
+                {translate('home.yearsExcellence')}
               </div>
             </StaggerItem>
           </StaggerContainer>
@@ -160,7 +155,7 @@ export default function HomeSection() {
         style={{ zIndex: 100 }}>
         <div className="flex flex-col items-center gap-2 text-purple-200/50">
           <span className="text-sm font-medium">
-            {t('home.scrollToExplore', 'Scroll to explore')}
+            {translate('home.scrollToExplore')}
           </span>
           <div className="w-10 h-10 rounded-full border border-purple-300/30 flex items-center justify-center bg-purple-950/80 backdrop-blur-sm shadow-lg">
             <ArrowDown className="w-5 h-5" />

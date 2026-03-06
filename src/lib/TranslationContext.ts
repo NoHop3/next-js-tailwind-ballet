@@ -6,7 +6,7 @@ export interface TranslationContextType {
   culture: Culture;
   setCulture: (culture: Culture) => void;
   translations: Record<string, string>;
-  t: (key: string, defaultValue?: string) => string;
+  translate: (key: string, defaultValue?: string) => string;
 }
 
 export const TranslationContext = createContext<TranslationContextType | undefined>(undefined);

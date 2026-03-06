@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { useState } from 'react';
 
 import { NavItem } from '@/components/layout/navbar/types';
 import { useTranslation } from '@/lib/TranslationContext';
@@ -10,7 +10,7 @@ import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
 
 export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
-  const { t, culture } = useTranslation();
+  const { translate, culture } = useTranslation();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -55,7 +55,7 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
               <span className="text-white">🩰</span>
             </div>
             <h2 className="text-lg font-semibold font-playfair bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
-              {t('nav.menu', 'Menu')}
+              {translate('nav.menu')}
             </h2>
           </div>
           <button
@@ -76,7 +76,7 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
                 onClick={closeDrawer}
                 className="flex items-center gap-4 px-4 py-4 rounded-xl text-foreground/80 hover:text-foreground hover:bg-primary/5 transition-all duration-300 font-medium">
                 <span className="text-primary">{item.icon}</span>
-                <span>{t(item.label)}</span>
+                <span>{translate(item.label)}</span>
               </a>
             ))}
           </nav>
@@ -86,13 +86,13 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
         <div className="border-t border-border/50 p-6 space-y-6">
           <div>
             <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-              {t('nav.theme', 'Theme')}
+              {translate('nav.theme')}
             </div>
             <ThemeToggle variant="full" />
           </div>
           <div>
             <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-              {t('nav.language', 'Language')}
+              {translate('nav.language')}
             </div>
             <LanguageSwitcher />
           </div>

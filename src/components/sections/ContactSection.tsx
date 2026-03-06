@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import { Loader2, Mail, MapPin, MessageSquare, Phone, Send } from 'lucide-react';
+import { useState } from 'react';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
@@ -19,7 +19,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useTranslation } from '@/lib/TranslationContext';
 
 export default function ContactSection() {
-  const { t } = useTranslation();
+  const { translate } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -43,11 +43,8 @@ export default function ContactSection() {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    toast.success(t('contact.form.success', 'Message sent successfully!'), {
-      description: t(
-        'contact.form.successDescription',
-        "We'll get back to you soon.",
-      ),
+    toast.success(translate('contact.form.success'), {
+      description: translate('contact.form.successDescription'),
     });
 
     setFormData({ name: '', email: '', message: '' });
@@ -65,15 +62,15 @@ export default function ContactSection() {
         <ScrollReveal className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-sm font-medium text-primary mb-4">
             <MessageSquare className="w-4 h-4" />
-            {t('contact.badge', 'Get In Touch')}
+            {translate('contact.badge')}
           </div>
           <h2 className="text-4xl sm:text-5xl font-playfair font-bold mb-4">
             <span className="bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent">
-              {t('contact.title', 'Contact Us')}
+              {translate('contact.title')}
             </span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            {t('contact.subtitle', 'Get in touch with us')}
+            {translate('contact.subtitle')}
           </p>
         </ScrollReveal>
 
@@ -90,13 +87,10 @@ export default function ContactSection() {
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold mb-1 font-playfair text-foreground">
-                        {t('contact.info.email', 'Email')}
+                        {translate('contact.info.email')}
                       </h3>
                       <p className="text-muted-foreground text-sm mb-2">
-                        {t(
-                          'contact.info.emailDescription',
-                          'Get in touch via email',
-                        )}
+                        {translate('contact.info.emailDescription')}
                       </p>
                       <a
                         href="mailto:info@balletstudio.com"
@@ -119,13 +113,10 @@ export default function ContactSection() {
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold mb-1 font-playfair text-foreground">
-                        {t('contact.info.phone', 'Phone')}
+                        {translate('contact.info.phone')}
                       </h3>
                       <p className="text-muted-foreground text-sm mb-2">
-                        {t(
-                          'contact.info.phoneDescription',
-                          'Call us during business hours',
-                        )}
+                        {translate('contact.info.phoneDescription')}
                       </p>
                       <a
                         href="tel:+15551234567"
@@ -148,7 +139,7 @@ export default function ContactSection() {
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold mb-1 font-playfair text-foreground">
-                        {t('contact.info.location', 'Location')}
+                        {translate('contact.info.location')}
                       </h3>
                       <p className="text-muted-foreground leading-relaxed">
                         123 Dance Street
@@ -174,7 +165,7 @@ export default function ContactSection() {
                     <Send className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-2xl font-playfair font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
-                    {t('contact.form.title', 'Send us a Message')}
+                    {translate('contact.form.title')}
                   </h3>
                 </div>
 
@@ -184,7 +175,7 @@ export default function ContactSection() {
                     <Label
                       htmlFor="name"
                       className="text-foreground font-medium">
-                      {t('contact.form.name', 'Full Name')}
+                      {translate('contact.form.name')}
                     </Label>
                     <Input
                       id="name"
@@ -192,10 +183,7 @@ export default function ContactSection() {
                       type="text"
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder={t(
-                        'contact.form.namePlaceholder',
-                        'Enter your name',
-                      )}
+                      placeholder={translate('contact.form.namePlaceholder')}
                       required
                       disabled={isSubmitting}
                       className="h-12 bg-background/50 border-border/50 focus:border-primary"
@@ -207,7 +195,7 @@ export default function ContactSection() {
                     <Label
                       htmlFor="email"
                       className="text-foreground font-medium">
-                      {t('contact.form.email', 'Email Address')}
+                      {translate('contact.form.email')}
                     </Label>
                     <Input
                       id="email"
@@ -215,10 +203,7 @@ export default function ContactSection() {
                       type="email"
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder={t(
-                        'contact.form.emailPlaceholder',
-                        'Enter your email',
-                      )}
+                      placeholder={translate('contact.form.emailPlaceholder')}
                       required
                       disabled={isSubmitting}
                       className="h-12 bg-background/50 border-border/50 focus:border-primary"
@@ -230,17 +215,14 @@ export default function ContactSection() {
                     <Label
                       htmlFor="message"
                       className="text-foreground font-medium">
-                      {t('contact.form.message', 'Message')}
+                      {translate('contact.form.message')}
                     </Label>
                     <Textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder={t(
-                        'contact.form.messagePlaceholder',
-                        'Type your message here...',
-                      )}
+                      placeholder={translate('contact.form.messagePlaceholder')}
                       rows={5}
                       required
                       disabled={isSubmitting}
@@ -257,12 +239,12 @@ export default function ContactSection() {
                     {isSubmitting ? (
                       <>
                         <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                        {t('contact.form.sending', 'Sending...')}
+                        {translate('contact.form.sending')}
                       </>
                     ) : (
                       <>
                         <Send className="w-5 h-5 mr-2" />
-                        {t('contact.form.submit', 'Send Message')}
+                        {translate('contact.form.submit')}
                       </>
                     )}
                   </Button>

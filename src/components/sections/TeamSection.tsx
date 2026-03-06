@@ -1,9 +1,9 @@
 'use client';
 
-import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Award, Instagram, Star } from 'lucide-react';
 import Image from 'next/image';
+import { useRef } from 'react';
 
 import { Card, CardContent } from '@/components/ui/card';
 import {
@@ -58,7 +58,7 @@ const teamMembers = [
 ];
 
 export default function TeamSection() {
-  const { t } = useTranslation();
+  const { translate } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -85,16 +85,15 @@ export default function TeamSection() {
         <ScrollReveal className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-sm font-medium text-primary mb-4">
             <Star className="w-4 h-4" />
-            Our Instructors
+            {translate('team.badge')}
           </div>
           <h2 className="text-4xl sm:text-5xl font-playfair font-bold mb-4">
             <span className="bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent">
-              Meet the Team
+              {translate('team.title')}
             </span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            World-class instructors dedicated to nurturing your passion for
-            dance
+            {translate('team.subtitle')}
           </p>
         </ScrollReveal>
 
@@ -167,15 +166,12 @@ export default function TeamSection() {
         {/* Bottom CTA */}
         <ScrollReveal className="text-center mt-16" delay={0.4}>
           <p className="text-muted-foreground mb-4">
-            {t(
-              'team.joinCta',
-              'Want to join our team of passionate instructors?',
-            )}
+            {translate('team.joinCta')}
           </p>
           <a
             href="#contact"
             className="inline-flex items-center gap-2 text-primary font-semibold hover:underline">
-            {t('team.getInTouch', 'Get in touch with us')}
+            {translate('team.getInTouch')}
             <span>&rarr;</span>
           </a>
         </ScrollReveal>
