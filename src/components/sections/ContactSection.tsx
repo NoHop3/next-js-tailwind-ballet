@@ -1,7 +1,7 @@
 'use client';
 
-import { Loader2, Mail, MapPin, MessageSquare, Phone, Send } from 'lucide-react';
 import { useState } from 'react';
+import { Loader2, Mail, MapPin, MessageSquare, Phone, Send } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';

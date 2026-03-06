@@ -1,8 +1,8 @@
 'use client';
 
+import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Pause, Play } from 'lucide-react';
-import { useRef, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { ScrollReveal } from '@/components/ui/motion';

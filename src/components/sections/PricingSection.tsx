@@ -1,8 +1,8 @@
 'use client';
 
+import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Check, Crown, Sparkles, Star, Zap } from 'lucide-react';
-import { useRef } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
