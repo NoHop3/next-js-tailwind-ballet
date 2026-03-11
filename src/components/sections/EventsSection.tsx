@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Calendar, ExternalLink, Loader2, Plus, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 
@@ -31,24 +31,27 @@ export default function EventsSection() {
   const [showAddDialog, setShowAddDialog] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
-  const fetchEvents = useCallback(async () => {
+  const fetchEvents = async () => {
     setIsLoading(true);
     const { data } = await getEvents();
     if (data) {
       setEvents(data);
     }
     setIsLoading(false);
-  }, []);
+  };
 
-  const checkAuth = useCallback(async () => {
+  const checkAuth = async () => {
     const { session } = await getSession();
     setIsAuthenticated(!!session);
-  }, []);
+  };
 
   useEffect(() => {
-    fetchEvents();
-    checkAuth();
-  }, [fetchEvents, checkAuth]);
+    const init = async () => {
+      await fetchEvents();
+      await checkAuth();
+    };
+    init();
+  }, []);
 
   const handleAddClick = () => {
     if (isAuthenticated) {

@@ -7,7 +7,6 @@ import { useTranslation } from '@/lib/TranslationContext';
 
 export default function Footer() {
   const { translate, culture } = useTranslation();
-  const currentYear = new Date().getFullYear();
 
   const buildHref = (href: string) => {
     if (href === '/') {

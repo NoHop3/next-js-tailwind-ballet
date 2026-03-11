@@ -111,7 +111,7 @@ export default function ClassesSection() {
         <StaggerContainer
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           staggerDelay={0.08}>
-          {classes.map((classItem, index) => {
+          {classes.map((classItem) => {
             const Icon = classItem.icon;
             return (
               <StaggerItem key={classItem.id} variants={fadeInUp}>
