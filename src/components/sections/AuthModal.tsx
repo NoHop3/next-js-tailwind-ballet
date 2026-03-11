@@ -1,12 +1,12 @@
 'use client';
 
-import { Loader2, Lock, X } from 'lucide-react';
 import { useState } from 'react';
+import { Loader2, Lock, X } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useTranslation } from '@/lib/TranslationContext';
 import { signIn } from '@/lib/supabase';
+import { useTranslation } from '@/lib/TranslationContext';
 
 interface AuthModalProps {
   isOpen: boolean;

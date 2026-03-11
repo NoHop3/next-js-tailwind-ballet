@@ -1,24 +1,23 @@
 'use client';
 
+import { useCallback, useEffect, useState } from 'react';
 import { Calendar, ExternalLink, Loader2, Plus, Trash2 } from 'lucide-react';
 import Image from 'next/image';
-import { useCallback, useEffect, useState } from 'react';
 
-import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import {
-  fadeInUp,
-  ScrollReveal,
-  StaggerContainer,
-  StaggerItem,
+    fadeInUp,
+    ScrollReveal,
+    StaggerContainer,
+    StaggerItem,
 } from '@/components/ui/motion';
-import { useTranslation } from '@/lib/TranslationContext';
 import {
-  deleteEvent,
-  Event,
-  getEvents,
-  getSession,
+    deleteEvent,
+    Event,
+    getEvents,
+    getSession,
 } from '@/lib/supabase';
+import { useTranslation } from '@/lib/TranslationContext';
 
 import { AddEventDialog } from './AddEventDialog';
 import { AuthModal } from './AuthModal';
