@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { GraduationCap, Home, Info, Mail } from 'lucide-react';
+import { CalendarDays, GraduationCap, Home, Info, Mail } from 'lucide-react';
 
 import { DesktopContent } from '@/components/layout/navbar/DesktopContent';
 import { MobileContent } from '@/components/layout/navbar/MobileContent';
@@ -10,6 +10,7 @@ import { NavItem } from '@/components/layout/navbar/types';
 const navItems: NavItem[] = [
   { id: 'home', label: 'nav.home', icon: <Home className="w-4 h-4" />, href: '/' },
   { id: 'classes', label: 'nav.classes', icon: <GraduationCap className="w-4 h-4" />, href: '/classes' },
+  { id: 'events', label: 'nav.events', icon: <CalendarDays className="w-4 h-4" />, href: '/events' },
   { id: 'about', label: 'nav.about', icon: <Info className="w-4 h-4" />, href: '/about' },
   { id: 'contact', label: 'nav.contact', icon: <Mail className="w-4 h-4" />, href: '/contact' },
 ];
