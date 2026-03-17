@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+
 import { CalendarDays, GraduationCap, Home, Info, Mail } from 'lucide-react';
 
 import { DesktopContent } from '@/components/layout/navbar/DesktopContent';
@@ -66,7 +67,8 @@ export default function Navbar() {
         scrolled
           ? 'backdrop-blur-xl bg-background/80 border-b border-border/50 shadow-lg shadow-pink-500/5'
           : 'backdrop-blur-md bg-background/60 border-b border-transparent'
-      }`}>
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo and Title */}
@@ -78,7 +80,7 @@ export default function Navbar() {
               <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-pink-400 to-purple-400 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300"></div>
             </div>
             <h1 className="text-xl font-bold bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent font-playfair">
-              Ballet Studio
+              Pa-pa-pas de trois
             </h1>
           </div>
 

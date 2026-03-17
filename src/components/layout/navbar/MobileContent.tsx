@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+
 import { Menu, X } from 'lucide-react';
 
 import { NavItem } from '@/components/layout/navbar/types';
+
 import { useTranslation } from '@/lib/TranslationContext';
 
 import { LanguageSwitcher } from './LanguageSwitcher';
@@ -30,7 +32,8 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
         onClick={() => setIsOpen(!isOpen)}
         className="relative w-10 h-10 rounded-xl flex items-center justify-center text-foreground hover:bg-primary/10 transition-all duration-300"
         aria-label="Toggle menu"
-        aria-expanded={isOpen}>
+        aria-expanded={isOpen}
+      >
         {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
       </button>
 
@@ -47,7 +50,8 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
       <div
         className={`fixed top-0 right-0 h-full w-72 bg-card/95 backdrop-blur-xl shadow-2xl shadow-purple-500/10 z-50 transform transition-transform duration-300 ease-out flex flex-col border-l border-border/50 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}>
+        }`}
+      >
         {/* Drawer Header */}
         <div className="flex justify-between items-center p-6 border-b border-border/50">
           <div className="flex items-center gap-3">
@@ -61,7 +65,8 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
           <button
             onClick={closeDrawer}
             className="w-10 h-10 rounded-xl flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary/10 transition-all duration-300"
-            aria-label="Close menu">
+            aria-label="Close menu"
+          >
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -74,7 +79,8 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
                 key={item.id}
                 href={buildHref(item.href)}
                 onClick={closeDrawer}
-                className="flex items-center gap-4 px-4 py-4 rounded-xl text-foreground/80 hover:text-foreground hover:bg-primary/5 transition-all duration-300 font-medium">
+                className="flex items-center gap-4 px-4 py-4 rounded-xl text-foreground/80 hover:text-foreground hover:bg-primary/5 transition-all duration-300 font-medium"
+              >
                 <span className="text-primary">{item.icon}</span>
                 <span>{translate(item.label)}</span>
               </a>

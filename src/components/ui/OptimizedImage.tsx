@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+
+import Image, { ImageProps } from 'next/image';
+
 import { motion } from 'framer-motion';
 import { ImageOff } from 'lucide-react';
-import Image, { ImageProps } from 'next/image';
 
 import { cn } from '@/lib/utils';
 
@@ -136,9 +138,7 @@ export function HeroImage({
 
       {/* Content overlay */}
       {children && (
-        <div className="relative z-10 h-full flex items-center justify-center">
-          {children}
-        </div>
+        <div className="relative z-10 h-full flex items-center justify-center">{children}</div>
       )}
     </div>
   );

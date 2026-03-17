@@ -5,10 +5,8 @@ import HomeSection from '@/components/sections/HomeSection';
 import PricingSection from '@/components/sections/PricingSection';
 import TeamSection from '@/components/sections/TeamSection';
 import VideoSection from '@/components/sections/VideoSection';
-import {
-  generateLocalBusinessSchema,
-  generateOrganizationSchema,
-} from '@/lib/schema';
+
+import { generateLocalBusinessSchema, generateOrganizationSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'Home | Ballet Studio',
@@ -16,8 +14,7 @@ export const metadata: Metadata = {
     'Discover the art of classical ballet at our award-winning studio. Expert instructors, classes for all levels, and a welcoming community of passionate dancers.',
   openGraph: {
     title: 'Ballet Studio | Classical Dance Excellence',
-    description:
-      'Discover the art of classical ballet at our award-winning studio.',
+    description: 'Discover the art of classical ballet at our award-winning studio.',
   },
 };
 

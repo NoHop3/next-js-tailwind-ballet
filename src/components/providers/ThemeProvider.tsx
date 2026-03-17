@@ -35,7 +35,7 @@ let currentTheme: Theme = 'system';
 function subscribeToTheme(callback: () => void) {
   themeListeners.push(callback);
   return () => {
-    themeListeners = themeListeners.filter(l => l !== callback);
+    themeListeners = themeListeners.filter((l) => l !== callback);
   };
 }
 
@@ -51,7 +51,7 @@ function setThemeValue(newTheme: Theme) {
   currentTheme = newTheme;
   localStorage.setItem(THEME_STORAGE_KEY, newTheme);
   applyThemeToDocument(newTheme);
-  themeListeners.forEach(listener => listener());
+  themeListeners.forEach((listener) => listener());
 }
 
 interface ThemeProviderProps {
@@ -59,11 +59,7 @@ interface ThemeProviderProps {
 }
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
-  const theme = useSyncExternalStore(
-    subscribeToTheme,
-    getThemeSnapshot,
-    getServerThemeSnapshot
-  );
+  const theme = useSyncExternalStore(subscribeToTheme, getThemeSnapshot, getServerThemeSnapshot);
 
   const resolvedTheme = theme === 'system' ? getSystemTheme() : theme;
 
@@ -76,17 +72,17 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     const stored = getStoredTheme();
     currentTheme = stored;
     applyThemeToDocument(stored);
-    themeListeners.forEach(listener => listener());
+    themeListeners.forEach((listener) => listener());
   }, []);
 
   // Listen for system theme changes
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    
+
     const handleChange = () => {
       if (currentTheme === 'system') {
         applyThemeToDocument('system');
-        themeListeners.forEach(listener => listener());
+        themeListeners.forEach((listener) => listener());
       }
     };
 

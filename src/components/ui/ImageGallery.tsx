@@ -1,9 +1,11 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
+
+import Image from 'next/image';
+
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
-import Image from 'next/image';
 
 import { Button } from '@/components/ui/button';
 
@@ -227,9 +229,7 @@ export function ImageCarousel({
             />
             {images[currentIndex].title && (
               <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-                <p className="text-white text-xl font-medium">
-                  {images[currentIndex].title}
-                </p>
+                <p className="text-white text-xl font-medium">{images[currentIndex].title}</p>
               </div>
             )}
           </motion.div>
@@ -261,9 +261,7 @@ export function ImageCarousel({
           <button
             key={index}
             className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentIndex
-                ? 'w-6 bg-white'
-                : 'bg-white/50 hover:bg-white/75'
+              index === currentIndex ? 'w-6 bg-white' : 'bg-white/50 hover:bg-white/75'
             }`}
             onClick={() => goToSlide(index)}
           />

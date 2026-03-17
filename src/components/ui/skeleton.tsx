@@ -80,13 +80,7 @@ const aspectRatioClasses = {
 
 export function ImageSkeleton({ aspectRatio = 'square', className }: ImageSkeletonProps) {
   return (
-    <Skeleton
-      className={cn(
-        'w-full rounded-xl',
-        aspectRatioClasses[aspectRatio],
-        className
-      )}
-    />
+    <Skeleton className={cn('w-full rounded-xl', aspectRatioClasses[aspectRatio], className)} />
   );
 }
 
@@ -100,10 +94,7 @@ export function TextSkeleton({ lines = 3, className }: TextSkeletonProps) {
   return (
     <div className={cn('space-y-2', className)}>
       {Array.from({ length: lines }).map((_, i) => (
-        <Skeleton
-          key={i}
-          className={cn('h-4', i === lines - 1 ? 'w-3/4' : 'w-full')}
-        />
+        <Skeleton key={i} className={cn('h-4', i === lines - 1 ? 'w-3/4' : 'w-full')} />
       ))}
     </div>
   );

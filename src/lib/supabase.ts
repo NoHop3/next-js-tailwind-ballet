@@ -44,11 +44,7 @@ export const getEvents = async () => {
 };
 
 export const createEvent = async (event: Omit<Event, 'id' | 'created_at'>) => {
-  const { data, error } = await supabase
-    .from('events')
-    .insert([event])
-    .select()
-    .single();
+  const { data, error } = await supabase.from('events').insert([event]).select().single();
   return { data: data as Event | null, error };
 };
 
@@ -59,12 +55,10 @@ export const deleteEvent = async (id: string) => {
 
 // Image upload helper
 export const uploadImage = async (file: File, fileName: string) => {
-  const { data, error } = await supabase.storage
-    .from('event-images')
-    .upload(fileName, file, {
-      cacheControl: '3600',
-      upsert: false,
-    });
+  const { data, error } = await supabase.storage.from('event-images').upload(fileName, file, {
+    cacheControl: '3600',
+    upsert: false,
+  });
 
   if (error) return { url: null, error };
 

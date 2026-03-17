@@ -1,10 +1,11 @@
-import './globals.css';
-
 import type { Metadata, Viewport } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
+
 import { Toaster } from 'sonner';
 
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
+
+import './globals.css';
 
 const playfair = Playfair_Display({
   variable: '--font-playfair',
@@ -25,8 +26,17 @@ export const metadata: Metadata = {
     default: 'Ballet Studio | Classical Dance Excellence',
     template: '%s | Ballet Studio',
   },
-  description: 'Discover the art of classical ballet at our award-winning studio. Expert instructors, classes for all levels, and a welcoming community of passionate dancers.',
-  keywords: ['ballet', 'dance', 'ballet classes', 'dance studio', 'classical ballet', 'ballet lessons', 'dance school'],
+  description:
+    'Discover the art of classical ballet at our award-winning studio. Expert instructors, classes for all levels, and a welcoming community of passionate dancers.',
+  keywords: [
+    'ballet',
+    'dance',
+    'ballet classes',
+    'dance studio',
+    'classical ballet',
+    'ballet lessons',
+    'dance school',
+  ],
   authors: [{ name: 'Ballet Studio' }],
   creator: 'Ballet Studio',
   metadataBase: new URL(siteUrl),
@@ -36,7 +46,8 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: 'Ballet Studio',
     title: 'Ballet Studio | Classical Dance Excellence',
-    description: 'Discover the art of classical ballet at our award-winning studio. Expert instructors, classes for all levels, and a welcoming community.',
+    description:
+      'Discover the art of classical ballet at our award-winning studio. Expert instructors, classes for all levels, and a welcoming community.',
     images: [
       {
         url: '/og-image.jpg',
@@ -79,16 +90,13 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
       <body
-        className={`${inter.variable} ${playfair.variable} antialiased bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-slate-900 dark:text-slate-100 flex flex-col min-h-screen transition-colors duration-300`}>
+        className={`${inter.variable} ${playfair.variable} antialiased bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-slate-900 dark:text-slate-100 flex flex-col min-h-screen transition-colors duration-300`}
+      >
         <ThemeProvider>
           {children}
           <Toaster richColors position="top-right" />

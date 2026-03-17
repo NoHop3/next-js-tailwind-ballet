@@ -4,12 +4,8 @@ import { Calendar, Clock, GraduationCap, Sparkles, Timer, User } from 'lucide-re
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import {
-  fadeInUp,
-  ScrollReveal,
-  StaggerContainer,
-  StaggerItem,
-} from '@/components/ui/motion';
+import { ScrollReveal, StaggerContainer, StaggerItem, fadeInUp } from '@/components/ui/motion';
+
 import { useTranslation } from '@/lib/TranslationContext';
 
 const classes = [
@@ -110,29 +106,34 @@ export default function ClassesSection() {
         {/* Classes Grid */}
         <StaggerContainer
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          staggerDelay={0.08}>
+          staggerDelay={0.08}
+        >
           {classes.map((classItem) => {
             const Icon = classItem.icon;
             return (
               <StaggerItem key={classItem.id} variants={fadeInUp}>
                 <Card
-                  className={`group relative overflow-hidden border-border/50 hover:border-primary/30 bg-gradient-to-br ${classItem.bgGradient} backdrop-blur-sm hover:shadow-2xl hover:shadow-pink-500/10 transition-all duration-500 hover:-translate-y-2 h-full`}>
+                  className={`group relative overflow-hidden border-border/50 hover:border-primary/30 bg-gradient-to-br ${classItem.bgGradient} backdrop-blur-sm hover:shadow-2xl hover:shadow-pink-500/10 transition-all duration-500 hover:-translate-y-2 h-full`}
+                >
                   {/* Gradient bar at top */}
                   <div
-                    className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${classItem.gradient}`}></div>
+                    className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${classItem.gradient}`}
+                  ></div>
 
                   <CardContent className="p-8">
                     <div className="flex justify-between items-start mb-6">
                       <div className="flex-1">
                         <div
-                          className={`inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br ${classItem.gradient} mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                          className={`inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br ${classItem.gradient} mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
+                        >
                           <Icon className="w-6 h-6 text-white" />
                         </div>
                         <h3 className="text-xl font-playfair font-bold text-foreground mb-2">
                           {translate(classItem.nameKey)}
                         </h3>
                         <span
-                          className={`inline-block px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${classItem.gradient} text-white`}>
+                          className={`inline-block px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${classItem.gradient} text-white`}
+                        >
                           {translate(classItem.levelKey)}
                         </span>
                       </div>
@@ -141,27 +142,22 @@ export default function ClassesSection() {
                     <div className="space-y-3 mb-6">
                       <div className="flex items-center gap-3 text-muted-foreground">
                         <Clock className="w-4 h-4 text-primary" />
-                        <span className="text-sm">
-                          {translate(classItem.timeKey)}
-                        </span>
+                        <span className="text-sm">{translate(classItem.timeKey)}</span>
                       </div>
                       <div className="flex items-center gap-3 text-muted-foreground">
                         <Timer className="w-4 h-4 text-primary" />
-                        <span className="text-sm">
-                          {translate(classItem.durationKey)}
-                        </span>
+                        <span className="text-sm">{translate(classItem.durationKey)}</span>
                       </div>
                       <div className="flex items-center gap-3 text-muted-foreground">
                         <User className="w-4 h-4 text-primary" />
-                        <span className="text-sm">
-                          {translate(classItem.ageKey)}
-                        </span>
+                        <span className="text-sm">{translate(classItem.ageKey)}</span>
                       </div>
                     </div>
 
                     <Button
                       variant="outline"
-                      className="w-full border-primary/20 hover:border-primary hover:bg-primary/5 text-foreground group-hover:border-primary transition-colors">
+                      className="w-full border-primary/20 hover:border-primary hover:bg-primary/5 text-foreground group-hover:border-primary transition-colors"
+                    >
                       {translate('classes.learnMore')}
                     </Button>
                   </CardContent>

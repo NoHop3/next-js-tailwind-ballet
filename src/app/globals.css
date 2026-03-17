@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @plugin "tailwindcss-animate";
 
@@ -95,7 +95,12 @@
     letter-spacing: 0.3px;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-playfair), serif;
     font-weight: 600;
     letter-spacing: -0.5px;
@@ -183,4 +188,3 @@
   --sidebar-border: oklch(0.35 0.04 290);
   --sidebar-ring: oklch(0.75 0.22 330);
 }
-

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { Culture, useTranslation } from '@/lib/TranslationContext';
@@ -57,10 +58,11 @@ export function LanguageSwitcher({ variant = 'compact' }: LanguageSwitcherProps)
           <button
             key={lang.code}
             onClick={() => setCulture(lang.code)}
-            className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200 ${culture === lang.code
+            className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200 ${
+              culture === lang.code
                 ? 'bg-primary/10 text-primary'
                 : 'text-muted-foreground hover:bg-secondary'
-              }`}
+            }`}
             aria-pressed={culture === lang.code}
           >
             <span className="text-lg">{lang.flag}</span>
@@ -101,10 +103,11 @@ export function LanguageSwitcher({ variant = 'compact' }: LanguageSwitcherProps)
                   setCulture(lang.code);
                   setIsOpen(false);
                 }}
-                className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150 ${culture === lang.code
+                className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150 ${
+                  culture === lang.code
                     ? 'bg-primary/10 text-primary'
                     : 'text-foreground hover:bg-secondary'
-                  }`}
+                }`}
               >
                 <span className="text-base">{lang.flag}</span>
                 <span>{lang.name}</span>

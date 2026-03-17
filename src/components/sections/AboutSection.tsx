@@ -3,12 +3,8 @@
 import { Award, GraduationCap, Heart, Sparkles, Users } from 'lucide-react';
 
 import { Card, CardContent } from '@/components/ui/card';
-import {
-  fadeInUp,
-  ScrollReveal,
-  StaggerContainer,
-  StaggerItem,
-} from '@/components/ui/motion';
+import { ScrollReveal, StaggerContainer, StaggerItem, fadeInUp } from '@/components/ui/motion';
+
 import { useTranslation } from '@/lib/TranslationContext';
 
 const features = [
@@ -67,7 +63,8 @@ export default function AboutSection() {
         {/* Features Grid */}
         <StaggerContainer
           className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16"
-          staggerDelay={0.1}>
+          staggerDelay={0.1}
+        >
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
@@ -75,7 +72,8 @@ export default function AboutSection() {
                 <Card className="group hover:shadow-2xl hover:shadow-pink-500/10 transition-all duration-500 hover:-translate-y-1 border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden h-full">
                   <CardContent className="p-8">
                     <div
-                      className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.gradient} mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                      className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.gradient} mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
+                    >
                       <Icon className="w-7 h-7 text-white" />
                     </div>
                     <h3 className="text-2xl font-semibold mb-3 font-playfair text-foreground">

@@ -1,14 +1,17 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { Calendar, ImagePlus, Loader2, X } from 'lucide-react';
+
 import Image from 'next/image';
+
+import { Calendar, ImagePlus, Loader2, X } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { createEvent, uploadImage } from '@/lib/supabase';
+
 import { useTranslation } from '@/lib/TranslationContext';
+import { createEvent, uploadImage } from '@/lib/supabase';
 
 interface AddEventDialogProps {
   isOpen: boolean;
@@ -123,9 +126,7 @@ export function AddEventDialog({ isOpen, onClose, onSuccess }: AddEventDialogPro
 
         <div className="p-8">
           {/* Title */}
-          <h2 className="text-2xl font-playfair font-bold mb-6">
-            {translate('events.add.title')}
-          </h2>
+          <h2 className="text-2xl font-playfair font-bold mb-6">{translate('events.add.title')}</h2>
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
@@ -136,12 +137,7 @@ export function AddEventDialog({ isOpen, onClose, onSuccess }: AddEventDialogPro
               </label>
               {imagePreview ? (
                 <div className="relative w-full h-48 rounded-xl overflow-hidden group">
-                  <Image
-                    src={imagePreview}
-                    alt="Preview"
-                    fill
-                    className="object-cover"
-                  />
+                  <Image src={imagePreview} alt="Preview" fill className="object-cover" />
                   <button
                     type="button"
                     onClick={handleRemoveImage}
@@ -229,18 +225,11 @@ export function AddEventDialog({ isOpen, onClose, onSuccess }: AddEventDialogPro
               />
             </div>
 
-            {error && (
-              <p className="text-sm text-destructive text-center">{error}</p>
-            )}
+            {error && <p className="text-sm text-destructive text-center">{error}</p>}
 
             {/* Actions */}
             <div className="flex gap-3 pt-2">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={onClose}
-                className="flex-1"
-              >
+              <Button type="button" variant="outline" onClick={onClose} className="flex-1">
                 {translate('events.add.cancel')}
               </Button>
               <Button

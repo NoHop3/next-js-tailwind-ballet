@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+
 import { Loader2, Mail, MapPin, MessageSquare, Phone, Send } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -9,13 +10,14 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
-  fadeInLeft,
-  fadeInRight,
   ScrollReveal,
   StaggerContainer,
   StaggerItem,
+  fadeInLeft,
+  fadeInRight,
 } from '@/components/ui/motion';
 import { Textarea } from '@/components/ui/textarea';
+
 import { useTranslation } from '@/lib/TranslationContext';
 
 export default function ContactSection() {
@@ -27,9 +29,7 @@ export default function ContactSection() {
     message: '',
   });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -94,7 +94,8 @@ export default function ContactSection() {
                       </p>
                       <a
                         href="mailto:info@balletstudio.com"
-                        className="text-primary font-semibold hover:underline">
+                        className="text-primary font-semibold hover:underline"
+                      >
                         info@balletstudio.com
                       </a>
                     </div>
@@ -119,9 +120,10 @@ export default function ContactSection() {
                         {translate('contact.info.phoneDescription')}
                       </p>
                       <a
-                        href="tel:+15551234567"
-                        className="text-primary font-semibold hover:underline">
-                        +1 (555) 123-4567
+                        href="tel:+359876389077"
+                        className="text-primary font-semibold hover:underline"
+                      >
+                        +359 876 389 077
                       </a>
                     </div>
                   </div>
@@ -142,11 +144,7 @@ export default function ContactSection() {
                         {translate('contact.info.location')}
                       </h3>
                       <p className="text-muted-foreground leading-relaxed">
-                        123 Dance Street
-                        <br />
-                        City, State 12345
-                        <br />
-                        United States
+                        {translate('contact.info.address')}
                       </p>
                     </div>
                   </div>
@@ -172,9 +170,7 @@ export default function ContactSection() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Name Field */}
                   <div className="space-y-2">
-                    <Label
-                      htmlFor="name"
-                      className="text-foreground font-medium">
+                    <Label htmlFor="name" className="text-foreground font-medium">
                       {translate('contact.form.name')}
                     </Label>
                     <Input
@@ -192,9 +188,7 @@ export default function ContactSection() {
 
                   {/* Email Field */}
                   <div className="space-y-2">
-                    <Label
-                      htmlFor="email"
-                      className="text-foreground font-medium">
+                    <Label htmlFor="email" className="text-foreground font-medium">
                       {translate('contact.form.email')}
                     </Label>
                     <Input
@@ -212,9 +206,7 @@ export default function ContactSection() {
 
                   {/* Message Field */}
                   <div className="space-y-2">
-                    <Label
-                      htmlFor="message"
-                      className="text-foreground font-medium">
+                    <Label htmlFor="message" className="text-foreground font-medium">
                       {translate('contact.form.message')}
                     </Label>
                     <Textarea
@@ -235,7 +227,8 @@ export default function ContactSection() {
                     type="submit"
                     size="lg"
                     className="w-full h-12 bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 hover:from-pink-600 hover:via-fuchsia-600 hover:to-purple-600 text-white font-semibold shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300"
-                    disabled={isSubmitting}>
+                    disabled={isSubmitting}
+                  >
                     {isSubmitting ? (
                       <>
                         <Loader2 className="w-5 h-5 mr-2 animate-spin" />

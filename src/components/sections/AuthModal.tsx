@@ -1,12 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+
 import { Loader2, Lock, X } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { signIn } from '@/lib/supabase';
+
 import { useTranslation } from '@/lib/TranslationContext';
+import { signIn } from '@/lib/supabase';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -102,9 +104,7 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
               />
             </div>
 
-            {error && (
-              <p className="text-sm text-destructive text-center">{error}</p>
-            )}
+            {error && <p className="text-sm text-destructive text-center">{error}</p>}
 
             <Button
               type="submit"

@@ -2,11 +2,7 @@
 
 import { ReactNode } from 'react';
 
-import {
-  Culture,
-  TranslationContext,
-  TranslationContextType,
-} from '@/lib/TranslationContext';
+import { Culture, TranslationContext, TranslationContextType } from '@/lib/TranslationContext';
 
 interface TranslationProviderProps {
   children: ReactNode;
@@ -14,19 +10,12 @@ interface TranslationProviderProps {
   translations: Record<string, string>;
 }
 
-export function TranslationProvider({
-  children,
-  culture,
-  translations,
-}: TranslationProviderProps) {
+export function TranslationProvider({ children, culture, translations }: TranslationProviderProps) {
   const setCulture = (newCulture: Culture) => {
     // Navigate to the new language route while preserving current path
     const currentPath = window.location.pathname;
     // Remove the current culture prefix and add the new one
-    const pathWithoutCulture = currentPath.replace(
-      /^\/(en-GB|ru-RU|uk-UA|bg-BG)/,
-      '',
-    );
+    const pathWithoutCulture = currentPath.replace(/^\/(en-GB|ru-RU|uk-UA|bg-BG)/, '');
     const newPath = `/${newCulture}${pathWithoutCulture || ''}`;
     window.location.href = newPath;
   };
@@ -42,9 +31,5 @@ export function TranslationProvider({
     translate: t,
   };
 
-  return (
-    <TranslationContext.Provider value={contextValue}>
-      {children}
-    </TranslationContext.Provider>
-  );
+  return <TranslationContext.Provider value={contextValue}>{children}</TranslationContext.Provider>;
 }

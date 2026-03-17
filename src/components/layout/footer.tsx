@@ -1,7 +1,8 @@
 'use client';
 
-import { Heart, Instagram, Mail, MapPin, Phone, Twitter, Youtube } from 'lucide-react';
 import Link from 'next/link';
+
+import { Facebook, Heart, Instagram, Mail, MapPin, Phone, Youtube } from 'lucide-react';
 
 import { useTranslation } from '@/lib/TranslationContext';
 
@@ -34,24 +35,28 @@ export default function Footer() {
               </h3>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-              Discover the art of classical ballet with our world-class
-              instructors and modern facilities.
+              Pa-pa-pas de trois Ballet School - Smolyan, Bulgaria
             </p>
             {/* Social Links */}
             <div className="flex gap-3">
               <a
+                href="https://www.facebook.com/share/1C4afyqUTQ/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-xl bg-primary/10 hover:bg-primary/20 flex items-center justify-center text-primary transition-all duration-300 hover:scale-105"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a
                 href="#"
-                className="w-10 h-10 rounded-xl bg-primary/10 hover:bg-primary/20 flex items-center justify-center text-primary transition-all duration-300 hover:scale-105">
+                className="w-10 h-10 rounded-xl bg-primary/10 hover:bg-primary/20 flex items-center justify-center text-primary transition-all duration-300 hover:scale-105"
+              >
                 <Instagram className="w-5 h-5" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-xl bg-primary/10 hover:bg-primary/20 flex items-center justify-center text-primary transition-all duration-300 hover:scale-105">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-xl bg-primary/10 hover:bg-primary/20 flex items-center justify-center text-primary transition-all duration-300 hover:scale-105">
+                className="w-10 h-10 rounded-xl bg-primary/10 hover:bg-primary/20 flex items-center justify-center text-primary transition-all duration-300 hover:scale-105"
+              >
                 <Youtube className="w-5 h-5" />
               </a>
             </div>
@@ -66,28 +71,32 @@ export default function Footer() {
               <li>
                 <Link
                   href={buildHref('/')}
-                  className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 text-sm">
+                  className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 text-sm"
+                >
                   Home
                 </Link>
               </li>
               <li>
                 <Link
                   href={buildHref('/classes')}
-                  className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 text-sm">
+                  className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 text-sm"
+                >
                   Classes
                 </Link>
               </li>
               <li>
                 <Link
                   href={buildHref('/about')}
-                  className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 text-sm">
+                  className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 text-sm"
+                >
                   About
                 </Link>
               </li>
               <li>
                 <Link
                   href={buildHref('/contact')}
-                  className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 text-sm">
+                  className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 text-sm"
+                >
                   Contact
                 </Link>
               </li>
@@ -96,38 +105,26 @@ export default function Footer() {
 
           {/* Classes */}
           <div>
-            <h4 className="font-semibold mb-6 text-foreground font-playfair text-lg">
-              Classes
-            </h4>
+            <h4 className="font-semibold mb-6 text-foreground font-playfair text-lg">Classes</h4>
             <ul className="space-y-3">
               <li>
-                <span className="text-muted-foreground text-sm">
-                  Beginner Ballet
-                </span>
+                <span className="text-muted-foreground text-sm">Beginner Ballet</span>
               </li>
               <li>
-                <span className="text-muted-foreground text-sm">
-                  Intermediate Ballet
-                </span>
+                <span className="text-muted-foreground text-sm">Intermediate Ballet</span>
               </li>
               <li>
-                <span className="text-muted-foreground text-sm">
-                  Advanced Ballet
-                </span>
+                <span className="text-muted-foreground text-sm">Advanced Ballet</span>
               </li>
               <li>
-                <span className="text-muted-foreground text-sm">
-                  Private Lessons
-                </span>
+                <span className="text-muted-foreground text-sm">Private Lessons</span>
               </li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold mb-6 text-foreground font-playfair text-lg">
-              Contact Us
-            </h4>
+            <h4 className="font-semibold mb-6 text-foreground font-playfair text-lg">Contact Us</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -135,7 +132,8 @@ export default function Footer() {
                 </div>
                 <a
                   href="mailto:info@balletstudio.com"
-                  className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                >
                   info@balletstudio.com
                 </a>
               </li>
@@ -145,7 +143,8 @@ export default function Footer() {
                 </div>
                 <a
                   href="tel:+15551234567"
-                  className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                >
                   +1 (555) 123-4567
                 </a>
               </li>
@@ -169,27 +168,20 @@ export default function Footer() {
             <p className="text-muted-foreground text-sm flex items-center gap-1">
               {translate('footer.text')}
               <span className="mx-2">•</span>
-              Made with{' '}
-              <Heart
+              Made with <Heart
                 className="w-4 h-4 text-primary inline mx-1"
                 fill="currentColor"
               />{' '}
               for dance
             </p>
             <div className="flex gap-6 text-sm">
-              <a
-                href="#"
-                className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 Privacy
               </a>
-              <a
-                href="#"
-                className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 Terms
               </a>
-              <a
-                href="#"
-                className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 Cookies
               </a>
             </div>

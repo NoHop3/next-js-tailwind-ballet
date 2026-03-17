@@ -1,23 +1,16 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Calendar, ExternalLink, Loader2, Plus, Trash2 } from 'lucide-react';
+
 import Image from 'next/image';
 
+import { Calendar, ExternalLink, Loader2, Plus, Trash2 } from 'lucide-react';
+
 import { Card, CardContent } from '@/components/ui/card';
-import {
-    fadeInUp,
-    ScrollReveal,
-    StaggerContainer,
-    StaggerItem,
-} from '@/components/ui/motion';
-import {
-    deleteEvent,
-    Event,
-    getEvents,
-    getSession,
-} from '@/lib/supabase';
+import { ScrollReveal, StaggerContainer, StaggerItem, fadeInUp } from '@/components/ui/motion';
+
 import { useTranslation } from '@/lib/TranslationContext';
+import { Event, deleteEvent, getEvents, getSession } from '@/lib/supabase';
 
 import { AddEventDialog } from './AddEventDialog';
 import { AuthModal } from './AuthModal';
@@ -74,7 +67,7 @@ export default function EventsSection() {
 
   const handleDeleteEvent = async (id: string) => {
     if (!confirm(translate('events.deleteConfirm'))) return;
-    
+
     setDeletingId(id);
     const { error } = await deleteEvent(id);
     if (!error) {
@@ -217,9 +210,7 @@ export default function EventsSection() {
         {/* Empty state */}
         {!isLoading && events.length === 0 && (
           <ScrollReveal className="text-center py-10">
-            <p className="text-muted-foreground">
-              {translate('events.noEvents')}
-            </p>
+            <p className="text-muted-foreground">{translate('events.noEvents')}</p>
           </ScrollReveal>
         )}
       </div>

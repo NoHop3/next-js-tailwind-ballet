@@ -1,7 +1,8 @@
 'use client';
 
 import { ReactNode, useRef } from 'react';
-import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
+
+import { MotionValue, motion, useScroll, useTransform } from 'framer-motion';
 
 interface ParallaxSectionProps {
   children: ReactNode;
@@ -27,11 +28,7 @@ export function ParallaxSection({
   const x = useTransform(scrollYProgress, [0, 1], [100 * speed, -100 * speed]);
 
   return (
-    <motion.div
-      ref={ref}
-      style={direction === 'vertical' ? { y } : { x }}
-      className={className}
-    >
+    <motion.div ref={ref} style={direction === 'vertical' ? { y } : { x }} className={className}>
       {children}
     </motion.div>
   );
@@ -62,11 +59,7 @@ const depthStyles = {
   },
 };
 
-export function DepthSection({
-  children,
-  className = '',
-  depth = 'medium',
-}: DepthSectionProps) {
+export function DepthSection({ children, className = '', depth = 'medium' }: DepthSectionProps) {
   const ref = useRef<HTMLDivElement>(null);
   const config = depthStyles[depth];
 
@@ -76,14 +69,14 @@ export function DepthSection({
   });
 
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [config.scale[0], 1, config.scale[1]]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [config.opacity[0], 1, 1, config.opacity[1]]);
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    [config.opacity[0], 1, 1, config.opacity[1]]
+  );
 
   return (
-    <motion.div
-      ref={ref}
-      style={{ scale, opacity }}
-      className={`${className} ${config.shadow}`}
-    >
+    <motion.div ref={ref} style={{ scale, opacity }} className={`${className} ${config.shadow}`}>
       {children}
     </motion.div>
   );
@@ -96,11 +89,7 @@ interface StickyRevealProps {
   height?: string;
 }
 
-export function StickyReveal({
-  children,
-  className = '',
-  height = '200vh',
-}: StickyRevealProps) {
+export function StickyReveal({ children, className = '', height = '200vh' }: StickyRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   return (
@@ -113,7 +102,10 @@ export function StickyReveal({
 }
 
 // Hook for using scroll progress in child components
-export function useParallaxProgress(): { ref: React.RefObject<HTMLDivElement | null>; progress: MotionValue<number> } {
+export function useParallaxProgress(): {
+  ref: React.RefObject<HTMLDivElement | null>;
+  progress: MotionValue<number>;
+} {
   const ref = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -148,11 +140,7 @@ export function ParallaxLayer({
   const y = useTransform(scrollYProgress, [0, 1], [100 * speed, -100 * speed]);
 
   return (
-    <motion.div
-      ref={ref}
-      style={{ y, zIndex }}
-      className={`absolute inset-0 ${className}`}
-    >
+    <motion.div ref={ref} style={{ y, zIndex }} className={`absolute inset-0 ${className}`}>
       {children}
     </motion.div>
   );
@@ -177,20 +165,12 @@ export function ScrollRevealDepth({
     offset: ['start end', 'center center'],
   });
 
-  const y = useTransform(
-    scrollYProgress,
-    [0, 1],
-    fromBelow ? [100, 0] : [-100, 0]
-  );
+  const y = useTransform(scrollYProgress, [0, 1], fromBelow ? [100, 0] : [-100, 0]);
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.5, 1]);
   const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1]);
 
   return (
-    <motion.div
-      ref={ref}
-      style={{ y, opacity, scale }}
-      className={className}
-    >
+    <motion.div ref={ref} style={{ y, opacity, scale }} className={className}>
       {children}
     </motion.div>
   );

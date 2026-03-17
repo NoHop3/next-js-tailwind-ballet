@@ -90,9 +90,7 @@ export default function GallerySection({
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center">
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
-              <h3 className="text-2xl font-playfair font-bold text-foreground">
-                Featured Moments
-              </h3>
+              <h3 className="text-2xl font-playfair font-bold text-foreground">Featured Moments</h3>
             </div>
             <ImageCarousel images={featuredImages} />
           </ScrollReveal>
@@ -105,9 +103,7 @@ export default function GallerySection({
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-fuchsia-500 to-violet-500 flex items-center justify-center">
                 <Camera className="w-5 h-5 text-white" />
               </div>
-              <h3 className="text-2xl font-playfair font-bold text-foreground">
-                Photo Gallery
-              </h3>
+              <h3 className="text-2xl font-playfair font-bold text-foreground">Photo Gallery</h3>
             </div>
             <ImageGallery images={galleryImages} />
           </ScrollReveal>

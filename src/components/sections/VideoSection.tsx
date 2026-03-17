@@ -1,11 +1,13 @@
 'use client';
 
 import { useRef, useState } from 'react';
+
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Pause, Play } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { ScrollReveal } from '@/components/ui/motion';
+
 import { useTranslation } from '@/lib/TranslationContext';
 
 export default function VideoSection() {
@@ -37,11 +39,10 @@ export default function VideoSection() {
   return (
     <section
       ref={containerRef}
-      className="relative py-32 overflow-hidden bg-gradient-to-b from-background via-secondary/30 to-background">
+      className="relative py-32 overflow-hidden bg-gradient-to-b from-background via-secondary/30 to-background"
+    >
       {/* Parallax background elements */}
-      <motion.div
-        style={{ y }}
-        className="absolute inset-0 pointer-events-none">
+      <motion.div style={{ y }} className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-pink-500/10 to-purple-500/10 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-fuchsia-500/10 to-violet-500/10 rounded-full blur-3xl" />
       </motion.div>
@@ -66,7 +67,8 @@ export default function VideoSection() {
         {/* Video container with parallax */}
         <motion.div
           style={{ opacity, scale }}
-          className="relative rounded-3xl overflow-hidden shadow-2xl shadow-purple-500/20">
+          className="relative rounded-3xl overflow-hidden shadow-2xl shadow-purple-500/20"
+        >
           {/* Video placeholder - using a gradient background as placeholder */}
           <div className="aspect-video relative bg-gradient-to-br from-purple-950 via-fuchsia-900 to-purple-900">
             {/* Replace this with actual video */}
@@ -76,7 +78,8 @@ export default function VideoSection() {
               poster="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=1920&h=1080&fit=crop"
               playsInline
               loop
-              muted>
+              muted
+            >
               {/* Add your video source here */}
               {/* <source src="/videos/ballet-showcase.mp4" type="video/mp4" /> */}
             </video>
@@ -89,7 +92,8 @@ export default function VideoSection() {
               <Button
                 onClick={togglePlay}
                 size="lg"
-                className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-xl border-2 border-white/30 hover:bg-white/30 hover:scale-110 transition-all duration-300 shadow-2xl">
+                className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-xl border-2 border-white/30 hover:bg-white/30 hover:scale-110 transition-all duration-300 shadow-2xl"
+              >
                 {isPlaying ? (
                   <Pause className="w-8 h-8 text-white" />
                 ) : (
@@ -104,14 +108,13 @@ export default function VideoSection() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="flex items-center justify-between">
+                className="flex items-center justify-between"
+              >
                 <div>
                   <h3 className="text-2xl font-playfair font-bold text-white mb-2">
                     {translate('video.showcaseTitle')}
                   </h3>
-                  <p className="text-white/70">
-                    {translate('video.showcaseDesc')}
-                  </p>
+                  <p className="text-white/70">{translate('video.showcaseDesc')}</p>
                 </div>
                 <div className="hidden sm:flex items-center gap-4">
                   <div className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-sm">
@@ -151,9 +154,7 @@ export default function VideoSection() {
                 <h4 className="font-semibold text-foreground mb-2">
                   {translate(feature.titleKey)}
                 </h4>
-                <p className="text-sm text-muted-foreground">
-                  {translate(feature.descKey)}
-                </p>
+                <p className="text-sm text-muted-foreground">{translate(feature.descKey)}</p>
               </div>
             </ScrollReveal>
           ))}
