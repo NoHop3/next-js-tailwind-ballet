@@ -3,13 +3,12 @@ import type { Metadata } from 'next';
 import ClassesSection from '@/components/sections/ClassesSection';
 
 export const metadata: Metadata = {
-  title: 'Classes',
+  title: 'Класове',
   description:
-    'Explore our ballet classes for all skill levels. From beginner ballet for children to advanced classes for adults, find the perfect class for you.',
+    'Разгледайте нашите балетни класове за всички нива. От балет за начинаещи деца до класове за възрастни - намерете перфектния клас за вас.',
   openGraph: {
-    title: 'Classes | Ballet Studio',
-    description:
-      'Explore our ballet classes for all skill levels. From beginner to advanced, find the perfect class for you.',
+    title: 'Класове | Па-па-па де труа',
+    description: 'Разгледайте нашите балетни класове за всички нива в Смолян и Чепеларе.',
   },
 };
 

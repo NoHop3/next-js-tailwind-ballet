@@ -31,7 +31,7 @@ export default function Footer() {
                 <span className="text-white text-xl">🩰</span>
               </div>
               <h3 className="text-xl font-bold bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent font-playfair">
-                Ballet Studio
+                Ballet School
               </h3>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
@@ -65,7 +65,7 @@ export default function Footer() {
           {/* Quick Links */}
           <div>
             <h4 className="font-semibold mb-6 text-foreground font-playfair text-lg">
-              Quick Links
+              {translate('footer.quickLinks')}
             </h4>
             <ul className="space-y-3">
               <li>
@@ -73,7 +73,7 @@ export default function Footer() {
                   href={buildHref('/')}
                   className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 text-sm"
                 >
-                  Home
+                  {translate('footer.home')}
                 </Link>
               </li>
               <li>
@@ -81,7 +81,7 @@ export default function Footer() {
                   href={buildHref('/classes')}
                   className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 text-sm"
                 >
-                  Classes
+                  {translate('footer.classesLink')}
                 </Link>
               </li>
               <li>
@@ -89,7 +89,7 @@ export default function Footer() {
                   href={buildHref('/about')}
                   className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 text-sm"
                 >
-                  About
+                  {translate('footer.about')}
                 </Link>
               </li>
               <li>
@@ -97,7 +97,7 @@ export default function Footer() {
                   href={buildHref('/contact')}
                   className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 text-sm"
                 >
-                  Contact
+                  {translate('footer.contact')}
                 </Link>
               </li>
             </ul>
@@ -105,26 +105,38 @@ export default function Footer() {
 
           {/* Classes */}
           <div>
-            <h4 className="font-semibold mb-6 text-foreground font-playfair text-lg">Classes</h4>
+            <h4 className="font-semibold mb-6 text-foreground font-playfair text-lg">
+              {translate('footer.classes')}
+            </h4>
             <ul className="space-y-3">
               <li>
-                <span className="text-muted-foreground text-sm">Beginner Ballet</span>
+                <span className="text-muted-foreground text-sm">
+                  {translate('footer.beginnerBallet')}
+                </span>
               </li>
               <li>
-                <span className="text-muted-foreground text-sm">Intermediate Ballet</span>
+                <span className="text-muted-foreground text-sm">
+                  {translate('footer.intermediateBallet')}
+                </span>
               </li>
               <li>
-                <span className="text-muted-foreground text-sm">Advanced Ballet</span>
+                <span className="text-muted-foreground text-sm">
+                  {translate('footer.advancedBallet')}
+                </span>
               </li>
               <li>
-                <span className="text-muted-foreground text-sm">Private Lessons</span>
+                <span className="text-muted-foreground text-sm">
+                  {translate('footer.privateLessons')}
+                </span>
               </li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold mb-6 text-foreground font-playfair text-lg">Contact Us</h4>
+            <h4 className="font-semibold mb-6 text-foreground font-playfair text-lg">
+              {translate('footer.contactUs')}
+            </h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -168,21 +180,19 @@ export default function Footer() {
             <p className="text-muted-foreground text-sm flex items-center gap-1">
               {translate('footer.text')}
               <span className="mx-2">•</span>
-              Made with <Heart
-                className="w-4 h-4 text-primary inline mx-1"
-                fill="currentColor"
-              />{' '}
-              for dance
+              {translate('footer.madeWith')}{' '}
+              <Heart className="w-4 h-4 text-primary inline mx-1" fill="currentColor" />{' '}
+              {translate('footer.forDance')}
             </p>
             <div className="flex gap-6 text-sm">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                Privacy
+                {translate('footer.privacy')}
               </a>
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                Terms
+                {translate('footer.terms')}
               </a>
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                Cookies
+                {translate('footer.cookies')}
               </a>
             </div>
           </div>

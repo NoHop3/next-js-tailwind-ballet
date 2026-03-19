@@ -5,6 +5,8 @@ import { Camera, Sparkles } from 'lucide-react';
 import { ImageCarousel, ImageGallery } from '@/components/ui/ImageGallery';
 import { ScrollReveal } from '@/components/ui/motion';
 
+import { useTranslation } from '@/lib/TranslationContext';
+
 // Sample gallery images using Unsplash - replace with actual images in production
 const galleryImages = [
   {
@@ -60,6 +62,8 @@ export default function GallerySection({
   showCarousel = true,
   showGrid = true,
 }: GallerySectionProps) {
+  const { translate } = useTranslation();
+
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background via-secondary/20 to-background relative overflow-hidden">
       {/* Decorative elements */}
@@ -71,15 +75,15 @@ export default function GallerySection({
         <ScrollReveal className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-sm font-medium text-primary mb-4">
             <Camera className="w-4 h-4" />
-            Our Gallery
+            {translate('gallery.badge')}
           </div>
           <h2 className="text-4xl sm:text-5xl font-playfair font-bold mb-4">
             <span className="bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent">
-              Moments of Grace
+              {translate('gallery.title')}
             </span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Capturing the beauty and elegance of ballet at our studio
+            {translate('gallery.subtitle')}
           </p>
         </ScrollReveal>
 
@@ -90,7 +94,9 @@ export default function GallerySection({
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center">
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
-              <h3 className="text-2xl font-playfair font-bold text-foreground">Featured Moments</h3>
+              <h3 className="text-2xl font-playfair font-bold text-foreground">
+                {translate('gallery.featured')}
+              </h3>
             </div>
             <ImageCarousel images={featuredImages} />
           </ScrollReveal>
@@ -103,7 +109,9 @@ export default function GallerySection({
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-fuchsia-500 to-violet-500 flex items-center justify-center">
                 <Camera className="w-5 h-5 text-white" />
               </div>
-              <h3 className="text-2xl font-playfair font-bold text-foreground">Photo Gallery</h3>
+              <h3 className="text-2xl font-playfair font-bold text-foreground">
+                {translate('gallery.photoGallery')}
+              </h3>
             </div>
             <ImageGallery images={galleryImages} />
           </ScrollReveal>

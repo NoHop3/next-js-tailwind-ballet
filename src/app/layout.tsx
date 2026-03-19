@@ -23,46 +23,49 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://balletstudio.com';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Ballet Studio | Classical Dance Excellence',
-    template: '%s | Ballet Studio',
+    default: 'Балетна школа Па-па-па де труа | Смолян',
+    template: '%s | Па-па-па де труа',
   },
   description:
-    'Discover the art of classical ballet at our award-winning studio. Expert instructors, classes for all levels, and a welcoming community of passionate dancers.',
+    'Преоткрийте изкуството на класическия балет в нашата школа. Квалифицирани преподаватели, класове за всички нива и приветлива общност от страстни танцьори.',
   keywords: [
+    'балет',
+    'танц',
+    'балетни класове',
+    'танцово студио',
+    'класически балет',
+    'балетни уроци',
+    'танцова школа',
+    'Смолян',
+    'Чепеларе',
     'ballet',
     'dance',
-    'ballet classes',
-    'dance studio',
-    'classical ballet',
-    'ballet lessons',
-    'dance school',
   ],
-  authors: [{ name: 'Ballet Studio' }],
-  creator: 'Ballet Studio',
+  authors: [{ name: 'Па-па-па де труа' }],
+  creator: 'Па-па-па де труа',
   metadataBase: new URL(siteUrl),
   openGraph: {
     type: 'website',
-    locale: 'en_GB',
+    locale: 'bg_BG',
     url: siteUrl,
-    siteName: 'Ballet Studio',
-    title: 'Ballet Studio | Classical Dance Excellence',
+    siteName: 'Па-па-па де труа',
+    title: 'Балетна школа Па-па-па де труа | Смолян',
     description:
-      'Discover the art of classical ballet at our award-winning studio. Expert instructors, classes for all levels, and a welcoming community.',
+      'Преоткрийте изкуството на класическия балет в нашата школа. Квалифицирани преподаватели, класове за всички нива.',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Ballet Studio - Classical Dance Excellence',
+        alt: 'Балетна школа Па-па-па де труа',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ballet Studio | Classical Dance Excellence',
-    description: 'Discover the art of classical ballet at our award-winning studio.',
+    title: 'Балетна школа Па-па-па де труа | Смолян',
+    description: 'Преоткрийте изкуството на класическия балет в нашата школа.',
     images: ['/og-image.jpg'],
-    creator: '@balletstudio',
   },
   robots: {
     index: true,
@@ -76,8 +79,12 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: [
+      { url: '/assets/Logo-mobile.png', sizes: '32x32', type: 'image/png' },
+      { url: '/assets/Logo-mobile.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: '/assets/Logo-mobile.png',
+    shortcut: '/assets/Logo-mobile.png',
   },
 };
 
@@ -92,7 +99,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="bg" suppressHydrationWarning>
       <head />
       <body
         className={`${inter.variable} ${playfair.variable} antialiased bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-slate-900 dark:text-slate-100 flex flex-col min-h-screen transition-colors duration-300`}

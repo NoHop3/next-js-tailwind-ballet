@@ -9,12 +9,12 @@ import VideoSection from '@/components/sections/VideoSection';
 import { generateLocalBusinessSchema, generateOrganizationSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
-  title: 'Home | Ballet Studio',
+  title: 'Начало | Па-па-па де труа',
   description:
-    'Discover the art of classical ballet at our award-winning studio. Expert instructors, classes for all levels, and a welcoming community of passionate dancers.',
+    'Преоткрийте изкуството на класическия балет в нашата школа в Смолян.',
   openGraph: {
-    title: 'Ballet Studio | Classical Dance Excellence',
-    description: 'Discover the art of classical ballet at our award-winning studio.',
+    title: 'Балетна школа Па-па-па де труа | Смолян',
+    description: 'Преоткрийте изкуството на класическия балет в нашата школа в Смолян.',
   },
 };
 

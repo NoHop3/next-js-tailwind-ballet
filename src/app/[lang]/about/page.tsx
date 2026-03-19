@@ -4,13 +4,12 @@ import AboutSection from '@/components/sections/AboutSection';
 import GallerySection from '@/components/sections/GallerySection';
 
 export const metadata: Metadata = {
-  title: 'About Us',
+  title: 'За нас',
   description:
-    'Learn about our ballet studio, our expert instructors, and our passion for classical dance. Founded in 2014, we have been nurturing dancers of all levels.',
+    'Научете повече за балетната школа Па-па-па де труа, нашите квалифицирани преподаватели и страстта ни към класическия танц. Основана през 2023 г.',
   openGraph: {
-    title: 'About Us | Ballet Studio',
-    description:
-      'Learn about our ballet studio, our expert instructors, and our passion for classical dance.',
+    title: 'За нас | Па-па-па де труа',
+    description: 'Научете повече за балетната школа Па-па-па де труа и нашите преподаватели.',
   },
 };
 

@@ -20,7 +20,7 @@ export function TranslationProvider({ children, culture, translations }: Transla
     window.location.href = newPath;
   };
 
-  const t = (key: string): string => {
+  const translate = (key: string): string => {
     return translations[key] || key;
   };
 
@@ -28,7 +28,7 @@ export function TranslationProvider({ children, culture, translations }: Transla
     culture,
     setCulture,
     translations,
-    translate: t,
+    translate,
   };
 
   return <TranslationContext.Provider value={contextValue}>{children}</TranslationContext.Provider>;

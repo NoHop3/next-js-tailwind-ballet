@@ -3,13 +3,12 @@ import type { Metadata } from 'next';
 import ContactSection from '@/components/sections/ContactSection';
 
 export const metadata: Metadata = {
-  title: 'Contact Us',
+  title: 'Контакти',
   description:
-    'Get in touch with Ballet Studio. Contact us via email, phone, or visit our studio. We are here to answer your questions about our classes.',
+    'Свържете се с балетна школа Па-па-па де труа. Пишете ни на имейл, обадете се или посетете студията ни в Смолян или Чепеларе.',
   openGraph: {
-    title: 'Contact Us | Ballet Studio',
-    description:
-      'Get in touch with Ballet Studio. Contact us via email, phone, or visit our studio.',
+    title: 'Контакти | Па-па-па де труа',
+    description: 'Свържете се с балетна школа Па-па-па де труа в Смолян или Чепеларе.',
   },
 };
 

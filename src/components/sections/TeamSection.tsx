@@ -14,7 +14,7 @@ import { useTranslation } from '@/lib/TranslationContext';
 
 const teamMembers = [
   {
-    name: 'Elena Petrova',
+    name: 'Borimira Dyakonova',
     role: 'Artistic Director',
     bio: '20+ years of professional experience. Former principal dancer at the National Ballet.',
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop',
@@ -39,15 +39,6 @@ const teamMembers = [
     instagram: '@sofia_moves',
     gradient: 'from-purple-500 to-violet-500',
     achievements: ['Contemporary Fusion', 'Youth Specialist', 'Performer'],
-  },
-  {
-    name: 'Anna Kovacs',
-    role: 'Junior Ballet Instructor',
-    bio: 'Patient and nurturing approach perfect for our youngest dancers aged 4-10.',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop',
-    instagram: '@anna_teaches',
-    gradient: 'from-violet-500 to-pink-500',
-    achievements: ['Early Childhood', 'Creative Movement', 'Certified'],
   },
 ];
 
