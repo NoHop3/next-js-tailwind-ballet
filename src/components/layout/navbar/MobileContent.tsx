@@ -83,7 +83,7 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
               </div>
 
               {/* Nav */}
-              <div className="flex-1 overflow-y-hidden py-4">
+              <div className="overflow-y-hidden py-4">
                 <nav className="flex flex-col px-4 gap-2">
                   {navItems.map((item) => (
                     <a
@@ -110,7 +110,7 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
 
                 <div>
                   <div className="text-xs mb-3">{translate('nav.language')}</div>
-                  <LanguageSwitcher />
+                  <LanguageSwitcher variant='full' />
                 </div>
               </div>
             </div>

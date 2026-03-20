@@ -33,7 +33,7 @@ export const DesktopContent = ({ navItems }: { navItems: NavItem[] }) => {
       ))}
       <div className="ml-4 pl-4 border-l border-border flex items-center gap-3">
         <ThemeToggle />
-        <LanguageSwitcher />
+        <LanguageSwitcher variant="compact" />
       </div>
     </div>
   );
