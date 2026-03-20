@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useLayoutEffect, useEffect, useState } from 'react';
 
 import { Menu, X } from 'lucide-react';
+import { createPortal } from 'react-dom';
 
 import { NavItem } from '@/components/layout/navbar/types';
 
@@ -15,95 +16,107 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
   const { translate, culture } = useTranslation();
 
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useLayoutEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // 🔥 Lock scroll when open
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }, [isOpen]);
 
   const closeDrawer = () => setIsOpen(false);
 
   const buildHref = (href: string) => {
-    if (href === '/') {
-      return `/${culture}`;
-    }
+    if (href === '/') return `/${culture}`;
     return `/${culture}${href}`;
   };
 
   return (
     <>
-      {/* Burger Menu Button */}
+      {/* Burger */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="relative w-10 h-10 rounded-xl flex items-center justify-center text-foreground hover:bg-primary/10 transition-all duration-300"
-        aria-label="Toggle menu"
-        aria-expanded={isOpen}
       >
         {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
       </button>
 
-      {/* Drawer Overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40 backdrop-blur-sm"
-          onClick={closeDrawer}
-          aria-hidden="true"
-        />
-      )}
+      {mounted &&
+        createPortal(
+          <>
+            {/* Overlay */}
+            <div
+              onClick={closeDrawer}
+              className={`fixed inset-0 z-[999] transition-all duration-300 ${
+                isOpen
+                  ? 'bg-black/80 backdrop-blur-md opacity-100'
+                  : 'opacity-0 pointer-events-none'
+              }`}
+            />
 
-      {/* Drawer */}
-      <div
-        className={`fixed top-0 right-0 h-full w-72 bg-card/95 backdrop-blur-xl shadow-2xl shadow-purple-500/10 z-50 transform transition-transform duration-300 ease-out flex flex-col border-l border-border/50 ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-      >
-        {/* Drawer Header */}
-        <div className="flex justify-between items-center p-6 border-b border-border/50">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 via-fuchsia-500 to-purple-500 flex items-center justify-center shadow-lg">
-              <span className="text-white">🩰</span>
-            </div>
-            <h2 className="text-lg font-semibold font-playfair bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
-              {translate('nav.menu')}
-            </h2>
-          </div>
-          <button
-            onClick={closeDrawer}
-            className="w-10 h-10 rounded-xl flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary/10 transition-all duration-300"
-            aria-label="Close menu"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
+            {/* Drawer */}
+            <div
+              className={`fixed top-0 right-0 h-full w-80 sm:w-96 z-[1000]
+                transform transition-transform duration-300 ease-out
+                ${isOpen ? 'translate-x-0' : 'translate-x-full'}
+                
+                bg-background shadow-[0_0_40px_rgba(0,0,0,0.6)]
+                border-l border-border
+                
+                flex flex-col`}
+            >
+              {/* Header */}
+              <div className="flex justify-between items-center p-6 border-b border-border">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 via-fuchsia-500 to-purple-500 flex items-center justify-center">
+                    <span className="text-white">🩰</span>
+                  </div>
+                  <h2 className="text-lg font-semibold">{translate('nav.menu')}</h2>
+                </div>
 
-        {/* Navigation Items */}
-        <div className="flex-1 overflow-y-auto py-4">
-          <nav className="flex flex-col px-4">
-            {navItems.map((item) => (
-              <a
-                key={item.id}
-                href={buildHref(item.href)}
-                onClick={closeDrawer}
-                className="flex items-center gap-4 px-4 py-4 rounded-xl text-foreground/80 hover:text-foreground hover:bg-primary/5 transition-all duration-300 font-medium"
-              >
-                <span className="text-primary">{item.icon}</span>
-                <span>{translate(item.label)}</span>
-              </a>
-            ))}
-          </nav>
-        </div>
+                <button onClick={closeDrawer}>
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
 
-        {/* Settings at Bottom */}
-        <div className="border-t border-border/50 p-6 space-y-6">
-          <div>
-            <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-              {translate('nav.theme')}
+              {/* Nav */}
+              <div className="flex-1 overflow-y-hidden py-4">
+                <nav className="flex flex-col px-4 gap-2">
+                  {navItems.map((item) => (
+                    <a
+                      key={item.id}
+                      href={buildHref(item.href)}
+                      onClick={closeDrawer}
+                      className="flex items-center gap-4 px-4 py-4 rounded-xl 
+                                 text-foreground hover:text-primary 
+                                 hover:bg-primary/10 transition-all"
+                    >
+                      <span>{item.icon}</span>
+                      <span>{translate(item.label)}</span>
+                    </a>
+                  ))}
+                </nav>
+              </div>
+
+              {/* Bottom */}
+              <div className="border-t border-border p-6 space-y-6">
+                <div>
+                  <div className="text-xs mb-3">{translate('nav.theme')}</div>
+                  <ThemeToggle variant="full" />
+                </div>
+
+                <div>
+                  <div className="text-xs mb-3">{translate('nav.language')}</div>
+                  <LanguageSwitcher />
+                </div>
+              </div>
             </div>
-            <ThemeToggle variant="full" />
-          </div>
-          <div>
-            <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-              {translate('nav.language')}
-            </div>
-            <LanguageSwitcher />
-          </div>
-        </div>
-      </div>
+          </>,
+          document.body
+        )}
     </>
   );
 };

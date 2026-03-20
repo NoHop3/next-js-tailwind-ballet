@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Monitor, Moon, Sun } from 'lucide-react';
 
 import { Theme, useTheme } from '@/lib/ThemeContext';
+import { useTranslation } from '@/lib/TranslationContext';
 
 interface ThemeOption {
   value: Theme;
@@ -14,9 +15,9 @@ interface ThemeOption {
 }
 
 const themeOptions: ThemeOption[] = [
-  { value: 'light', icon: <Sun className="w-4 h-4" />, label: 'Light' },
-  { value: 'dark', icon: <Moon className="w-4 h-4" />, label: 'Dark' },
-  { value: 'system', icon: <Monitor className="w-4 h-4" />, label: 'System' },
+  { value: 'light', icon: <Sun className="w-4 h-4" />, label: 'theme.light' },
+  { value: 'dark', icon: <Moon className="w-4 h-4" />, label: 'theme.dark' },
+  { value: 'system', icon: <Monitor className="w-4 h-4" />, label: 'theme.system' },
 ];
 
 interface ThemeToggleProps {
@@ -24,6 +25,7 @@ interface ThemeToggleProps {
 }
 
 export function ThemeToggle({ variant = 'compact' }: ThemeToggleProps) {
+  const { translate } = useTranslation();
   const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -65,7 +67,7 @@ export function ThemeToggle({ variant = 'compact' }: ThemeToggleProps) {
             aria-pressed={theme === option.value}
           >
             {option.icon}
-            <span className="text-sm font-medium">{option.label}</span>
+            <span className="text-sm font-medium">{translate(option.label)}</span>
           </button>
         ))}
       </div>
