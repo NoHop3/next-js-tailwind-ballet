@@ -47,12 +47,13 @@ export default function HomeSection() {
             animate="visible"
             variants={fadeInUp}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-sm font-medium shadow-lg shadow-purple-500/10"
+            className="inline-flex items-center gap-2 px-5 py-2.5 my-5 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-sm font-medium shadow-lg shadow-purple-500/10"
           >
             <Sparkles className="w-4 h-4 text-pink-300" />
             <span className="bg-gradient-to-r from-pink-200 to-purple-200 bg-clip-text text-transparent">
               {translate('home.badge')}
             </span>
+            <Sparkles className="w-4 h-4 text-pink-300" />
           </motion.div>
 
           {/* Main Title */}
@@ -61,13 +62,13 @@ export default function HomeSection() {
             animate="visible"
             variants={fadeInUp}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-5xl sm:text-7xl lg:text-8xl font-playfair font-bold leading-tight tracking-tight"
+            className="text-5xl sm:text-6xl lg:text-8xl font-playfair font-bold leading-tight tracking-tight"
           >
             <span className="bg-gradient-to-r from-pink-200 via-fuchsia-200 to-purple-200 bg-clip-text text-transparent drop-shadow-2xl">
               {translate('home.heroTitle1')}
             </span>
             <br />
-            <span className="text-white/90 text-4xl sm:text-5xl lg:text-6xl">
+            <span className="text-white/90 text-4xl sm:text-5xl lg:text-5xl">
               {translate('home.heroTitle2')}
             </span>
           </motion.h1>
@@ -125,7 +126,7 @@ export default function HomeSection() {
                 <Star className="w-7 h-7 text-pink-300" />
               </div>
               <div className="text-4xl font-bold bg-gradient-to-r from-pink-300 to-fuchsia-300 bg-clip-text text-transparent">
-                15+
+                7+
               </div>
               <div className="text-sm text-purple-200/70 font-medium">
                 {translate('home.classesWeekly')}
@@ -139,7 +140,7 @@ export default function HomeSection() {
                 <Users className="w-7 h-7 text-fuchsia-300" />
               </div>
               <div className="text-4xl font-bold bg-gradient-to-r from-fuchsia-300 to-purple-300 bg-clip-text text-transparent">
-                500+
+                50+
               </div>
               <div className="text-sm text-purple-200/70 font-medium">
                 {translate('home.happyStudents')}
@@ -153,7 +154,7 @@ export default function HomeSection() {
                 <Sparkles className="w-7 h-7 text-purple-300" />
               </div>
               <div className="text-4xl font-bold bg-gradient-to-r from-purple-300 to-violet-300 bg-clip-text text-transparent">
-                10+
+                2+
               </div>
               <div className="text-sm text-purple-200/70 font-medium">
                 {translate('home.yearsExcellence')}
@@ -163,18 +164,23 @@ export default function HomeSection() {
         </div>
       </div>
 
-      {/* Scroll indicator - positioned with higher z-index to stay above other sections */}
-      <div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
-        style={{ zIndex: 100 }}
-      >
-        <div className="flex flex-col items-center gap-2 text-purple-200/50">
-          <span className="text-sm font-medium">{translate('home.scrollToExplore')}</span>
-          <div className="w-10 h-10 rounded-full border border-purple-300/30 flex items-center justify-center bg-purple-950/80 backdrop-blur-sm shadow-lg">
+      {/* Scroll indicator - positioned with higher z-index to stay above other sections
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+        <div className="flex flex-col items-center gap-2 text-purple-200/60">
+          <span className="text-sm font-medium tracking-wide">
+            {translate('home.scrollToExplore')}
+          </span>
+
+          <div
+            className="w-10 h-10 rounded-full border border-purple-300/30 
+                    flex items-center justify-center 
+                    bg-purple-950/70 backdrop-blur-md 
+                    shadow-xl hover:scale-110 transition-transform duration-300"
+          >
             <ArrowDown className="w-5 h-5" />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

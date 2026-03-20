@@ -14,31 +14,31 @@ import { useTranslation } from '@/lib/TranslationContext';
 
 const teamMembers = [
   {
-    name: 'Borimira Dyakonova',
-    role: 'Artistic Director',
-    bio: '20+ years of professional experience. Former principal dancer at the National Ballet.',
+    name: 'team.name1',
+    role: 'team.role1',
+    bio: 'team.bio1',
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop',
     instagram: '@elena_ballet',
     gradient: 'from-pink-500 to-fuchsia-500',
-    achievements: ['Principal Dancer', 'Choreographer', 'Master Teacher'],
+    achievements: ['team.achievement.principalDancer', 'team.achievement.choreographer', 'team.achievement.masterTeacher'],
   },
   {
-    name: 'Maria Ivanova',
-    role: 'Senior Instructor',
-    bio: 'Specializes in classical technique and pointe work. Royal Academy certified.',
+    name: 'team.name2',
+    role: 'team.role2',
+    bio: 'team.bio2',
     image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop',
     instagram: '@maria_dance',
     gradient: 'from-fuchsia-500 to-purple-500',
-    achievements: ['RAD Certified', 'Competition Coach', '10+ Years'],
+    achievements: ['team.achievement.radCertified', 'team.achievement.competitionCoach', 'team.achievement.yearsOfExperience'],
   },
   {
-    name: 'Sofia Dimitrova',
-    role: 'Contemporary & Ballet',
-    bio: 'Brings a fresh perspective blending classical ballet with contemporary movement.',
+    name: 'team.name3',
+    role: 'team.role3',
+    bio: 'team.bio3',
     image: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=400&h=400&fit=crop',
     instagram: '@sofia_moves',
     gradient: 'from-purple-500 to-violet-500',
-    achievements: ['Contemporary Fusion', 'Youth Specialist', 'Performer'],
+    achievements: ['team.achievement.contemporaryFusion', 'team.achievement.youthSpecialist', 'team.achievement.performer'],
   },
 ];
 
@@ -83,7 +83,7 @@ export default function TeamSection() {
 
         {/* Team grid */}
         <StaggerContainer
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           staggerDelay={0.1}
         >
           {teamMembers.map((member, index) => (
@@ -121,14 +121,14 @@ export default function TeamSection() {
                   {/* Info */}
                   <div className="text-center space-y-3">
                     <h3 className="text-xl font-playfair font-bold text-foreground">
-                      {member.name}
+                      {translate(member.name)}
                     </h3>
                     <p
                       className={`text-sm font-semibold bg-gradient-to-r ${member.gradient} bg-clip-text text-transparent`}
                     >
-                      {member.role}
+                      {translate(member.role)}
                     </p>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{member.bio}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{translate(member.bio)}</p>
 
                     {/* Achievements */}
                     <div className="flex flex-wrap justify-center gap-2 pt-2">
@@ -138,7 +138,7 @@ export default function TeamSection() {
                           className="inline-flex items-center gap-1 px-2 py-1 bg-secondary/50 rounded-full text-xs text-muted-foreground"
                         >
                           <Award className="w-3 h-3 text-primary" />
-                          {achievement}
+                          {translate(achievement)}
                         </span>
                       ))}
                     </div>

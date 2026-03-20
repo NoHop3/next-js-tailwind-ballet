@@ -2,9 +2,23 @@
 
 import Link from 'next/link';
 
+
+
 import { Facebook, Heart, Instagram, Mail, MapPin, Phone, Youtube } from 'lucide-react';
 
+
+
 import { useTranslation } from '@/lib/TranslationContext';
+
+
+
+
+
+
+
+
+
+
 
 export default function Footer() {
   const { translate, culture } = useTranslation();
@@ -31,11 +45,11 @@ export default function Footer() {
                 <span className="text-white text-xl">🩰</span>
               </div>
               <h3 className="text-xl font-bold bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent font-playfair">
-                Ballet School
+                {translate('footer.title')}
               </h3>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-              Pa-pa-pas de trois Ballet School - Smolyan, Bulgaria
+              {translate('footer.subTitle')}
             </p>
             {/* Social Links */}
             <div className="flex gap-3">
@@ -143,10 +157,10 @@ export default function Footer() {
                   <Mail className="w-4 h-4 text-primary" />
                 </div>
                 <a
-                  href="mailto:info@balletstudio.com"
+                  href="mailto:dyakonovaborimira@gmail.com"
                   className="text-muted-foreground hover:text-primary transition-colors text-sm"
                 >
-                  info@balletstudio.com
+                  dyakonovaborimira@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-3">
@@ -154,10 +168,10 @@ export default function Footer() {
                   <Phone className="w-4 h-4 text-primary" />
                 </div>
                 <a
-                  href="tel:+15551234567"
+                  href="tel:+359+359876389077"
                   className="text-muted-foreground hover:text-primary transition-colors text-sm"
                 >
-                  +1 (555) 123-4567
+                  +359 876 389 077
                 </a>
               </li>
               <li className="flex items-start gap-3">
@@ -165,9 +179,9 @@ export default function Footer() {
                   <MapPin className="w-4 h-4 text-primary" />
                 </div>
                 <span className="text-muted-foreground text-sm">
-                  123 Dance Street
+                  ЖК Нов център,
                   <br />
-                  City, State 12345
+                  бул. България 6, Смолян
                 </span>
               </li>
             </ul>
@@ -181,8 +195,8 @@ export default function Footer() {
               {translate('footer.text')}
               <span className="mx-2">•</span>
               {translate('footer.madeWith')}{' '}
-              <Heart className="w-4 h-4 text-primary inline mx-1" fill="currentColor" />{' '}
-              {translate('footer.forDance')}
+              <Heart className="w-6 h-6 text-primary inline mx-1" fill="currentColor" />{' '}
+              {translate('footer.forBallet')}
             </p>
             <div className="flex gap-6 text-sm">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
@@ -190,9 +204,6 @@ export default function Footer() {
               </a>
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 {translate('footer.terms')}
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                {translate('footer.cookies')}
               </a>
             </div>
           </div>

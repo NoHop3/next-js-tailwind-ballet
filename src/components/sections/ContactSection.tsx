@@ -41,7 +41,8 @@ export default function ContactSection() {
     setIsSubmitting(true);
 
     // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // maybe we can use supabase
+    await new Promise((resolve) => setTimeout(resolve, 2000));
 
     toast.success(translate('contact.form.success'), {
       description: translate('contact.form.successDescription'),
@@ -93,10 +94,10 @@ export default function ContactSection() {
                         {translate('contact.info.emailDescription')}
                       </p>
                       <a
-                        href="mailto:info@balletstudio.com"
+                        href="mailto:dyakonovaborimira@gmail.com"
                         className="text-primary font-semibold hover:underline"
                       >
-                        info@balletstudio.com
+                        dyakonovaborimira@gmail.com
                       </a>
                     </div>
                   </div>

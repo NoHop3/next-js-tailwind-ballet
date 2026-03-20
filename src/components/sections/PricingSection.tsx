@@ -16,7 +16,7 @@ const pricingPlans = [
     id: 'starter',
     nameKey: 'pricing.starter',
     descriptionKey: 'pricing.starterDesc',
-    price: '49',
+    price: '19',
     icon: Star,
     gradient: 'from-pink-500 to-fuchsia-500',
     bgGradient: 'from-pink-500/5 to-fuchsia-500/5',
@@ -24,7 +24,6 @@ const pricingPlans = [
       'pricing.starter.feature1',
       'pricing.starter.feature2',
       'pricing.starter.feature3',
-      'pricing.starter.feature4',
     ],
     popular: false,
   },
@@ -32,7 +31,7 @@ const pricingPlans = [
     id: 'professional',
     nameKey: 'pricing.professional',
     descriptionKey: 'pricing.professionalDesc',
-    price: '99',
+    price: '39',
     icon: Crown,
     gradient: 'from-fuchsia-500 to-purple-500',
     bgGradient: 'from-fuchsia-500/10 to-purple-500/10',
@@ -50,7 +49,7 @@ const pricingPlans = [
     id: 'elite',
     nameKey: 'pricing.elite',
     descriptionKey: 'pricing.eliteDesc',
-    price: '199',
+    price: '59',
     icon: Zap,
     gradient: 'from-purple-500 to-violet-500',
     bgGradient: 'from-purple-500/5 to-violet-500/5',
@@ -155,7 +154,7 @@ export default function PricingSection() {
                     {/* Price */}
                     <div className="text-center mb-8">
                       <div className="flex items-baseline justify-center gap-1">
-                        <span className="text-2xl font-semibold text-muted-foreground">$</span>
+                        <span className="text-2xl font-semibold text-muted-foreground">€</span>
                         <span
                           className={`text-6xl font-bold bg-gradient-to-r ${plan.gradient} bg-clip-text text-transparent`}
                         >
