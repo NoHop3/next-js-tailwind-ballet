@@ -110,7 +110,7 @@ export function ThemeToggle({ variant = 'compact' }: ThemeToggleProps) {
                 }`}
               >
                 {option.icon}
-                <span>{option.label}</span>
+                <span className="text-sm font-medium">{translate(option.label)}</span>
               </button>
             ))}
           </motion.div>

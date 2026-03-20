@@ -32,7 +32,7 @@ export const DesktopContent = ({ navItems }: { navItems: NavItem[] }) => {
         </a>
       ))}
       <div className="ml-4 pl-4 border-l border-border flex items-center gap-3">
-        <ThemeToggle />
+        <ThemeToggle variant="compact" />
         <LanguageSwitcher variant="compact" />
       </div>
     </div>
