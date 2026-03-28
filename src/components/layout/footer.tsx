@@ -2,23 +2,9 @@
 
 import Link from 'next/link';
 
-
-
 import { Facebook, Heart, Instagram, Mail, MapPin, Phone, Youtube } from 'lucide-react';
 
-
-
 import { useTranslation } from '@/lib/TranslationContext';
-
-
-
-
-
-
-
-
-
-
 
 export default function Footer() {
   const { translate, culture } = useTranslation();
@@ -45,12 +31,12 @@ export default function Footer() {
                 <span className="text-white text-xl">🩰</span>
               </div>
               <h3 className="text-xl font-bold bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent font-playfair">
-                {translate('footer.title')}
+                {translate('main.title')}
               </h3>
             </div>
-            <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+            {/* <p className="text-muted-foreground text-sm leading-relaxed mb-6">
               {translate('footer.subTitle')}
-            </p>
+            </p> */}
             {/* Social Links */}
             <div className="flex gap-3">
               <a
@@ -62,13 +48,15 @@ export default function Footer() {
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/borimiradyakonova/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-xl bg-primary/10 hover:bg-primary/20 flex items-center justify-center text-primary transition-all duration-300 hover:scale-105"
               >
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://youtube.com/@borimiradyakonova1290?si=CVUSKMdcTPOgJw8v"
                 className="w-10 h-10 rounded-xl bg-primary/10 hover:bg-primary/20 flex items-center justify-center text-primary transition-all duration-300 hover:scale-105"
               >
                 <Youtube className="w-5 h-5" />
@@ -117,33 +105,24 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Classes */}
+          {/* School info */}
           <div>
             <h4 className="font-semibold mb-6 text-foreground font-playfair text-lg">
-              {translate('footer.classes')}
+              {translate('footer.schoolInfo')}
             </h4>
-            <ul className="space-y-3">
-              <li>
-                <span className="text-muted-foreground text-sm">
-                  {translate('footer.beginnerBallet')}
-                </span>
-              </li>
-              <li>
-                <span className="text-muted-foreground text-sm">
-                  {translate('footer.intermediateBallet')}
-                </span>
-              </li>
-              <li>
-                <span className="text-muted-foreground text-sm">
-                  {translate('footer.advancedBallet')}
-                </span>
-              </li>
-              <li>
-                <span className="text-muted-foreground text-sm">
-                  {translate('footer.privateLessons')}
-                </span>
-              </li>
-            </ul>
+            <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+              {translate('footer.associationInfo')}
+            </p>
+            <a
+              href="/assets/ustav-baletna-shkola.docx"
+              download
+              className="inline-flex items-center rounded-lg bg-primary/10 hover:bg-primary/20 text-primary px-3 py-2 text-sm font-medium transition-colors"
+            >
+              {translate('footer.downloadStatute')}
+            </a>
+            <p className="text-muted-foreground text-sm leading-relaxed mt-4">
+              {translate('footer.callForDetails')}
+            </p>
           </div>
 
           {/* Contact */}
@@ -168,7 +147,7 @@ export default function Footer() {
                   <Phone className="w-4 h-4 text-primary" />
                 </div>
                 <a
-                  href="tel:+359+359876389077"
+                  href="tel:+359876389077"
                   className="text-muted-foreground hover:text-primary transition-colors text-sm"
                 >
                   +359 876 389 077
@@ -191,18 +170,25 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-border/50 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-muted-foreground text-sm flex items-center gap-1">
-              {translate('footer.text')}
-              <span className="mx-2">•</span>
-              {translate('footer.madeWith')}{' '}
-              <Heart className="w-6 h-6 text-primary inline mx-1" fill="currentColor" />{' '}
-              {translate('footer.forBallet')}
+            <p className="text-muted-foreground text-sm text-center md:text-left leading-relaxed flex flex-wrap items-center justify-center md:justify-start gap-1.5 max-w-2xl">
+              <span>{translate('footer.text')}</span>
+              <span className="hidden md:inline mx-2">•</span>
+              <span>{translate('footer.madeWith')}</span>
+              <Heart className="w-4 h-4 text-primary" fill="currentColor" />
+              <span>{translate('footer.forBallet')}</span>
             </p>
-            <div className="flex gap-6 text-sm">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-sm">
+              <a
+                href="/assets/ustav-baletna-shkola.docx"
+                download
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
                 {translate('footer.privacy')}
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a
+                href="tel:+359876389077"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
                 {translate('footer.terms')}
               </a>
             </div>

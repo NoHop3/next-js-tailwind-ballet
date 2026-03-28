@@ -63,7 +63,7 @@ export default function ContactSection() {
         <ScrollReveal className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-sm font-medium text-primary mb-4">
             <MessageSquare className="w-4 h-4" />
-            {translate('contact.badge')}
+            {translate('contact.subtitle')}
           </div>
           <h2 className="text-4xl sm:text-5xl font-playfair font-bold mb-4">
             <span className="bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent">
@@ -71,7 +71,7 @@ export default function ContactSection() {
             </span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            {translate('contact.subtitle')}
+            {translate('contact.badge')}
           </p>
         </ScrollReveal>
 

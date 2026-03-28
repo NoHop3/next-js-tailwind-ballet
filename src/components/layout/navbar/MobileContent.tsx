@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutEffect, useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 import { Menu, X } from 'lucide-react';
 import { createPortal } from 'react-dom';
@@ -59,7 +59,7 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
 
             {/* Drawer */}
             <div
-              className={`fixed top-0 right-0 h-full w-80 sm:w-96 z-[1000]
+              className={`fixed top-0 right-0 h-[100dvh] w-80 sm:w-96 z-[1000]
                 transform transition-transform duration-300 ease-out
                 ${isOpen ? 'translate-x-0' : 'translate-x-full'}
                 
@@ -69,7 +69,7 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
                 flex flex-col`}
             >
               {/* Header */}
-              <div className="flex justify-between items-center p-6 border-b border-border">
+              <div className="flex justify-between items-center p-5 border-b border-border shrink-0">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 via-fuchsia-500 to-purple-500 flex items-center justify-center">
                     <span className="text-white">🩰</span>
@@ -82,9 +82,9 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
                 </button>
               </div>
 
-              {/* Nav */}
-              <div className="overflow-y-hidden py-4">
-                <nav className="flex flex-col px-4 gap-2">
+              <div className="flex-1 min-h-0 flex flex-col justify-between px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
+                {/* Nav */}
+                <nav className="flex flex-col gap-2">
                   {navItems.map((item) => (
                     <a
                       key={item.id}
@@ -99,18 +99,18 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
                     </a>
                   ))}
                 </nav>
-              </div>
 
-              {/* Bottom */}
-              <div className="border-t border-border p-6 space-y-6">
-                <div>
-                  <div className="text-xs mb-3">{translate('nav.theme')}</div>
-                  <ThemeToggle variant="full" />
-                </div>
+                {/* Bottom */}
+                <div className="border-t border-border pt-4 space-y-4">
+                  <div>
+                    <div className="text-xs mb-2">{translate('nav.theme')}</div>
+                    <ThemeToggle variant="full" />
+                  </div>
 
-                <div>
-                  <div className="text-xs mb-3">{translate('nav.language')}</div>
-                  <LanguageSwitcher variant='full' />
+                  <div>
+                    <div className="text-xs mb-2">{translate('nav.language')}</div>
+                    <LanguageSwitcher variant="full" />
+                  </div>
                 </div>
               </div>
             </div>

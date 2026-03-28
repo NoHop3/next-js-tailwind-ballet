@@ -6,6 +6,7 @@ import { CalendarDays, GraduationCap, Home, Info, Mail } from 'lucide-react';
 import { DesktopContent } from '@/components/layout/navbar/DesktopContent';
 import { MobileContent } from '@/components/layout/navbar/MobileContent';
 import { NavItem } from '@/components/layout/navbar/types';
+import { useTranslation } from '@/lib/TranslationContext';
 
 const navItems: NavItem[] = [
   {
@@ -41,6 +42,7 @@ const navItems: NavItem[] = [
 ];
 
 export default function Navbar() {
+  const { translate } = useTranslation();
   const [windowWidth, setWindowWidth] = useState(1024);
   const [scrolled, setScrolled] = useState(false);
 
@@ -80,7 +82,7 @@ export default function Navbar() {
               <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-pink-400 to-purple-400 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300"></div>
             </div>
             <h1 className="text-xl font-bold bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent font-playfair">
-              Pa-pa-pas de trois
+              {translate('main.title')}
             </h1>
           </div>
 

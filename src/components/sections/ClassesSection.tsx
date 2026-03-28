@@ -16,6 +16,7 @@ const classes = [
     timeKey: 'classes.beginner.time',
     durationKey: 'classes.beginner.duration',
     ageKey: 'classes.beginner.age',
+    descriptionKey: 'classes.beginner.description',
     gradient: 'from-pink-500 via-pink-400 to-rose-400',
     bgGradient: 'from-pink-500/10 to-rose-500/10',
     icon: Sparkles,
@@ -27,6 +28,7 @@ const classes = [
     timeKey: 'classes.intermediate.time',
     durationKey: 'classes.intermediate.duration',
     ageKey: 'classes.intermediate.age',
+    descriptionKey: 'classes.intermediate.description',
     gradient: 'from-fuchsia-500 via-fuchsia-400 to-pink-400',
     bgGradient: 'from-fuchsia-500/10 to-pink-500/10',
     icon: GraduationCap,
@@ -38,6 +40,7 @@ const classes = [
     timeKey: 'classes.advanced.time',
     durationKey: 'classes.advanced.duration',
     ageKey: 'classes.advanced.age',
+    descriptionKey: 'classes.advanced.description',
     gradient: 'from-purple-500 via-purple-400 to-fuchsia-400',
     bgGradient: 'from-purple-500/10 to-fuchsia-500/10',
     icon: GraduationCap,
@@ -49,6 +52,7 @@ const classes = [
     timeKey: 'classes.adult.time',
     durationKey: 'classes.adult.duration',
     ageKey: 'classes.adult.age',
+    descriptionKey: 'classes.adult.description',
     gradient: 'from-violet-500 via-violet-400 to-purple-400',
     bgGradient: 'from-violet-500/10 to-purple-500/10',
     icon: User,
@@ -60,6 +64,7 @@ const classes = [
     timeKey: 'classes.contemporary.time',
     durationKey: 'classes.contemporary.duration',
     ageKey: 'classes.contemporary.age',
+    descriptionKey: 'classes.contemporary.description',
     gradient: 'from-indigo-500 via-indigo-400 to-violet-400',
     bgGradient: 'from-indigo-500/10 to-violet-500/10',
     icon: Sparkles,
@@ -71,6 +76,7 @@ const classes = [
     timeKey: 'classes.private.time',
     durationKey: 'classes.private.duration',
     ageKey: 'classes.private.age',
+    descriptionKey: 'classes.private.description',
     gradient: 'from-rose-500 via-rose-400 to-pink-400',
     bgGradient: 'from-rose-500/10 to-pink-500/10',
     icon: User,
@@ -101,6 +107,12 @@ export default function ClassesSection() {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             {translate('classes.subtitle')}
           </p>
+
+          <div className="mt-8 text-left max-w-4xl mx-auto rounded-2xl border border-border/60 bg-card/40 p-5 sm:p-6">
+            <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
+              {translate('classes.scheduleNotes')}
+            </p>
+          </div>
         </ScrollReveal>
 
         {/* Classes Grid */}
@@ -154,6 +166,10 @@ export default function ClassesSection() {
                       </div>
                     </div>
 
+                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-4 mb-6">
+                      {translate(classItem.descriptionKey)}
+                    </p>
+
                     <Button
                       variant="outline"
                       className="w-full border-primary/20 hover:border-primary hover:bg-primary/5 text-foreground group-hover:border-primary transition-colors"
@@ -166,6 +182,17 @@ export default function ClassesSection() {
             );
           })}
         </StaggerContainer>
+
+        <ScrollReveal className="mt-12">
+          <div className="rounded-2xl border border-border/60 bg-card/40 p-5 sm:p-6">
+            <h3 className="text-xl font-playfair font-semibold text-foreground mb-3">
+              {translate('classes.scheduleDetailsTitle')}
+            </h3>
+            <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
+              {translate('classes.weeklyProgram')}
+            </p>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

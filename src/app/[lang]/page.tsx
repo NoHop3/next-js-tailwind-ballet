@@ -3,6 +3,7 @@ import Script from 'next/script';
 
 import HomeSection from '@/components/sections/HomeSection';
 // import PricingSection from '@/components/sections/PricingSection';
+import PressSection from '@/components/sections/PressSection';
 import TeamSection from '@/components/sections/TeamSection';
 import VideoSection from '@/components/sections/VideoSection';
 
@@ -46,6 +47,11 @@ export default function HomePage() {
       {/* Video section slides over the hero */}
       <div className="relative z-20">
         <VideoSection />
+      </div>
+
+      {/* Press mentions to enrich the main page */}
+      <div className="relative z-[25]">
+        <PressSection />
       </div>
 
       {/* Team section with depth effect */}

@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowDown, ChevronRight, Sparkles, Star, Users } from 'lucide-react';
+import { ChevronRight, Sparkles, Star, Users } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -108,7 +108,7 @@ export default function HomeSection() {
               size="lg"
               className="bg-white/5 backdrop-blur-xl border-2 border-white/20 hover:bg-white/10 hover:border-white/40 text-white font-semibold px-8 py-6 text-lg rounded-xl transition-all duration-300"
             >
-              <a href={`/${culture}/contact`}>{translate('home.getStarted')}</a>
+              <a href={`/${culture}/about`}>{translate('home.getStarted')}</a>
             </Button>
           </motion.div>
 
