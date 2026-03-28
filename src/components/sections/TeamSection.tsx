@@ -198,19 +198,19 @@ export default function TeamSection() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedMember(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 cursor-pointer"
+            className="fixed inset-0 z-[60] flex items-stretch lg:items-center justify-center bg-black/50 backdrop-blur-sm p-0 lg:p-4 cursor-pointer"
           >
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-card/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-border/50 cursor-default"
+              className="relative w-screen h-screen lg:w-full lg:max-w-2xl lg:max-h-[90vh] overflow-y-auto bg-card/95 backdrop-blur-xl rounded-none lg:rounded-2xl shadow-2xl border-0 lg:border border-border/50 cursor-default"
             >
               {/* Close button */}
               <button
                 onClick={() => setSelectedMember(null)}
-                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-secondary/50 hover:bg-secondary transition-colors cursor-pointer"
+                className="absolute top-[max(0.75rem,env(safe-area-inset-top))] right-4 z-20 p-2 rounded-full bg-secondary/80 hover:bg-secondary transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
