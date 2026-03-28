@@ -1,8 +1,9 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Image from 'next/image';
+import { createPortal } from 'react-dom';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Award, Instagram, Star, X } from 'lucide-react';
@@ -58,6 +59,23 @@ export default function TeamSection() {
   const { translate } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const [selectedMember, setSelectedMember] = useState<number | null>(null);
+  const isBrowser = typeof document !== 'undefined';
+
+  useEffect(() => {
+    if (selectedMember === null) {
+      return;
+    }
+
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+    };
+  }, [selectedMember]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -192,7 +210,9 @@ export default function TeamSection() {
         </ScrollReveal>
 
         {/* Team Member Detail Modal */}
-        {selectedMember !== null && (
+        {isBrowser &&
+          selectedMember !== null &&
+          createPortal(
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -205,18 +225,19 @@ export default function TeamSection() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-screen h-screen lg:w-full lg:max-w-2xl lg:max-h-[90vh] overflow-y-auto bg-card/95 backdrop-blur-xl rounded-none lg:rounded-2xl shadow-2xl border-0 lg:border border-border/50 cursor-default"
+              className="relative w-screen h-screen lg:w-full lg:max-w-2xl lg:max-h-[90vh] overflow-y-auto overscroll-contain bg-card/95 backdrop-blur-xl rounded-none lg:rounded-2xl shadow-2xl border-0 lg:border border-border/50 cursor-default"
             >
-              {/* Close button */}
-              <button
-                onClick={() => setSelectedMember(null)}
-                className="absolute top-[max(0.75rem,env(safe-area-inset-top))] right-4 z-20 p-2 rounded-full bg-secondary/80 hover:bg-secondary transition-colors cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
               {/* Gradient bar */}
               <div className={`h-2 bg-gradient-to-r ${teamMembers[selectedMember].gradient}`} />
+
+              <div className="sticky top-0 z-20 flex justify-end px-4 pt-[max(0.75rem,env(safe-area-inset-top))] pb-2 bg-gradient-to-b from-card/95 to-transparent">
+                <button
+                  onClick={() => setSelectedMember(null)}
+                  className="p-2 rounded-full bg-secondary/80 hover:bg-secondary transition-colors cursor-pointer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
 
               <div className="p-6 sm:p-8">
                 {/* Header with image and basic info */}
@@ -284,7 +305,8 @@ export default function TeamSection() {
                 </div>
               </div>
             </motion.div>
-          </motion.div>
+          </motion.div>,
+          document.body
         )}
       </div>
     </section>

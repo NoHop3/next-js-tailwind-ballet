@@ -85,6 +85,21 @@ const classes = [
 
 export default function ClassesSection() {
   const { translate } = useTranslation();
+  const weeklyProgramByDay = translate('classes.weeklyProgram')
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const firstColonIndex = line.indexOf(':');
+      if (firstColonIndex === -1) {
+        return { day: line, details: '' };
+      }
+
+      return {
+        day: line.slice(0, firstColonIndex).trim(),
+        details: line.slice(firstColonIndex + 1).trim(),
+      };
+    });
 
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-secondary/20 relative overflow-hidden">
@@ -188,9 +203,17 @@ export default function ClassesSection() {
             <h3 className="text-xl font-playfair font-semibold text-foreground mb-3">
               {translate('classes.scheduleDetailsTitle')}
             </h3>
-            <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
-              {translate('classes.weeklyProgram')}
-            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {weeklyProgramByDay.map((item, index) => (
+                <div
+                  key={`${item.day}-${index}`}
+                  className="rounded-xl border border-border/60 bg-background/40 p-4"
+                >
+                  <p className="text-sm font-semibold text-foreground mb-2">{item.day}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.details}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </ScrollReveal>
       </div>

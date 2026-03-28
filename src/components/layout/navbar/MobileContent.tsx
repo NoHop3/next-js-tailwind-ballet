@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Menu, X } from 'lucide-react';
 import { createPortal } from 'react-dom';
@@ -16,11 +16,7 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
   const { translate, culture } = useTranslation();
 
   const [isOpen, setIsOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useLayoutEffect(() => {
-    setMounted(true);
-  }, []);
+  const isBrowser = typeof document !== 'undefined';
 
   // 🔥 Lock scroll when open
   useEffect(() => {
@@ -44,7 +40,7 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
         {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
       </button>
 
-      {mounted &&
+      {isBrowser &&
         createPortal(
           <>
             {/* Overlay */}
@@ -82,7 +78,8 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
                 </button>
               </div>
 
-              <div className="flex-1 min-h-0 flex flex-col justify-between px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
+              <div className="flex-1 min-h-0 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <div className="min-h-full flex flex-col justify-between px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
                 {/* Nav */}
                 <nav className="flex flex-col gap-2">
                   {navItems.map((item) => (
@@ -111,6 +108,7 @@ export const MobileContent = ({ navItems }: { navItems: NavItem[] }) => {
                     <div className="text-xs mb-2">{translate('nav.language')}</div>
                     <LanguageSwitcher variant="full" />
                   </div>
+                </div>
                 </div>
               </div>
             </div>
