@@ -2,16 +2,15 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 
 import HomeSection from '@/components/sections/HomeSection';
-import PricingSection from '@/components/sections/PricingSection';
+// import PricingSection from '@/components/sections/PricingSection';
 import TeamSection from '@/components/sections/TeamSection';
 import VideoSection from '@/components/sections/VideoSection';
 
 import { generateLocalBusinessSchema, generateOrganizationSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
-  title: 'Начало | Па-па-па де труа',
-  description:
-    'Преоткрийте изкуството на класическия балет в нашата школа в Смолян.',
+  title: 'Начало',
+  description: 'Преоткрийте изкуството на класическия балет в нашата школа в Смолян.',
   openGraph: {
     title: 'Балетна школа Па-па-па де труа | Смолян',
     description: 'Преоткрийте изкуството на класическия балет в нашата школа в Смолян.',
@@ -54,10 +53,10 @@ export default function HomePage() {
         <TeamSection />
       </div>
 
-      {/* Pricing section slides over team */}
-      <div className="relative z-40">
+      {/* Pricing section slides over team - DISABLED */}
+      {/* <div className="relative z-40">
         <PricingSection />
-      </div>
+      </div> */}
     </>
   );
 }

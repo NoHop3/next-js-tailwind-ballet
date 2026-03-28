@@ -7,48 +7,32 @@ import { ScrollReveal } from '@/components/ui/motion';
 
 import { useTranslation } from '@/lib/TranslationContext';
 
-// Sample gallery images using Unsplash - replace with actual images in production
 const galleryImages = [
-  {
-    src: 'https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=800&h=800&fit=crop',
-    alt: 'Ballet dancer performing arabesque',
-    title: 'Elegant Arabesque',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1508807526345-15e9b5f4eaff?w=800&h=800&fit=crop',
-    alt: 'Ballet class in progress',
-    title: 'Group Class Session',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1547153760-18fc86324498?w=800&h=800&fit=crop',
-    alt: 'Young dancers practicing',
-    title: 'Junior Ballet',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&h=800&fit=crop',
-    alt: 'Dance studio interior',
-    title: 'Our Studio',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=800&h=800&fit=crop',
-    alt: 'Performance on stage',
-    title: 'Annual Recital',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&h=800&fit=crop',
-    alt: 'Ballet shoes close-up',
-    title: 'The Art of Dance',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?w=800&h=800&fit=crop',
-    alt: 'Dancer stretching',
-    title: 'Flexibility Training',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1509773896068-7fd415d91e2e?w=800&h=800&fit=crop',
-    alt: 'Dance performance',
-    title: 'Artistic Expression',
-  },
+  { src: '/assets/валсът падьом.jpg', alt: 'Ballet school photo 1' },
+  { src: '/assets/детски танц 2 група.jpg', alt: 'Ballet school photo 2' },
+  { src: '/assets/детски танц колона.jpg', alt: 'Ballet school photo 3' },
+  { src: '/assets/детски танц кукли.jpg', alt: 'Ballet school photo 4' },
+  { src: '/assets/детски танц падьом.jpg', alt: 'Ballet school photo 5' },
+  { src: '/assets/диана фея драже.jpg', alt: 'Ballet school photo 6' },
+  { src: '/assets/Ели, Лили.jpg', alt: 'Ballet school photo 7' },
+  { src: '/assets/кари, пипи.jpg', alt: 'Ballet school photo 8' },
+  { src: '/assets/кукли шпагат.jpg', alt: 'Ballet school photo 9' },
+  { src: '/assets/кърпички 6.jpg', alt: 'Ballet school photo 10' },
+  { src: '/assets/кърпички.jpg', alt: 'Ballet school photo 11' },
+  { src: '/assets/малчугани лешник.jpg', alt: 'Ballet school photo 12' },
+  { src: '/assets/Ники Медора.jpg', alt: 'Ballet school photo 13' },
+  { src: '/assets/никол и яна.jpg', alt: 'Ballet school photo 14' },
+  { src: '/assets/павилионът на армида.jpg', alt: 'Ballet school photo 15' },
+  { src: '/assets/перлички 2.jpg', alt: 'Ballet school photo 16' },
+  { src: '/assets/перлички поклон.jpg', alt: 'Ballet school photo 17' },
+  { src: '/assets/Пипи Ели .jpg', alt: 'Ballet school photo 18' },
+  { src: '/assets/пипи колона.jpg', alt: 'Ballet school photo 19' },
+  { src: '/assets/Пипи Кръгче.jpg', alt: 'Ballet school photo 20' },
+  { src: '/assets/пицикато 5 п..jpg', alt: 'Ballet school photo 21' },
+  { src: '/assets/пицикато диди и ники.jpg', alt: 'Ballet school photo 22' },
+  { src: '/assets/пицикато падьоми.jpg', alt: 'Ballet school photo 23' },
+  { src: '/assets/пицикато, кроазе.jpg', alt: 'Ballet school photo 24' },
+  { src: '/assets/поклон руски.jpg', alt: 'Ballet school photo 25' },
 ];
 
 const featuredImages = galleryImages.slice(0, 4);

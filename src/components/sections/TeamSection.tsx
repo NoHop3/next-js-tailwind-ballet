@@ -1,11 +1,11 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import Image from 'next/image';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Award, Instagram, Star } from 'lucide-react';
+import { Award, Instagram, Star, X } from 'lucide-react';
 
 import { Card, CardContent } from '@/components/ui/card';
 import { ScrollReveal, StaggerContainer, StaggerItem, fadeInUp } from '@/components/ui/motion';
@@ -17,34 +17,47 @@ const teamMembers = [
     name: 'team.name1',
     role: 'team.role1',
     bio: 'team.bio1',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop',
-    instagram: '@elena_ballet',
+    image: '/assets/bori.jpg',
+    instagram: '@borimira.dyakonova',
     gradient: 'from-pink-500 to-fuchsia-500',
-    achievements: ['team.achievement.principalDancer', 'team.achievement.choreographer', 'team.achievement.masterTeacher'],
+    achievements: [
+      'team.achievement.principalDancer',
+      'team.achievement.choreographer',
+      'team.achievement.masterTeacher',
+    ],
   },
   {
     name: 'team.name2',
     role: 'team.role2',
     bio: 'team.bio2',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop',
-    instagram: '@maria_dance',
+    image: '/assets/elica.jpg',
+    instagram: '@elitza.kalova',
     gradient: 'from-fuchsia-500 to-purple-500',
-    achievements: ['team.achievement.radCertified', 'team.achievement.competitionCoach', 'team.achievement.yearsOfExperience'],
+    achievements: [
+      'team.achievement.radCertified',
+      'team.achievement.competitionCoach',
+      'team.achievement.yearsOfExperience',
+    ],
   },
   {
     name: 'team.name3',
     role: 'team.role3',
     bio: 'team.bio3',
-    image: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=400&h=400&fit=crop',
-    instagram: '@sofia_moves',
+    image: '/assets/vesa.jpg',
+    instagram: '@vesa.tonova',
     gradient: 'from-purple-500 to-violet-500',
-    achievements: ['team.achievement.contemporaryFusion', 'team.achievement.youthSpecialist', 'team.achievement.performer'],
+    achievements: [
+      'team.achievement.contemporaryFusion',
+      'team.achievement.youthSpecialist',
+      'team.achievement.performer',
+    ],
   },
 ];
 
 export default function TeamSection() {
   const { translate } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
+  const [selectedMember, setSelectedMember] = useState<number | null>(null);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -88,7 +101,10 @@ export default function TeamSection() {
         >
           {teamMembers.map((member, index) => (
             <StaggerItem key={index} variants={fadeInUp}>
-              <Card className="group h-full overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:shadow-2xl hover:shadow-pink-500/10 transition-all duration-500 hover:-translate-y-2">
+              <Card
+                onClick={() => setSelectedMember(index)}
+                className="group h-full overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:shadow-2xl hover:shadow-pink-500/10 transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+              >
                 {/* Gradient top bar */}
                 <div className={`h-1.5 bg-gradient-to-r ${member.gradient}`} />
 
@@ -101,7 +117,7 @@ export default function TeamSection() {
                     <div className="relative w-32 h-32 mx-auto rounded-2xl overflow-hidden border-2 border-white/10 shadow-xl">
                       <Image
                         src={member.image}
-                        alt={member.name}
+                        alt={translate(member.name)}
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
                       />
@@ -111,6 +127,7 @@ export default function TeamSection() {
                       href={`https://instagram.com/${member.instagram.replace('@', '')}`}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                       className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full text-white text-xs font-medium shadow-lg hover:scale-105 transition-transform"
                     >
                       <Instagram className="w-3 h-3" />
@@ -128,7 +145,20 @@ export default function TeamSection() {
                     >
                       {translate(member.role)}
                     </p>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{translate(member.bio)}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
+                      {translate(member.bio)}
+                    </p>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedMember(index);
+                      }}
+                      className="text-xs font-semibold text-primary hover:text-primary/80 transition-colors cursor-pointer"
+                    >
+                      {translate('team.readMore')}
+                    </button>
 
                     {/* Achievements */}
                     <div className="flex flex-wrap justify-center gap-2 pt-2">
@@ -160,6 +190,102 @@ export default function TeamSection() {
             <span>&rarr;</span>
           </a>
         </ScrollReveal>
+
+        {/* Team Member Detail Modal */}
+        {selectedMember !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedMember(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 cursor-pointer"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-card/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-border/50 cursor-default"
+            >
+              {/* Close button */}
+              <button
+                onClick={() => setSelectedMember(null)}
+                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-secondary/50 hover:bg-secondary transition-colors cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Gradient bar */}
+              <div className={`h-2 bg-gradient-to-r ${teamMembers[selectedMember].gradient}`} />
+
+              <div className="p-6 sm:p-8">
+                {/* Header with image and basic info */}
+                <div className="flex flex-col sm:flex-row gap-6 mb-8 items-start">
+                  <div className="flex-shrink-0">
+                    <div className="w-40 h-40 rounded-2xl overflow-hidden border-2 border-border/50 shadow-lg">
+                      <Image
+                        src={teamMembers[selectedMember].image}
+                        alt={translate(teamMembers[selectedMember].name)}
+                        width={160}
+                        height={160}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex-1">
+                    <h2 className="text-3xl font-playfair font-bold mb-2 text-foreground">
+                      {translate(teamMembers[selectedMember].name)}
+                    </h2>
+                    <p
+                      className={`text-lg font-semibold bg-gradient-to-r ${teamMembers[selectedMember].gradient} bg-clip-text text-transparent mb-4`}
+                    >
+                      {translate(teamMembers[selectedMember].role)}
+                    </p>
+                    <a
+                      href={`https://instagram.com/${teamMembers[selectedMember].instagram.replace('@', '')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full text-white text-sm font-medium hover:scale-105 transition-transform"
+                    >
+                      <Instagram className="w-4 h-4" />
+                      {teamMembers[selectedMember].instagram}
+                    </a>
+                  </div>
+                </div>
+
+                {/* Full bio */}
+                <div className="mb-8 space-y-4">
+                  <h3 className="text-lg font-semibold text-foreground">
+                    {translate('team.biography')}
+                  </h3>
+                  <p className="text-foreground/80 leading-relaxed whitespace-pre-wrap">
+                    {translate(teamMembers[selectedMember].bio)}
+                  </p>
+                </div>
+
+                {/* Achievements */}
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground mb-3">
+                    {translate('team.achievements')}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {teamMembers[selectedMember].achievements.map((achievement, i) => (
+                      <span
+                        key={i}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-secondary/50 hover:bg-secondary rounded-full text-sm text-foreground transition-colors"
+                      >
+                        <Award className="w-4 h-4 text-primary" />
+                        {translate(achievement)}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
       </div>
     </section>
   );
