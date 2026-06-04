@@ -4,19 +4,19 @@ export function generateOrganizationSchema(): WithContext<Organization> {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Ballet Studio',
+    name: 'Балетна школа Па-па-па де труа',
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://balletstudio.com',
-    logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://balletstudio.com'}/logo.png`,
+    logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://balletstudio.com'}/assets/Logo-mobile.png`,
     sameAs: [
-      'https://instagram.com/balletstudio',
-      'https://twitter.com/balletstudio',
-      'https://youtube.com/balletstudio',
+      'https://www.facebook.com/share/1C4afyqUTQ/',
+      'https://www.instagram.com/borimiradyakonova/',
+      'https://youtube.com/@borimiradyakonova1290?si=CVUSKMdcTPOgJw8v',
     ],
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+1-555-123-4567',
+      telephone: '+359876389077',
       contactType: 'customer service',
-      email: 'info@balletstudio.com',
+      email: 'dyakonovaborimira@gmail.com',
     },
   };
 }
@@ -26,23 +26,22 @@ export function generateLocalBusinessSchema(): WithContext<LocalBusiness> {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     '@id': process.env.NEXT_PUBLIC_SITE_URL || 'https://balletstudio.com',
-    name: 'Ballet Studio',
-    description: 'Award-winning ballet studio offering classical dance classes for all levels',
+    name: 'Балетна школа Па-па-па де труа',
+    description:
+      'Балетна школа в Смолян, предлагаща класически балет за деца и възрастни на всички нива.',
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://balletstudio.com',
-    telephone: '+1-555-123-4567',
-    email: 'info@balletstudio.com',
+    telephone: '+359876389077',
+    email: 'dyakonovaborimira@gmail.com',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '123 Dance Street',
-      addressLocality: 'City',
-      addressRegion: 'State',
-      postalCode: '12345',
-      addressCountry: 'US',
+      streetAddress: 'ЖК Нов център, бул. България 6',
+      addressLocality: 'Смолян',
+      addressCountry: 'BG',
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 40.7128,
-      longitude: -74.006,
+      latitude: 41.5771,
+      longitude: 24.7107,
     },
     openingHoursSpecification: [
       {
@@ -59,6 +58,6 @@ export function generateLocalBusinessSchema(): WithContext<LocalBusiness> {
       },
     ],
     priceRange: '$$',
-    image: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://balletstudio.com'}/og-image.jpg`,
+    image: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://balletstudio.com'}/assets/Logo-mobile.png`,
   };
 }
