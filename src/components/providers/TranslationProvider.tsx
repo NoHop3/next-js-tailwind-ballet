@@ -20,8 +20,8 @@ export function TranslationProvider({ children, culture, translations }: Transla
     window.location.href = newPath;
   };
 
-  const translate = (key: string): string => {
-    return translations[key] || key;
+  const translate = (key: string, defaultValue?: string): string => {
+    return translations[key] ?? defaultValue ?? key;
   };
 
   const contextValue: TranslationContextType = {
