@@ -55,6 +55,15 @@ const teamMembers = [
   },
 ];
 
+const FOCUSABLE = [
+  'a[href]',
+  'button:not([disabled])',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(', ');
+
 export default function TeamSection() {
   const { translate } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -79,15 +88,6 @@ export default function TeamSection() {
       document.documentElement.style.overflow = previousHtmlOverflow;
     };
   }, [selectedMember]);
-
-  const FOCUSABLE = [
-    'a[href]',
-    'button:not([disabled])',
-    'input:not([disabled])',
-    'select:not([disabled])',
-    'textarea:not([disabled])',
-    '[tabindex]:not([tabindex="-1"])',
-  ].join(', ');
 
   useEffect(() => {
     if (selectedMember === null) {
