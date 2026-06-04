@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 import { Calendar, ExternalLink, Loader2, Plus, Trash2 } from 'lucide-react';
+import { toast } from 'sonner';
 
 import { Card, CardContent } from '@/components/ui/card';
 import { ScrollReveal, StaggerContainer, StaggerItem, fadeInUp } from '@/components/ui/motion';
@@ -72,6 +73,8 @@ export default function EventsSection() {
     const { error } = await deleteEvent(id);
     if (!error) {
       setEvents(events.filter((e) => e.id !== id));
+    } else {
+      toast.error(translate('events.deleteError'));
     }
     setDeletingId(null);
   };
