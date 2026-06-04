@@ -40,16 +40,38 @@ export default function ContactSection() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    // maybe we can use supabase
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    const trimmed = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      message: formData.message.trim(),
+    };
 
-    toast.success(translate('contact.form.success'), {
-      description: translate('contact.form.successDescription'),
-    });
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          name: trimmed.name,
+          email: trimmed.email,
+          message: trimmed.message,
+          subject: `New message from ${trimmed.name}`,
+        }),
+      });
 
-    setFormData({ name: '', email: '', message: '' });
-    setIsSubmitting(false);
+      if (res.ok) {
+        toast.success(translate('contact.form.success'), {
+          description: translate('contact.form.successDescription'),
+        });
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        toast.error(translate('contact.form.error'));
+      }
+    } catch {
+      toast.error(translate('contact.form.error'));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
