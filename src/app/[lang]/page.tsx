@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 
 import HomeSection from '@/components/sections/HomeSection';
-// import PricingSection from '@/components/sections/PricingSection';
 import PressSection from '@/components/sections/PressSection';
 import TeamSection from '@/components/sections/TeamSection';
 import VideoSection from '@/components/sections/VideoSection';
@@ -58,11 +57,6 @@ export default function HomePage() {
       <div className="relative z-30">
         <TeamSection />
       </div>
-
-      {/* Pricing section slides over team - DISABLED */}
-      {/* <div className="relative z-40">
-        <PricingSection />
-      </div> */}
     </>
   );
 }
