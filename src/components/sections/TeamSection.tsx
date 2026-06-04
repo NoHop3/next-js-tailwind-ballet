@@ -58,6 +58,9 @@ const teamMembers = [
 export default function TeamSection() {
   const { translate } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
   const [selectedMember, setSelectedMember] = useState<number | null>(null);
   const isBrowser = typeof document !== 'undefined';
 
@@ -75,6 +78,55 @@ export default function TeamSection() {
       document.body.style.overflow = previousBodyOverflow;
       document.documentElement.style.overflow = previousHtmlOverflow;
     };
+  }, [selectedMember]);
+
+  const FOCUSABLE = [
+    'a[href]',
+    'button:not([disabled])',
+    'input:not([disabled])',
+    'select:not([disabled])',
+    'textarea:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])',
+  ].join(', ');
+
+  useEffect(() => {
+    if (selectedMember === null) {
+      triggerRef.current?.focus();
+      return;
+    }
+
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedMember(null);
+        return;
+      }
+      if (e.key !== 'Tab' || !modalRef.current) return;
+
+      const focusable = Array.from(
+        modalRef.current.querySelectorAll<HTMLElement>(FOCUSABLE)
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
   }, [selectedMember]);
 
   const { scrollYProgress } = useScroll({
@@ -120,7 +172,10 @@ export default function TeamSection() {
           {teamMembers.map((member, index) => (
             <StaggerItem key={index} variants={fadeInUp}>
               <Card
-                onClick={() => setSelectedMember(index)}
+                onClick={(e) => {
+                  triggerRef.current = e.currentTarget as HTMLElement;
+                  setSelectedMember(index);
+                }}
                 className="group h-full overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:shadow-2xl hover:shadow-pink-500/10 transition-all duration-500 hover:-translate-y-2 cursor-pointer"
               >
                 {/* Gradient top bar */}
@@ -171,6 +226,7 @@ export default function TeamSection() {
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
+                        triggerRef.current = e.currentTarget as HTMLElement;
                         setSelectedMember(index);
                       }}
                       className="text-xs font-semibold text-primary hover:text-primary/80 transition-colors cursor-pointer"
@@ -221,10 +277,14 @@ export default function TeamSection() {
             className="fixed inset-0 z-[60] flex items-stretch lg:items-center justify-center bg-black/50 backdrop-blur-sm p-0 lg:p-4 cursor-pointer"
           >
             <motion.div
+              ref={modalRef}
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="team-modal-name"
               className="relative w-screen h-screen lg:w-full lg:max-w-2xl lg:max-h-[90vh] overflow-y-auto overscroll-contain bg-card/95 backdrop-blur-xl rounded-none lg:rounded-2xl shadow-2xl border-0 lg:border border-border/50 cursor-default"
             >
               {/* Gradient bar */}
@@ -232,6 +292,8 @@ export default function TeamSection() {
 
               <div className="sticky top-0 z-20 flex justify-end px-4 pt-[max(0.75rem,env(safe-area-inset-top))] pb-2 bg-gradient-to-b from-card/95 to-transparent">
                 <button
+                  ref={closeButtonRef}
+                  aria-label="Close"
                   onClick={() => setSelectedMember(null)}
                   className="p-2 rounded-full bg-secondary/80 hover:bg-secondary transition-colors cursor-pointer"
                 >
@@ -255,7 +317,7 @@ export default function TeamSection() {
                   </div>
 
                   <div className="flex-1">
-                    <h2 className="text-3xl font-playfair font-bold mb-2 text-foreground">
+                    <h2 id="team-modal-name" className="text-3xl font-playfair font-bold mb-2 text-foreground">
                       {translate(teamMembers[selectedMember].name)}
                     </h2>
                     <p
