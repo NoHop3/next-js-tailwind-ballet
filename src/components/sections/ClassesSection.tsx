@@ -1,86 +1,24 @@
 'use client';
 
-import { Calendar, Clock, GraduationCap, Sparkles, Timer, User } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 
-import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ScrollReveal, StaggerContainer, StaggerItem, fadeInUp } from '@/components/ui/motion';
 
 import { useTranslation } from '@/lib/TranslationContext';
 
-const classes = [
-  {
-    id: 'beginner',
-    nameKey: 'classes.beginner.name',
-    levelKey: 'classes.beginner.level',
-    timeKey: 'classes.beginner.time',
-    durationKey: 'classes.beginner.duration',
-    ageKey: 'classes.beginner.age',
-    descriptionKey: 'classes.beginner.description',
-    gradient: 'from-pink-500 via-pink-400 to-rose-400',
-    bgGradient: 'from-pink-500/10 to-rose-500/10',
-    icon: Sparkles,
-  },
-  {
-    id: 'intermediate',
-    nameKey: 'classes.intermediate.name',
-    levelKey: 'classes.intermediate.level',
-    timeKey: 'classes.intermediate.time',
-    durationKey: 'classes.intermediate.duration',
-    ageKey: 'classes.intermediate.age',
-    descriptionKey: 'classes.intermediate.description',
-    gradient: 'from-fuchsia-500 via-fuchsia-400 to-pink-400',
-    bgGradient: 'from-fuchsia-500/10 to-pink-500/10',
-    icon: GraduationCap,
-  },
-  {
-    id: 'advanced',
-    nameKey: 'classes.advanced.name',
-    levelKey: 'classes.advanced.level',
-    timeKey: 'classes.advanced.time',
-    durationKey: 'classes.advanced.duration',
-    ageKey: 'classes.advanced.age',
-    descriptionKey: 'classes.advanced.description',
-    gradient: 'from-purple-500 via-purple-400 to-fuchsia-400',
-    bgGradient: 'from-purple-500/10 to-fuchsia-500/10',
-    icon: GraduationCap,
-  },
-  {
-    id: 'adult',
-    nameKey: 'classes.adult.name',
-    levelKey: 'classes.adult.level',
-    timeKey: 'classes.adult.time',
-    durationKey: 'classes.adult.duration',
-    ageKey: 'classes.adult.age',
-    descriptionKey: 'classes.adult.description',
-    gradient: 'from-violet-500 via-violet-400 to-purple-400',
-    bgGradient: 'from-violet-500/10 to-purple-500/10',
-    icon: User,
-  },
-  {
-    id: 'contemporary',
-    nameKey: 'classes.contemporary.name',
-    levelKey: 'classes.contemporary.level',
-    timeKey: 'classes.contemporary.time',
-    durationKey: 'classes.contemporary.duration',
-    ageKey: 'classes.contemporary.age',
-    descriptionKey: 'classes.contemporary.description',
-    gradient: 'from-indigo-500 via-indigo-400 to-violet-400',
-    bgGradient: 'from-indigo-500/10 to-violet-500/10',
-    icon: Sparkles,
-  },
-  {
-    id: 'private',
-    nameKey: 'classes.private.name',
-    levelKey: 'classes.private.level',
-    timeKey: 'classes.private.time',
-    durationKey: 'classes.private.duration',
-    ageKey: 'classes.private.age',
-    descriptionKey: 'classes.private.description',
-    gradient: 'from-rose-500 via-rose-400 to-pink-400',
-    bgGradient: 'from-rose-500/10 to-pink-500/10',
-    icon: User,
-  },
+const gradients = [
+  'from-pink-500 via-pink-400 to-rose-400',
+  'from-purple-500 via-purple-400 to-fuchsia-400',
+  'from-indigo-500 via-indigo-400 to-violet-400',
+  'from-rose-500 via-rose-400 to-pink-400',
+];
+
+const bgGradients = [
+  'from-pink-500/10 to-rose-500/10',
+  'from-purple-500/10 to-fuchsia-500/10',
+  'from-indigo-500/10 to-violet-500/10',
+  'from-rose-500/10 to-pink-500/10',
 ];
 
 export default function ClassesSection() {
@@ -130,92 +68,34 @@ export default function ClassesSection() {
           </div>
         </ScrollReveal>
 
-        {/* Classes Grid */}
+        {/* Day Cards Grid */}
         <StaggerContainer
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
           staggerDelay={0.08}
         >
-          {classes.map((classItem) => {
-            const Icon = classItem.icon;
-            return (
-              <StaggerItem key={classItem.id} variants={fadeInUp}>
-                <Card
-                  className={`group relative overflow-hidden border-border/50 hover:border-primary/30 bg-gradient-to-br ${classItem.bgGradient} backdrop-blur-sm hover:shadow-2xl hover:shadow-pink-500/10 transition-all duration-500 hover:-translate-y-2 h-full`}
-                >
-                  {/* Gradient bar at top */}
-                  <div
-                    className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${classItem.gradient}`}
-                  ></div>
-
-                  <CardContent className="p-8">
-                    <div className="flex justify-between items-start mb-6">
-                      <div className="flex-1">
-                        <div
-                          className={`inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br ${classItem.gradient} mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
-                        >
-                          <Icon className="w-6 h-6 text-white" />
-                        </div>
-                        <h3 className="text-xl font-playfair font-bold text-foreground mb-2">
-                          {translate(classItem.nameKey)}
-                        </h3>
-                        <span
-                          className={`inline-block px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${classItem.gradient} text-white`}
-                        >
-                          {translate(classItem.levelKey)}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="space-y-3 mb-6">
-                      <div className="flex items-center gap-3 text-muted-foreground">
-                        <Clock className="w-4 h-4 text-primary" />
-                        <span className="text-sm">{translate(classItem.timeKey)}</span>
-                      </div>
-                      <div className="flex items-center gap-3 text-muted-foreground">
-                        <Timer className="w-4 h-4 text-primary" />
-                        <span className="text-sm">{translate(classItem.durationKey)}</span>
-                      </div>
-                      <div className="flex items-center gap-3 text-muted-foreground">
-                        <User className="w-4 h-4 text-primary" />
-                        <span className="text-sm">{translate(classItem.ageKey)}</span>
-                      </div>
-                    </div>
-
-                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-4 mb-6">
-                      {translate(classItem.descriptionKey)}
-                    </p>
-
-                    <Button
-                      variant="outline"
-                      className="w-full border-primary/20 hover:border-primary hover:bg-primary/5 text-foreground group-hover:border-primary transition-colors"
-                    >
-                      {translate('classes.learnMore')}
-                    </Button>
-                  </CardContent>
-                </Card>
-              </StaggerItem>
-            );
-          })}
-        </StaggerContainer>
-
-        <ScrollReveal className="mt-12">
-          <div className="rounded-2xl border border-border/60 bg-card/40 p-5 sm:p-6">
-            <h3 className="text-xl font-playfair font-semibold text-foreground mb-3">
-              {translate('classes.scheduleDetailsTitle')}
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {weeklyProgramByDay.map((item, index) => (
+          {weeklyProgramByDay.map((item, index) => (
+            <StaggerItem key={item.day} variants={fadeInUp}>
+              <Card
+                className={`group relative overflow-hidden border-border/50 hover:border-primary/30 bg-gradient-to-br ${bgGradients[index % bgGradients.length]} backdrop-blur-sm hover:shadow-2xl hover:shadow-pink-500/10 transition-all duration-500 hover:-translate-y-2 h-full`}
+              >
                 <div
-                  key={`${item.day}-${index}`}
-                  className="rounded-xl border border-border/60 bg-background/40 p-4"
-                >
-                  <p className="text-sm font-semibold text-foreground mb-2">{item.day}</p>
+                  className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${gradients[index % gradients.length]}`}
+                />
+                <CardContent className="p-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div
+                      className={`inline-flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br ${gradients[index % gradients.length]} group-hover:scale-110 transition-transform duration-300 shadow-lg`}
+                    >
+                      <Calendar className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-xl font-playfair font-bold text-foreground">{item.day}</h3>
+                  </div>
                   <p className="text-sm text-muted-foreground leading-relaxed">{item.details}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </ScrollReveal>
+                </CardContent>
+              </Card>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
       </div>
     </section>
   );

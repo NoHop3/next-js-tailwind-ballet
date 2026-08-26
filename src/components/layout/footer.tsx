@@ -48,7 +48,7 @@ export default function Footer() {
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="https://www.instagram.com/borimiradyakonova/"
+                href="https://www.instagram.com/papapasdetrois?igsh=MW5hejVjbndtcnR4dg==&igsi=MW5hejVjbndtcnR4dg=="
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-xl bg-primary/10 hover:bg-primary/20 flex items-center justify-center text-primary transition-all duration-300 hover:scale-105"
@@ -136,10 +136,10 @@ export default function Footer() {
                   <Mail className="w-4 h-4 text-primary" />
                 </div>
                 <a
-                  href="mailto:dyakonovaborimira@gmail.com"
+                  href="mailto:papapasdetrois@gmail.com"
                   className="text-muted-foreground hover:text-primary transition-colors text-sm"
                 >
-                  dyakonovaborimira@gmail.com
+                  papapasdetrois@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-3">

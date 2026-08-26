@@ -116,10 +116,10 @@ export default function ContactSection() {
                         {translate('contact.info.emailDescription')}
                       </p>
                       <a
-                        href="mailto:dyakonovaborimira@gmail.com"
+                        href="mailto:papapasdetrois@gmail.com"
                         className="text-primary font-semibold hover:underline"
                       >
-                        dyakonovaborimira@gmail.com
+                        papapasdetrois@gmail.com
                       </a>
                     </div>
                   </div>

@@ -37,7 +37,6 @@ export const metadata: Metadata = {
     'балетни уроци',
     'танцова школа',
     'Смолян',
-    'Чепеларе',
     'ballet',
     'dance',
   ],

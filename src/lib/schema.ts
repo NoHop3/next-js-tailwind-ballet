@@ -9,14 +9,14 @@ export function generateOrganizationSchema(): WithContext<Organization> {
     logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://balletstudio.com'}/assets/Logo-mobile.png`,
     sameAs: [
       'https://www.facebook.com/share/1C4afyqUTQ/',
-      'https://www.instagram.com/borimiradyakonova/',
+      'https://www.instagram.com/papapasdetrois?igsh=MW5hejVjbndtcnR4dg==&igsi=MW5hejVjbndtcnR4dg==',
       'https://youtube.com/@borimiradyakonova1290?si=CVUSKMdcTPOgJw8v',
     ],
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+359876389077',
       contactType: 'customer service',
-      email: 'dyakonovaborimira@gmail.com',
+      email: 'papapasdetrois@gmail.com',
     },
   };
 }
@@ -31,7 +31,7 @@ export function generateLocalBusinessSchema(): WithContext<LocalBusiness> {
       'Балетна школа в Смолян, предлагаща класически балет за деца и възрастни на всички нива.',
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://balletstudio.com',
     telephone: '+359876389077',
-    email: 'dyakonovaborimira@gmail.com',
+    email: 'papapasdetrois@gmail.com',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'ЖК Нов център, бул. България 6',
