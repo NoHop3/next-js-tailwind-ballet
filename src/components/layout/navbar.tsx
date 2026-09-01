@@ -43,25 +43,14 @@ const navItems: NavItem[] = [
 
 export default function Navbar() {
   const { translate } = useTranslation();
-  const [windowWidth, setWindowWidth] = useState(1024);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
     const handleScroll = () => setScrolled(window.scrollY > 20);
-
-    handleResize();
     handleScroll();
-
-    window.addEventListener('resize', handleResize);
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const isMobile = windowWidth < 960;
 
   return (
     <nav
@@ -86,11 +75,12 @@ export default function Navbar() {
             </h1>
           </div>
 
-          {isMobile ? (
+          <div className="lg:hidden">
             <MobileContent navItems={navItems} />
-          ) : (
+          </div>
+          <div className="hidden lg:block">
             <DesktopContent navItems={navItems} />
-          )}
+          </div>
         </div>
       </div>
     </nav>

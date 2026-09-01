@@ -23,8 +23,8 @@ function getStoredTheme(): Theme {
 function applyThemeToDocument(newTheme: Theme): 'light' | 'dark' {
   const resolved = newTheme === 'system' ? getSystemTheme() : newTheme;
   const root = document.documentElement;
-  root.classList.remove('light', 'dark');
-  root.classList.add(resolved);
+  root.classList.toggle('dark', resolved === 'dark');
+  root.classList.toggle('light', resolved === 'light');
   return resolved;
 }
 
