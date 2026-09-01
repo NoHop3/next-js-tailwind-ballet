@@ -53,6 +53,19 @@ export const deleteEvent = async (id: string) => {
   return { error };
 };
 
+export const updateEvent = async (
+  id: string,
+  event: Partial<Omit<Event, 'id' | 'created_at'>>
+) => {
+  const { data, error } = await supabase
+    .from('events')
+    .update(event)
+    .eq('id', id)
+    .select()
+    .single();
+  return { data: data as Event | null, error };
+};
+
 // Image upload helper
 export const uploadImage = async (file: File, fileName: string) => {
   const { data, error } = await supabase.storage.from('event-images').upload(fileName, file, {

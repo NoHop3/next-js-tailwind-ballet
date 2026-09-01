@@ -1,10 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 import Image from 'next/image';
 
-import { Calendar, ExternalLink, Loader2, Plus, Trash2 } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Calendar, ExternalLink, Loader2, Pencil, Plus, Trash2, X } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { Card, CardContent } from '@/components/ui/card';
@@ -15,6 +17,16 @@ import { Event, deleteEvent, getEvents, getSession } from '@/lib/supabase';
 
 import { AddEventDialog } from './AddEventDialog';
 import { AuthModal } from './AuthModal';
+import { EditEventDialog } from './EditEventDialog';
+
+const FOCUSABLE = [
+  'a[href]',
+  'button:not([disabled])',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(', ');
 
 export default function EventsSection() {
   const { translate } = useTranslation();
@@ -24,13 +36,56 @@ export default function EventsSection() {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showAddDialog, setShowAddDialog] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [editingEvent, setEditingEvent] = useState<Event | null>(null);
+
+  const isBrowser = typeof document !== 'undefined';
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (!selectedEvent) return;
+    const prevBody = document.body.style.overflow;
+    const prevHtml = document.documentElement.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prevBody;
+      document.documentElement.style.overflow = prevHtml;
+    };
+  }, [selectedEvent]);
+
+  // Focus management + Escape / tab-trap for modal
+  useEffect(() => {
+    if (!selectedEvent) {
+      triggerRef.current?.focus();
+      return;
+    }
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { setSelectedEvent(null); return; }
+      if (e.key !== 'Tab' || !modalRef.current) return;
+      const focusable = Array.from(modalRef.current.querySelectorAll<HTMLElement>(FOCUSABLE));
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [selectedEvent]);
 
   const fetchEvents = async () => {
     setIsLoading(true);
     const { data } = await getEvents();
-    if (data) {
-      setEvents(data);
-    }
+    if (data) setEvents(data);
     setIsLoading(false);
   };
 
@@ -66,13 +121,19 @@ export default function EventsSection() {
     fetchEvents();
   };
 
+  const handleEventUpdated = (updated: Event) => {
+    setEvents((prev) => prev.map((e) => (e.id === updated.id ? updated : e)));
+    if (selectedEvent?.id === updated.id) setSelectedEvent(updated);
+    setEditingEvent(null);
+  };
+
   const handleDeleteEvent = async (id: string) => {
     if (!confirm(translate('events.deleteConfirm'))) return;
-
     setDeletingId(id);
     const { error } = await deleteEvent(id);
     if (!error) {
       setEvents(events.filter((e) => e.id !== id));
+      if (selectedEvent?.id === id) setSelectedEvent(null);
     } else {
       toast.error(translate('events.deleteError'));
     }
@@ -90,9 +151,8 @@ export default function EventsSection() {
 
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-secondary/20 relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-1/4 left-0 w-72 h-72 bg-gradient-to-br from-pink-500/5 to-purple-500/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-gradient-to-br from-purple-500/5 to-fuchsia-500/5 rounded-full blur-3xl"></div>
+      <div className="absolute top-1/4 left-0 w-72 h-72 bg-gradient-to-br from-pink-500/5 to-purple-500/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-gradient-to-br from-purple-500/5 to-fuchsia-500/5 rounded-full blur-3xl" />
 
       <div className="max-w-6xl mx-auto relative">
         {/* Header */}
@@ -119,23 +179,37 @@ export default function EventsSection() {
           >
             {events.map((event) => (
               <StaggerItem key={event.id} variants={fadeInUp}>
-                <Card className="group relative overflow-hidden border-border/50 hover:border-primary/30 bg-gradient-to-br from-card/50 to-secondary/20 backdrop-blur-sm hover:shadow-2xl hover:shadow-pink-500/10 transition-all duration-500 hover:-translate-y-2 h-full">
-                  {/* Gradient bar at top */}
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500"></div>
+                <Card
+                  onClick={(e) => {
+                    triggerRef.current = e.currentTarget as HTMLElement;
+                    setSelectedEvent(event);
+                  }}
+                  className="group relative overflow-hidden border-border/50 hover:border-primary/30 bg-gradient-to-br from-card/50 to-secondary/20 backdrop-blur-sm hover:shadow-2xl hover:shadow-pink-500/10 transition-all duration-500 hover:-translate-y-2 h-full cursor-pointer"
+                >
+                  {/* Gradient bar */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500" />
 
-                  {/* Delete button for authenticated users */}
+                  {/* Admin buttons */}
                   {isAuthenticated && (
-                    <button
-                      onClick={() => handleDeleteEvent(event.id)}
-                      disabled={deletingId === event.id}
-                      className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-destructive/80 hover:bg-destructive flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    >
-                      {deletingId === event.id ? (
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                      ) : (
-                        <Trash2 className="w-4 h-4" />
-                      )}
-                    </button>
+                    <div className="absolute top-4 right-4 z-10 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setEditingEvent(event); }}
+                        className="w-8 h-8 rounded-full bg-primary/80 hover:bg-primary flex items-center justify-center text-white"
+                      >
+                        <Pencil className="w-3.5 h-3.5" />
+                      </button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); handleDeleteEvent(event.id); }}
+                        disabled={deletingId === event.id}
+                        className="w-8 h-8 rounded-full bg-destructive/80 hover:bg-destructive flex items-center justify-center text-white"
+                      >
+                        {deletingId === event.id ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <Trash2 className="w-4 h-4" />
+                        )}
+                      </button>
+                    </div>
                   )}
 
                   {/* Event Image */}
@@ -147,12 +221,11 @@ export default function EventsSection() {
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                     </div>
                   )}
 
                   <CardContent className={`p-6 ${event.image_url ? 'pt-4' : 'pt-8'}`}>
-                    {/* Date */}
                     {event.event_date && (
                       <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
                         <Calendar className="w-4 h-4 text-primary" />
@@ -160,27 +233,19 @@ export default function EventsSection() {
                       </div>
                     )}
 
-                    {/* Title */}
                     <h3 className="text-xl font-playfair font-bold text-foreground mb-3">
                       {event.title}
                     </h3>
 
-                    {/* Description */}
                     <p className="text-muted-foreground text-sm leading-relaxed mb-4 line-clamp-3">
                       {event.description}
                     </p>
 
-                    {/* Link */}
                     {event.link && (
-                      <a
-                        href={event.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-primary hover:underline text-sm font-medium"
-                      >
+                      <span className="inline-flex items-center gap-2 text-primary text-sm font-medium">
                         {translate('events.learnMore')}
                         <ExternalLink className="w-3 h-3" />
-                      </a>
+                      </span>
                     )}
                   </CardContent>
                 </Card>
@@ -227,6 +292,125 @@ export default function EventsSection() {
         onClose={() => setShowAddDialog(false)}
         onSuccess={handleEventAdded}
       />
+
+      {/* Edit Event Dialog */}
+      {editingEvent && (
+        <EditEventDialog
+          event={editingEvent}
+          isOpen={true}
+          onClose={() => setEditingEvent(null)}
+          onSuccess={handleEventUpdated}
+        />
+      )}
+
+      {/* Event Detail Modal */}
+      {isBrowser &&
+        selectedEvent &&
+        createPortal(
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedEvent(null)}
+            className="fixed inset-0 z-[60] flex items-stretch lg:items-center justify-center bg-black/50 backdrop-blur-sm p-0 lg:p-4 cursor-pointer"
+          >
+            <motion.div
+              ref={modalRef}
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="event-modal-title"
+              className="relative w-screen h-screen lg:w-full lg:max-w-2xl lg:max-h-[90vh] overflow-y-auto overscroll-contain bg-card/95 backdrop-blur-xl rounded-none lg:rounded-2xl shadow-2xl border-0 lg:border border-border/50 cursor-default"
+            >
+              {/* Gradient bar */}
+              <div className="h-2 bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500" />
+
+              {/* Close + admin actions */}
+              <div className="sticky top-0 z-20 flex items-center justify-between px-4 pt-[max(0.75rem,env(safe-area-inset-top))] pb-2 bg-gradient-to-b from-card/95 to-transparent">
+                <div className="flex gap-2">
+                  {isAuthenticated && (
+                    <>
+                      <button
+                        onClick={() => { setSelectedEvent(null); setEditingEvent(selectedEvent); }}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 hover:bg-primary/20 text-primary text-sm font-medium transition-colors"
+                      >
+                        <Pencil className="w-3.5 h-3.5" />
+                        {translate('events.edit.title')}
+                      </button>
+                      <button
+                        onClick={() => handleDeleteEvent(selectedEvent.id)}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-destructive/10 hover:bg-destructive/20 text-destructive text-sm font-medium transition-colors"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </>
+                  )}
+                </div>
+                <button
+                  ref={closeButtonRef}
+                  aria-label="Close"
+                  onClick={() => setSelectedEvent(null)}
+                  className="p-2 rounded-full bg-secondary/80 hover:bg-secondary transition-colors cursor-pointer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Image */}
+              {selectedEvent.image_url && (
+                <div className="relative w-full h-64 sm:h-80">
+                  <Image
+                    src={selectedEvent.image_url}
+                    alt={selectedEvent.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent" />
+                </div>
+              )}
+
+              <div className="p-6 sm:p-8">
+                {/* Date */}
+                {selectedEvent.event_date && (
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+                    <Calendar className="w-4 h-4 text-primary" />
+                    <span>{formatDate(selectedEvent.event_date)}</span>
+                  </div>
+                )}
+
+                {/* Title */}
+                <h2
+                  id="event-modal-title"
+                  className="text-3xl font-playfair font-bold text-foreground mb-4"
+                >
+                  {selectedEvent.title}
+                </h2>
+
+                {/* Description */}
+                <p className="text-foreground/80 leading-relaxed whitespace-pre-wrap mb-6">
+                  {selectedEvent.description}
+                </p>
+
+                {/* Link */}
+                {selectedEvent.link && (
+                  <a
+                    href={selectedEvent.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 text-white text-sm font-semibold hover:shadow-lg hover:shadow-pink-500/25 transition-all duration-300"
+                  >
+                    {translate('events.learnMore')}
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>,
+          document.body
+        )}
     </section>
   );
 }

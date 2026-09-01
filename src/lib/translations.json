@@ -109,8 +109,8 @@
     "video.professionalRecordingDesc": "Captured in 4K quality",
     "video.studentPerformances": "Student Performances",
     "video.studentPerformancesDesc": "Showcasing our talent",
-    "video.behindScenes": "Behind the Scenes",
-    "video.behindScenesDesc": "Studio life & rehearsals",
+    "video.behindScenes": "Annual Recital",
+    "video.behindScenesDesc": "Highlights from our end-of-year showcase performances",
     "team.badge": "Our Instructors",
     "team.title": "Meet the Team",
     "team.subtitle": "World-class instructors dedicated to nurturing your passion for dance",
@@ -245,7 +245,12 @@
     "events.add.create": "Create Event",
     "events.add.creating": "Creating...",
     "events.add.error": "Failed to create event",
-    "events.add.imageError": "Failed to upload image"
+    "events.add.imageError": "Failed to upload image",
+    "events.edit.title": "Edit Event",
+    "events.edit.save": "Save Changes",
+    "events.edit.saving": "Saving...",
+    "events.edit.error": "Failed to update event. Please try again.",
+    "events.edit.imageError": "Failed to upload image"
   },
   "ru-RU": {
     "nav.home": "Главная",
@@ -356,9 +361,9 @@
     "video.professionalRecording": "Профессиональная запись",
     "video.professionalRecordingDesc": "Снято в качестве 4K",
     "video.studentPerformances": "Выступления учеников",
-    "video.studentPerformancesDesc": "Демонстрация талантов",
-    "video.behindScenes": "За кулисами",
-    "video.behindScenesDesc": "Жизнь студии и репетиции",
+    "video.studentPerformancesDesc": "Демонстрация таланта",
+    "video.behindScenes": "Ежегодный концерт",
+    "video.behindScenesDesc": "Лучшие моменты нашего ежегодного концерта",
     "team.badge": "Наши инструкторы",
     "team.title": "Познакомьтесь с командой",
     "team.subtitle": "Инструкторы мирового класса, посвященные развитию вашей страсти к танцу",
@@ -493,7 +498,12 @@
     "events.add.create": "Создать",
     "events.add.creating": "Создание...",
     "events.add.error": "Не удалось создать событие",
-    "events.add.imageError": "Не удалось загрузить изображение"
+    "events.add.imageError": "Не удалось загрузить изображение",
+    "events.edit.title": "Редактировать событие",
+    "events.edit.save": "Сохранить изменения",
+    "events.edit.saving": "Сохранение...",
+    "events.edit.error": "Не удалось обновить событие. Попробуйте снова.",
+    "events.edit.imageError": "Не удалось загрузить изображение"
   },
   "uk-UA": {
     "nav.home": "Головна",
@@ -599,9 +609,9 @@
     "video.professionalRecording": "Професійний запис",
     "video.professionalRecordingDesc": "Знято в якості 4K",
     "video.studentPerformances": "Виступи учнів",
-    "video.studentPerformancesDesc": "Демонстрація талантів",
-    "video.behindScenes": "За лаштунками",
-    "video.behindScenesDesc": "Життя студії та репетиції",
+    "video.studentPerformancesDesc": "Демонстрація таланту",
+    "video.behindScenes": "Щорічний концерт",
+    "video.behindScenesDesc": "Найкращі моменти нашого щорічного концерту",
     "team.badge": "Наші інструктори",
     "team.title": "Познайомтеся з командою",
     "team.subtitle": "Інструктори світового рівня, віддані розвитку вашої пристрасті до танцю",
@@ -736,7 +746,12 @@
     "events.add.create": "Створити",
     "events.add.creating": "Створення...",
     "events.add.error": "Не вдалося створити подію",
-    "events.add.imageError": "Не вдалося завантажити зображення"
+    "events.add.imageError": "Не вдалося завантажити зображення",
+    "events.edit.title": "Редагувати подію",
+    "events.edit.save": "Зберегти зміни",
+    "events.edit.saving": "Збереження...",
+    "events.edit.error": "Не вдалося оновити подію. Спробуйте знову.",
+    "events.edit.imageError": "Не вдалося завантажити зображення"
   },
   "bg-BG": {
     "nav.home": "Начало",
@@ -855,9 +870,9 @@
     "video.professionalRecording": "Професионален запис",
     "video.professionalRecordingDesc": "Заснето в 4K качество",
     "video.studentPerformances": "Изяви на ученици",
-    "video.studentPerformancesDesc": "Показване на таланти",
-    "video.behindScenes": "Зад кулисите",
-    "video.behindScenesDesc": "Живот в студиото и репетиции",
+    "video.studentPerformancesDesc": "Показване на талант",
+    "video.behindScenes": "Годишен концерт",
+    "video.behindScenesDesc": "Моменти от нашия годишен концерт",
     "team.badge": "Нашите инструктори",
     "team.title": "Запознайте се с екипа",
     "team.subtitle": "Инструктори от световна класа, посветени на развитието на вашата страст към танца",
@@ -992,6 +1007,11 @@
     "events.add.create": "Създай",
     "events.add.creating": "Създаване...",
     "events.add.error": "Неуспешно създаване",
-    "events.add.imageError": "Неуспешно качване на изображение"
+    "events.add.imageError": "Неуспешно качване на изображение",
+    "events.edit.title": "Редактирай събитие",
+    "events.edit.save": "Запази промените",
+    "events.edit.saving": "Запазване...",
+    "events.edit.error": "Неуспешно обновяване. Моля, опитайте отново.",
+    "events.edit.imageError": "Неуспешно качване на изображение"
   }
 }

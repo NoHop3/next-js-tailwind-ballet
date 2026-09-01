@@ -65,7 +65,7 @@ const FOCUSABLE = [
 ].join(', ');
 
 export default function TeamSection() {
-  const { translate } = useTranslation();
+  const { translate, culture } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
@@ -257,7 +257,7 @@ export default function TeamSection() {
         <ScrollReveal className="text-center mt-16" delay={0.4}>
           <p className="text-muted-foreground mb-4">{translate('team.joinCta')}</p>
           <a
-            href="#contact"
+            href={`/${culture}/contact`}
             className="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
           >
             {translate('team.getInTouch')}
