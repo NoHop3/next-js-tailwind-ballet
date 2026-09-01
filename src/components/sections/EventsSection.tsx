@@ -97,10 +97,6 @@ export default function EventsSection() {
       <div className="max-w-6xl mx-auto relative">
         {/* Header */}
         <ScrollReveal className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-sm font-medium text-primary mb-4">
-            <Calendar className="w-4 h-4" />
-            {translate('events.badge')}
-          </div>
           <h2 className="text-4xl sm:text-5xl font-playfair font-bold mb-4">
             <span className="bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent">
               {translate('events.title')}

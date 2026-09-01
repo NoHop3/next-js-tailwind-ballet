@@ -14,6 +14,7 @@ const pressItems = [
     sourceKey: 'press.article1.source',
     excerptKey: 'press.article1.excerpt',
     dateKey: 'press.article1.date',
+    url: 'https://www.etv.bg/news/reportage/219411/edinstvenata-baletna-skola-v-smolian-shhe-predstavi-spektakiela-razxodka-v-rodopa-s-arfa-i-balet',
   },
   {
     id: 2,
@@ -21,6 +22,7 @@ const pressItems = [
     sourceKey: 'press.article2.source',
     excerptKey: 'press.article2.excerpt',
     dateKey: 'press.article2.date',
+    url: 'https://www.smolyaninfo.com/2023/09/14/baletna-shkola-otvarya-vrati-v-smolyan/',
   },
   {
     id: 3,
@@ -28,6 +30,23 @@ const pressItems = [
     sourceKey: 'press.article3.source',
     excerptKey: 'press.article3.excerpt',
     dateKey: 'press.article3.date',
+    url: 'https://www.haskovo.net/news/619407/primabalerinata-vesa-tonova-shte-gostuva-v-edinstvenata-detska-baletna-shkola-v-smolyan',
+  },
+  {
+    id: 4,
+    titleKey: 'press.article4.title',
+    sourceKey: 'press.article4.source',
+    excerptKey: 'press.article4.excerpt',
+    dateKey: 'press.article4.date',
+    url: 'https://www.marica.bg/region/smolqn/rodopite-pregrashtat-baleta-ot-zvuka-na-kaba-gaydata-do-stapkite-na-palci-snimki/amp',
+  },
+  {
+    id: 5,
+    titleKey: 'press.article5.title',
+    sourceKey: 'press.article5.source',
+    excerptKey: 'press.article5.excerpt',
+    dateKey: 'press.article5.date',
+    url: 'https://otzvuk.bg/vazhisthenie-i-priznanie-poluchi-shkolata-po-balet-na-borimira-dyakonova-v-smolyan/?amp=1',
   },
 ];
 
@@ -58,31 +77,43 @@ export default function PressSection() {
         <StaggerContainer className="grid grid-cols-1 lg:grid-cols-3 gap-6" staggerDelay={0.08}>
           {pressItems.map((item) => (
             <StaggerItem key={item.id} variants={fadeInUp}>
-              <Card className="h-full border-border/60 bg-card/50 backdrop-blur-sm hover:border-primary/40 hover:shadow-xl hover:shadow-pink-500/10 transition-all duration-300">
-                <CardContent className="p-6 h-full flex flex-col">
-                  <div className="flex items-start justify-between gap-3 mb-4">
-                    <div className="inline-flex items-center gap-2 text-primary text-xs font-semibold uppercase tracking-wide">
-                      <BookOpen className="w-4 h-4" />
-                      {translate(item.sourceKey)}
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block h-full"
+              >
+                <Card className="h-full border-border/60 bg-card/50 backdrop-blur-sm hover:border-primary/40 hover:shadow-xl hover:shadow-pink-500/10 transition-all duration-300 cursor-pointer">
+                  <CardContent className="p-6 h-full flex flex-col">
+                    <div className="flex items-start justify-between gap-3 mb-4">
+                      <div className="inline-flex items-center gap-2 text-primary text-xs font-semibold uppercase tracking-wide">
+                        <BookOpen className="w-4 h-4" />
+                        {translate(item.sourceKey)}
+                      </div>
+                      <span className="text-xs text-muted-foreground">{translate(item.dateKey)}</span>
                     </div>
-                    <span className="text-xs text-muted-foreground">{translate(item.dateKey)}</span>
-                  </div>
 
-                  <h3 className="text-lg font-semibold text-foreground leading-snug mb-3">
-                    {translate(item.titleKey)}
-                  </h3>
+                    <h3 className="text-lg font-semibold text-foreground leading-snug mb-3 flex-1">
+                      {translate(item.excerptKey) ? (
+                        <>
+                          {translate(item.titleKey)}
+                          <p className="text-sm text-muted-foreground leading-relaxed mt-2">
+                            <Quote className="inline w-4 h-4 text-primary/70 mr-1" />
+                            {translate(item.excerptKey)}
+                          </p>
+                        </>
+                      ) : (
+                        translate(item.titleKey)
+                      )}
+                    </h3>
 
-                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">
-                    <Quote className="inline w-4 h-4 text-primary/70 mr-1" />
-                    {translate(item.excerptKey)}
-                  </p>
-
-                  <div className="mt-5 inline-flex items-center gap-2 text-sm text-primary font-medium">
-                    <ExternalLink className="w-4 h-4" />
-                    {translate('press.moreSoon')}
-                  </div>
-                </CardContent>
-              </Card>
+                    <div className="mt-5 inline-flex items-center gap-2 text-sm text-primary font-medium">
+                      <ExternalLink className="w-4 h-4" />
+                      {translate('press.readArticle')}
+                    </div>
+                  </CardContent>
+                </Card>
+              </a>
             </StaggerItem>
           ))}
         </StaggerContainer>
