@@ -51,20 +51,11 @@ export const metadata: Metadata = {
     title: 'Балетна школа Па-па-па де труа | Смолян',
     description:
       'Преоткрийте изкуството на класическия балет в нашата школа. Квалифицирани преподаватели, класове за всички нива.',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Балетна школа Па-па-па де труа',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Балетна школа Па-па-па де труа | Смолян',
     description: 'Преоткрийте изкуството на класическия балет в нашата школа.',
-    images: ['/og-image.jpg'],
   },
   robots: {
     index: true,
@@ -79,11 +70,12 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/assets/Logo-mobile.png', sizes: '32x32', type: 'image/png' },
-      { url: '/assets/Logo-mobile.png', sizes: '16x16', type: 'image/png' },
+      { url: '/icon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
     ],
-    apple: '/assets/Logo-mobile.png',
-    shortcut: '/assets/Logo-mobile.png',
+    apple: '/icon-180.png',
+    shortcut: '/icon-32.png',
   },
 };
 

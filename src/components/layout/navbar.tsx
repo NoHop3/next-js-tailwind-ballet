@@ -6,6 +6,7 @@ import { CalendarDays, GraduationCap, Home, Info, Mail } from 'lucide-react';
 import { DesktopContent } from '@/components/layout/navbar/DesktopContent';
 import { MobileContent } from '@/components/layout/navbar/MobileContent';
 import { NavItem } from '@/components/layout/navbar/types';
+import { Logo } from '@/components/ui/Logo';
 import { useTranslation } from '@/lib/TranslationContext';
 
 const navItems: NavItem[] = [
@@ -42,7 +43,7 @@ const navItems: NavItem[] = [
 ];
 
 export default function Navbar() {
-  const { translate } = useTranslation();
+  const { translate, culture } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -62,18 +63,18 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo and Title */}
-          <div className="flex items-center gap-3 group cursor-pointer">
-            <div className="relative">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 via-fuchsia-500 to-purple-500 flex items-center justify-center shadow-lg shadow-pink-500/30 group-hover:shadow-pink-500/50 transition-all duration-300 group-hover:scale-105">
-                <span className="text-white text-lg">🩰</span>
-              </div>
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-pink-400 to-purple-400 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300"></div>
-            </div>
-            <h1 className="text-xl font-bold bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent font-playfair">
-              {translate('main.title')}
-            </h1>
-          </div>
+          {/* Logo */}
+          <a
+            href={`/${culture}`}
+            className="group flex items-center transition-opacity duration-300 hover:opacity-80"
+          >
+            <Logo
+              variant="wordmark"
+              priority
+              alt={translate('main.title')}
+              className="h-8 w-auto sm:h-10"
+            />
+          </a>
 
           <div className="lg:hidden">
             <MobileContent navItems={navItems} />

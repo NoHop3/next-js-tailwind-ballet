@@ -4,6 +4,8 @@ import Link from 'next/link';
 
 import { Facebook, Heart, Instagram, Mail, MapPin, Phone, Youtube } from 'lucide-react';
 
+import { Logo } from '@/components/ui/Logo';
+
 import { useTranslation } from '@/lib/TranslationContext';
 
 export default function Footer() {
@@ -26,14 +28,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="md:col-span-1">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 via-fuchsia-500 to-purple-500 flex items-center justify-center shadow-lg shadow-pink-500/30">
-                <span className="text-white text-xl">🩰</span>
-              </div>
-              <h3 className="text-xl font-bold bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent font-playfair">
-                {translate('main.title')}
-              </h3>
-            </div>
+            <Link href={buildHref('/')} className="mb-6 inline-block">
+              <Logo
+                variant="full"
+                alt={translate('main.title')}
+                className="h-auto w-44 max-w-full"
+              />
+            </Link>
             {/* <p className="text-muted-foreground text-sm leading-relaxed mb-6">
               {translate('footer.subTitle')}
             </p> */}

@@ -5,8 +5,8 @@ export function generateOrganizationSchema(): WithContext<Organization> {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Балетна школа Па-па-па де труа',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://balletstudio.com',
-    logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://balletstudio.com'}/assets/Logo-mobile.png`,
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://papapasdetrois.com',
+    logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://papapasdetrois.com'}/icon-512.png`,
     sameAs: [
       'https://www.facebook.com/share/1C4afyqUTQ/',
       'https://www.instagram.com/papapasdetrois?igsh=MW5hejVjbndtcnR4dg==&igsi=MW5hejVjbndtcnR4dg==',
@@ -25,11 +25,11 @@ export function generateLocalBusinessSchema(): WithContext<LocalBusiness> {
   return {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    '@id': process.env.NEXT_PUBLIC_SITE_URL || 'https://balletstudio.com',
+    '@id': process.env.NEXT_PUBLIC_SITE_URL || 'https://papapasdetrois.com/',
     name: 'Балетна школа Па-па-па де труа',
     description:
       'Балетна школа в Смолян, предлагаща класически балет за деца и възрастни на всички нива.',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://balletstudio.com',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://papapasdetrois.com/',
     telephone: '+359876389077',
     email: 'papapasdetrois@gmail.com',
     address: {
@@ -48,7 +48,7 @@ export function generateLocalBusinessSchema(): WithContext<LocalBusiness> {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
         opens: '09:00',
-        closes: '21:00',
+        closes: '18:00',
       },
       {
         '@type': 'OpeningHoursSpecification',
@@ -58,6 +58,6 @@ export function generateLocalBusinessSchema(): WithContext<LocalBusiness> {
       },
     ],
     priceRange: '$$',
-    image: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://balletstudio.com'}/assets/Logo-mobile.png`,
+    image: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://papapasdetrois.com/'}/icon-512.png`,
   };
 }

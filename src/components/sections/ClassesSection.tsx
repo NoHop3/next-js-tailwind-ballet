@@ -1,11 +1,12 @@
 'use client';
 
-import { Calendar } from 'lucide-react';
+import { Calendar, Clock, MapPin } from 'lucide-react';
 
 import { Card, CardContent } from '@/components/ui/card';
 import { ScrollReveal, StaggerContainer, StaggerItem, fadeInUp } from '@/components/ui/motion';
 
 import { useTranslation } from '@/lib/TranslationContext';
+import { getWeeklySchedule } from '@/lib/schedule';
 
 const gradients = [
   'from-pink-500 via-pink-400 to-rose-400',
@@ -22,22 +23,8 @@ const bgGradients = [
 ];
 
 export default function ClassesSection() {
-  const { translate } = useTranslation();
-  const weeklyProgramByDay = translate('classes.weeklyProgram')
-    .split('\n')
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .map((line) => {
-      const firstColonIndex = line.indexOf(':');
-      if (firstColonIndex === -1) {
-        return { day: line, details: '' };
-      }
-
-      return {
-        day: line.slice(0, firstColonIndex).trim(),
-        details: line.slice(firstColonIndex + 1).trim(),
-      };
-    });
+  const { translate, culture } = useTranslation();
+  const weeklyProgramByDay = getWeeklySchedule(culture);
 
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-secondary/20 relative overflow-hidden">
@@ -82,7 +69,7 @@ export default function ClassesSection() {
                   className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${gradients[index % gradients.length]}`}
                 />
                 <CardContent className="p-8">
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-3 mb-2">
                     <div
                       className={`inline-flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br ${gradients[index % gradients.length]} group-hover:scale-110 transition-transform duration-300 shadow-lg`}
                     >
@@ -90,7 +77,35 @@ export default function ClassesSection() {
                     </div>
                     <h3 className="text-xl font-playfair font-bold text-foreground">{item.day}</h3>
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.details}</p>
+
+                  <p className="flex items-center gap-1.5 text-xs text-muted-foreground mb-5">
+                    <MapPin className="w-3.5 h-3.5 shrink-0" />
+                    {item.location}
+                  </p>
+
+                  {/* Each time slot as its own pill so the hours stand out */}
+                  <ul className="flex flex-col gap-2.5">
+                    {item.slots.map((slot) => (
+                      <li
+                        key={`${slot.time}-${slot.group}`}
+                        className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-xl border border-border/50 bg-background/60 px-4 py-2.5 backdrop-blur-sm"
+                      >
+                        <span className="inline-flex items-center gap-1.5 font-semibold tabular-nums text-foreground">
+                          <Clock className="w-3.5 h-3.5 text-primary" />
+                          {slot.time}
+                        </span>
+                        <span
+                          className={`rounded-full bg-gradient-to-r ${gradients[index % gradients.length]} px-3 py-0.5 text-xs font-medium text-white shadow-sm`}
+                        >
+                          {slot.group}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {item.note && (
+                    <p className="mt-4 text-sm italic text-muted-foreground">{item.note}</p>
+                  )}
                 </CardContent>
               </Card>
             </StaggerItem>
