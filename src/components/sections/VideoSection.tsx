@@ -57,9 +57,10 @@ export default function VideoSection() {
         >
           <div className="aspect-video relative bg-black">
             <iframe
-              src="https://www.youtube.com/embed/WQ5pd9NlYQ0?start=10&end=98"
+              src="https://www.youtube.com/embed/WQ5pd9NlYQ0?start=10&end=98?cc_load_policy=3"
               className="absolute inset-0 w-full h-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+
               allowFullScreen
               title={translate('video.showcaseTitle')}
             />

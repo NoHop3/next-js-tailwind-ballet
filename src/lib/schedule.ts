@@ -27,8 +27,8 @@ export const weeklySchedule: Record<Culture, ScheduleDay[]> = {
       day: 'Вторник',
       location: 'Стар център / Младежки център',
       slots: [
-        { time: '17:30 – 18:30', group: 'Начинаещи' },
-        { time: '18:40 – 19:40', group: 'Начинаещи' },
+        { time: '17:30 – 18:30', group: 'Деца 5-6 годинки' },
+        { time: '18:40 – 19:40', group: 'Ученици 1-3 клас' },
       ],
     },
     {
@@ -44,8 +44,8 @@ export const weeklySchedule: Record<Culture, ScheduleDay[]> = {
       day: 'Четвъртък',
       location: 'Стар център / Младежки център',
       slots: [
-        { time: '17:30 – 18:30', group: 'Начинаещи' },
-        { time: '18:40 – 19:40', group: 'Начинаещи' },
+        { time: '17:30 – 18:30', group: 'Деца 5-6 годинки' },
+        { time: '18:40 – 19:40', group: 'Ученици 1-3 клас' },
       ],
     },
     {
@@ -78,8 +78,8 @@ export const weeklySchedule: Record<Culture, ScheduleDay[]> = {
       day: 'Tuesday',
       location: 'Old town centre / Youth centre',
       slots: [
-        { time: '17:30 – 18:30', group: 'Beginners' },
-        { time: '18:40 – 19:40', group: 'Beginners' },
+        { time: '17:30 – 18:30', group: 'Children 5-6 years' },
+        { time: '18:40 – 19:40', group: 'Students 1-3 class' },
       ],
     },
     {
@@ -95,8 +95,8 @@ export const weeklySchedule: Record<Culture, ScheduleDay[]> = {
       day: 'Thursday',
       location: 'Old town centre / Youth centre',
       slots: [
-        { time: '17:30 – 18:30', group: 'Beginners' },
-        { time: '18:40 – 19:40', group: 'Beginners' },
+        { time: '17:30 – 18:30', group: 'Children 5-6 years' },
+        { time: '18:40 – 19:40', group: 'Students 1-3 class' },
       ],
     },
     {
@@ -129,8 +129,8 @@ export const weeklySchedule: Record<Culture, ScheduleDay[]> = {
       day: 'Вторник',
       location: 'Старый центр / Молодёжный центр',
       slots: [
-        { time: '17:30 – 18:30', group: 'Начинающие' },
-        { time: '18:40 – 19:40', group: 'Начинающие' },
+        { time: '17:30 – 18:30', group: 'Дети 5-6 лет' },
+        { time: '18:40 – 19:40', group: 'Ученики 1-3 класс' },
       ],
     },
     {
@@ -146,8 +146,8 @@ export const weeklySchedule: Record<Culture, ScheduleDay[]> = {
       day: 'Четверг',
       location: 'Старый центр / Молодёжный центр',
       slots: [
-        { time: '17:30 – 18:30', group: 'Начинающие' },
-        { time: '18:40 – 19:40', group: 'Начинающие' },
+        { time: '17:30 – 18:30', group: 'Дети 5-6 лет' },
+        { time: '18:40 – 19:40', group: 'Ученики 1-3 класс' },
       ],
     },
     {
@@ -180,8 +180,8 @@ export const weeklySchedule: Record<Culture, ScheduleDay[]> = {
       day: 'Вівторок',
       location: 'Старий центр / Молодіжний центр',
       slots: [
-        { time: '17:30 – 18:30', group: 'Початківці' },
-        { time: '18:40 – 19:40', group: 'Початківці' },
+        { time: '17:30 – 18:30', group: 'Діти 5-6 років' },
+        { time: '18:40 – 19:40', group: 'Учні 1-3 клас' },
       ],
     },
     {
@@ -197,8 +197,8 @@ export const weeklySchedule: Record<Culture, ScheduleDay[]> = {
       day: 'Четвер',
       location: 'Старий центр / Молодіжний центр',
       slots: [
-        { time: '17:30 – 18:30', group: 'Початківці' },
-        { time: '18:40 – 19:40', group: 'Початківці' },
+        { time: '17:30 – 18:30', group: 'Діти 5-6 років' },
+        { time: '18:40 – 19:40', group: 'Учні 1-3 клас' },
       ],
     },
     {

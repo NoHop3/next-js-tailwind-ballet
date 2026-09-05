@@ -50,9 +50,11 @@ export default function HomeSection() {
             className="inline-flex items-center gap-2 px-5 py-2.5 my-5 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-sm font-medium shadow-lg shadow-purple-500/10"
           >
             <Sparkles className="w-4 h-4 text-pink-300" />
+            <span className="text-white text-lg">🩰</span>
             <span className="bg-gradient-to-r from-pink-200 to-purple-200 bg-clip-text text-transparent">
               {translate('home.badge')}
             </span>
+            <span className="text-white text-lg">🩰</span>
             <Sparkles className="w-4 h-4 text-pink-300" />
           </motion.div>
 
