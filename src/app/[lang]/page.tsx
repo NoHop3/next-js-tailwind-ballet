@@ -7,6 +7,7 @@ import TeamSection from '@/components/sections/TeamSection';
 import VideoSection from '@/components/sections/VideoSection';
 
 import { generateLocalBusinessSchema, generateOrganizationSchema } from '@/lib/schema';
+import { ogImages } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Начало',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Балетна школа Па-па-па де труа | Смолян',
     description: 'Преоткрийте изкуството на класическия балет в нашата школа в Смолян.',
+    images: ogImages,
   },
 };
 

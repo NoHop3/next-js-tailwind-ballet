@@ -19,6 +19,18 @@ vi.mock('next/image', () => ({
   },
 }));
 
+vi.mock('@hcaptcha/react-hcaptcha', () => ({
+  default: ({ onVerify }: { onVerify: (token: string) => void }) => (
+    <button type="button" onClick={() => onVerify('test-captcha-token')}>
+      solve captcha
+    </button>
+  ),
+}));
+
+vi.mock('@/lib/ThemeContext', () => ({
+  useTheme: () => ({ theme: 'light', setTheme: vi.fn(), resolvedTheme: 'light' }),
+}));
+
 vi.mock('@/components/ui/motion', () => ({
   ScrollReveal: ({ children, className }: { children: React.ReactNode; className?: string }) => (
     <div className={className}>{children}</div>
@@ -54,6 +66,7 @@ describe('ContactSection form', () => {
     await user.type(screen.getByLabelText('Full Name'), 'Test User');
     await user.type(screen.getByLabelText('Email Address'), 'test@example.com');
     await user.type(screen.getByLabelText('Message'), 'Hello world');
+    await user.click(screen.getByRole('button', { name: /solve captcha/i }));
     await user.click(screen.getByRole('button', { name: /send message/i }));
   }
 
@@ -75,6 +88,7 @@ describe('ContactSection form', () => {
     await user.type(screen.getByLabelText('Full Name'), 'Test User');
     await user.type(screen.getByLabelText('Email Address'), 'test@example.com');
     await user.type(screen.getByLabelText('Message'), 'Hello world');
+    await user.click(screen.getByRole('button', { name: /solve captcha/i }));
 
     const button = screen.getByRole('button', { name: /send message/i });
 
@@ -116,6 +130,34 @@ describe('ContactSection form', () => {
     await waitFor(() => expect(toast.error).toHaveBeenCalledWith(
       'Failed to send message. Please try again.'
     ));
+  });
+
+  it('blocks submission and does not call fetch when the captcha is unsolved', async () => {
+    const user = userEvent.setup();
+    renderWithTranslations(<ContactSection />);
+
+    await user.type(screen.getByLabelText('Full Name'), 'Test User');
+    await user.type(screen.getByLabelText('Email Address'), 'test@example.com');
+    await user.type(screen.getByLabelText('Message'), 'Hello world');
+    await user.click(screen.getByRole('button', { name: /send message/i }));
+
+    await waitFor(() => expect(toast.error).toHaveBeenCalledWith(
+      'Please complete the captcha before sending.'
+    ));
+    expect(global.fetch).not.toHaveBeenCalled();
+  });
+
+  it('sends the captcha token to Web3Forms', async () => {
+    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({
+      ok: true,
+      json: async () => ({ success: true }),
+    });
+
+    await fillAndSubmit();
+
+    await waitFor(() => expect(global.fetch).toHaveBeenCalled());
+    const [, init] = (global.fetch as ReturnType<typeof vi.fn>).mock.calls[0];
+    expect(JSON.parse(init.body)['h-captcha-response']).toBe('test-captcha-token');
   });
 
   it('shows error toast when fetch throws a network error', async () => {

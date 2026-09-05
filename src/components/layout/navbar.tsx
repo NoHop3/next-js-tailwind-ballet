@@ -72,7 +72,7 @@ export default function Navbar() {
               variant="wordmark"
               priority
               alt={translate('main.title')}
-              className="h-8 w-auto sm:h-10"
+              className="h-10 w-auto sm:h-12"
             />
           </a>
 

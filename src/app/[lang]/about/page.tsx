@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 
 import AboutSection from '@/components/sections/AboutSection';
+
+import { ogImages } from '@/lib/site';
 import GallerySection from '@/components/sections/GallerySection';
 
 export const metadata: Metadata = {
@@ -10,6 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'За нас | Па-па-па де труа',
     description: 'Научете повече за балетната школа Па-па-па де труа и нашите преподаватели.',
+    images: ogImages,
   },
 };
 

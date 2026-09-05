@@ -5,6 +5,8 @@ import { Toaster } from 'sonner';
 
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 
+import { ogImages, siteUrl } from '@/lib/site';
+
 import './globals.css';
 
 const playfair = Playfair_Display({
@@ -19,7 +21,6 @@ const inter = Inter({
   weight: ['300', '400', '500', '600', '700'],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://balletstudio.com';
 
 export const metadata: Metadata = {
   title: {
@@ -51,11 +52,13 @@ export const metadata: Metadata = {
     title: 'Балетна школа Па-па-па де труа | Смолян',
     description:
       'Преоткрийте изкуството на класическия балет в нашата школа. Квалифицирани преподаватели, класове за всички нива.',
+    images: ogImages,
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Балетна школа Па-па-па де труа | Смолян',
     description: 'Преоткрийте изкуството на класическия балет в нашата школа.',
+    images: ogImages,
   },
   robots: {
     index: true,

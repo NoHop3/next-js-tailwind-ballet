@@ -1,3 +1,5 @@
+import { siteUrl } from './site';
+
 import type { LocalBusiness, Organization, WithContext } from 'schema-dts';
 
 export function generateOrganizationSchema(): WithContext<Organization> {
@@ -5,8 +7,8 @@ export function generateOrganizationSchema(): WithContext<Organization> {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Балетна школа Па-па-па де труа',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://papapasdetrois.com',
-    logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://papapasdetrois.com'}/icon-512.png`,
+    url: siteUrl,
+    logo: `${siteUrl}/icon-512.png`,
     sameAs: [
       'https://www.facebook.com/share/1C4afyqUTQ/',
       'https://www.instagram.com/papapasdetrois?igsh=MW5hejVjbndtcnR4dg==&igsi=MW5hejVjbndtcnR4dg==',
@@ -25,11 +27,11 @@ export function generateLocalBusinessSchema(): WithContext<LocalBusiness> {
   return {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    '@id': process.env.NEXT_PUBLIC_SITE_URL || 'https://papapasdetrois.com/',
+    '@id': siteUrl,
     name: 'Балетна школа Па-па-па де труа',
     description:
       'Балетна школа в Смолян, предлагаща класически балет за деца и възрастни на всички нива.',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://papapasdetrois.com/',
+    url: siteUrl,
     telephone: '+359876389077',
     email: 'papapasdetrois@gmail.com',
     address: {
@@ -58,6 +60,6 @@ export function generateLocalBusinessSchema(): WithContext<LocalBusiness> {
       },
     ],
     priceRange: '$$',
-    image: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://papapasdetrois.com/'}/icon-512.png`,
+    image: `${siteUrl}/icon-512.png`,
   };
 }

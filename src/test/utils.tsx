@@ -17,6 +17,7 @@ const defaultTranslations: Record<string, string> = {
   'contact.form.success': 'Message sent successfully!',
   'contact.form.successDescription': "We'll get back to you soon.",
   'contact.form.error': 'Failed to send message. Please try again.',
+  'contact.form.captchaRequired': 'Please complete the captcha before sending.',
   'contact.subtitle': 'Get in Touch',
   'contact.title': 'Contact Us',
   'contact.badge': 'We would love to hear from you',

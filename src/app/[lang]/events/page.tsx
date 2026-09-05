@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 
 import EventsSection from '@/components/sections/EventsSection';
 
+import { ogImages } from '@/lib/site';
+
 export const metadata: Metadata = {
   title: 'Събития',
   description:
@@ -9,6 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Събития | Па-па-па де труа',
     description: 'Открийте предстоящи спектакли и събития в балетна школа Па-па-па де труа.',
+    images: ogImages,
   },
 };
 

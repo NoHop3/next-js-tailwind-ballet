@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 import { Loader2, Mail, MapPin, MessageSquare, Phone, Send } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -18,11 +19,19 @@ import {
 } from '@/components/ui/motion';
 import { Textarea } from '@/components/ui/textarea';
 
+import { useTheme } from '@/lib/ThemeContext';
 import { useTranslation } from '@/lib/TranslationContext';
+
+// Web3Forms' shared key for free plans; override with your own on a paid plan.
+const HCAPTCHA_SITEKEY =
+  process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY || '';
 
 export default function ContactSection() {
   const { translate } = useTranslation();
+  const { resolvedTheme } = useTheme();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const captchaRef = useRef<HCaptcha>(null);
+  const [captchaToken, setCaptchaToken] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -38,6 +47,12 @@ export default function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!captchaToken) {
+      toast.error(translate('contact.form.captchaRequired'));
+      return;
+    }
+
     setIsSubmitting(true);
 
     const trimmed = {
@@ -56,6 +71,7 @@ export default function ContactSection() {
           email: trimmed.email,
           message: trimmed.message,
           subject: `New message from ${trimmed.name}`,
+          'h-captcha-response': captchaToken,
         }),
       });
 
@@ -70,6 +86,9 @@ export default function ContactSection() {
     } catch {
       toast.error(translate('contact.form.error'));
     } finally {
+      // hCaptcha tokens are single-use, so clear it whatever the outcome.
+      captchaRef.current?.resetCaptcha();
+      setCaptchaToken('');
       setIsSubmitting(false);
     }
   };
@@ -242,6 +261,19 @@ export default function ContactSection() {
                       required
                       disabled={isSubmitting}
                       className="resize-none bg-background/50 border-border/50 focus:border-primary"
+                    />
+                  </div>
+
+                  {/* Spam protection */}
+                  <div className="flex justify-center">
+                    <HCaptcha
+                      ref={captchaRef}
+                      sitekey={HCAPTCHA_SITEKEY}
+                      reCaptchaCompat={false}
+                      theme={resolvedTheme}
+                      onVerify={(token) => setCaptchaToken(token)}
+                      onExpire={() => setCaptchaToken('')}
+                      onError={() => setCaptchaToken('')}
                     />
                   </div>
 
