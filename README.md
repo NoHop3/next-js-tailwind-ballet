@@ -2,6 +2,8 @@
 
 A modern, elegant static website for a ballet studio — built with Next.js 16, Tailwind CSS v4, and Framer Motion. This is a personal project showcasing my sister's ballet studio with a premium pink/purple aesthetic.
 
+✨ Live at : https://papapasdetrois.com ✨
+
 ## ✨ Features
 
 - **Modern Design** — Premium pink/purple color scheme with gradient effects, glassmorphism, and smooth animations
