@@ -1,8 +1,8 @@
 'use client';
 
-import { ReactNode, useRef } from 'react';
+import { ReactNode } from 'react';
 
-import { Variants, motion, useInView } from 'framer-motion';
+import { Variants, motion } from 'framer-motion';
 
 // Animation variants
 export const fadeInUp: Variants = {
@@ -64,16 +64,13 @@ export function ScrollReveal({
   delay = 0,
   duration = 0.6,
   once = true,
-  amount = 0.2,
+  amount = 0.1,
 }: ScrollRevealProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once, amount });
-
   return (
     <motion.div
-      ref={ref}
       initial="hidden"
-      animate={isInView ? 'visible' : 'hidden'}
+      whileInView="visible"
+      viewport={{ once, amount }}
       variants={variants}
       transition={{ duration, delay, ease: 'easeOut' }}
       className={className}
@@ -99,16 +96,13 @@ export function StaggerContainer({
   delay = 0,
   staggerDelay = 0.1,
   once = true,
-  amount = 0.2,
+  amount = 0.1,
 }: StaggerContainerProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once, amount });
-
   return (
     <motion.div
-      ref={ref}
       initial="hidden"
-      animate={isInView ? 'visible' : 'hidden'}
+      whileInView="visible"
+      viewport={{ once, amount }}
       variants={{
         hidden: { opacity: 0 },
         visible: {

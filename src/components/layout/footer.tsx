@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import { Facebook, Heart, Instagram, Mail, MapPin, Phone, Youtube } from 'lucide-react';
+import { Facebook, Heart, Instagram, Mail, MapPin, Phone, UserRound, Youtube } from 'lucide-react';
 
 import { Logo } from '@/components/ui/Logo';
 
@@ -171,13 +171,23 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-border/50 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-muted-foreground text-sm text-center md:text-left leading-relaxed flex flex-wrap items-center justify-center md:justify-start gap-1.5 max-w-2xl">
-              <span>{translate('footer.text')}</span>
-              <span className="hidden md:inline mx-2">•</span>
-              <span>{translate('footer.madeWith')}</span>
-              <Heart className="w-4 h-4 text-primary" fill="currentColor" />
-              <span>{translate('footer.forBallet')}</span>
-            </p>
+            <div className="flex flex-col items-center md:items-start gap-1 text-center md:text-left">
+              <p className="text-muted-foreground text-sm">{translate('footer.text')}</p>
+              <p className="text-muted-foreground text-sm flex items-center gap-1.5">
+                <span>{translate('footer.madeWith')}</span>
+                <Heart className="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" />
+                <span>{translate('footer.forBallet')}</span>
+              </p>
+              <a
+                href="https://iamstefang.netlify.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-primary hover:text-primary/80 transition-colors text-sm font-medium mt-0.5"
+              >
+                <UserRound className="w-3.5 h-3.5" />
+                {translate('footer.moreAboutAuthor')}
+              </a>
+            </div>
             <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-sm">
               <a
                 href="/assets/ustav-baletna-shkola.docx"
