@@ -25,7 +25,7 @@ export const weeklySchedule: Record<Culture, ScheduleDay[]> = {
     },
     {
       day: 'Вторник',
-      location: 'Стар център / Младежки център',
+      location: 'ОУ "Иван Вазов"',
       slots: [
         { time: '17:30 – 18:30', group: 'Деца 5-6 годинки' },
         { time: '18:40 – 19:40', group: 'Ученици 1-3 клас' },
@@ -42,7 +42,7 @@ export const weeklySchedule: Record<Culture, ScheduleDay[]> = {
     },
     {
       day: 'Четвъртък',
-      location: 'Стар център / Младежки център',
+      location: 'ОУ "Иван Вазов"',
       slots: [
         { time: '17:30 – 18:30', group: 'Деца 5-6 годинки' },
         { time: '18:40 – 19:40', group: 'Ученици 1-3 клас' },
@@ -76,7 +76,7 @@ export const weeklySchedule: Record<Culture, ScheduleDay[]> = {
     },
     {
       day: 'Tuesday',
-      location: 'Old town centre / Youth centre',
+      location: 'Ivan Vazov Elementary School',
       slots: [
         { time: '17:30 – 18:30', group: 'Children 5-6 years' },
         { time: '18:40 – 19:40', group: 'Students 1-3 class' },
@@ -93,7 +93,7 @@ export const weeklySchedule: Record<Culture, ScheduleDay[]> = {
     },
     {
       day: 'Thursday',
-      location: 'Old town centre / Youth centre',
+      location: 'Ivan Vazov Elementary School',
       slots: [
         { time: '17:30 – 18:30', group: 'Children 5-6 years' },
         { time: '18:40 – 19:40', group: 'Students 1-3 class' },
@@ -127,7 +127,7 @@ export const weeklySchedule: Record<Culture, ScheduleDay[]> = {
     },
     {
       day: 'Вторник',
-      location: 'Старый центр / Молодёжный центр',
+      location: 'ОУ "Иван Вазов"',
       slots: [
         { time: '17:30 – 18:30', group: 'Дети 5-6 лет' },
         { time: '18:40 – 19:40', group: 'Ученики 1-3 класс' },
@@ -144,7 +144,7 @@ export const weeklySchedule: Record<Culture, ScheduleDay[]> = {
     },
     {
       day: 'Четверг',
-      location: 'Старый центр / Молодёжный центр',
+      location: 'ОУ "Иван Вазов"',
       slots: [
         { time: '17:30 – 18:30', group: 'Дети 5-6 лет' },
         { time: '18:40 – 19:40', group: 'Ученики 1-3 класс' },
@@ -152,7 +152,7 @@ export const weeklySchedule: Record<Culture, ScheduleDay[]> = {
     },
     {
       day: 'Пятница',
-      location: 'ЖК «Нов център»',
+      location: 'ЖK «Нов център»',
       slots: [
         { time: '16:00 – 17:30', group: 'Ученики 4/5 класс' },
         { time: '17:40 – 18:40', group: 'Ученики 1 класс' },
@@ -161,7 +161,7 @@ export const weeklySchedule: Record<Culture, ScheduleDay[]> = {
     },
     {
       day: 'Суббота',
-      location: 'ЖК «Нов център»',
+      location: 'ЖK «Нов център»',
       slots: [{ time: '10:00 – 12:00', group: 'Ученики 5/10 класс' }],
       note: 'Индивидуальные занятия после 12:00 по предварительной договорённости.',
     },
@@ -169,7 +169,7 @@ export const weeklySchedule: Record<Culture, ScheduleDay[]> = {
   'uk-UA': [
     {
       day: 'Понеділок',
-      location: 'ЖК «Нов център»',
+      location: 'ЖK «Нов център»',
       slots: [
         { time: '16:00 – 17:20', group: 'Учні 4/5 клас' },
         { time: '17:30 – 18:50', group: 'Учні 2/3 клас' },
@@ -178,7 +178,7 @@ export const weeklySchedule: Record<Culture, ScheduleDay[]> = {
     },
     {
       day: 'Вівторок',
-      location: 'Старий центр / Молодіжний центр',
+      location: 'ОУ "Іван Вазов"',
       slots: [
         { time: '17:30 – 18:30', group: 'Діти 5-6 років' },
         { time: '18:40 – 19:40', group: 'Учні 1-3 клас' },
@@ -195,7 +195,7 @@ export const weeklySchedule: Record<Culture, ScheduleDay[]> = {
     },
     {
       day: 'Четвер',
-      location: 'Старий центр / Молодіжний центр',
+      location: 'ОУ "Іван Вазов"',
       slots: [
         { time: '17:30 – 18:30', group: 'Діти 5-6 років' },
         { time: '18:40 – 19:40', group: 'Учні 1-3 клас' },
